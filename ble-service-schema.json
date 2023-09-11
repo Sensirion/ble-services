@@ -1,0 +1,58 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "ble-service-schema.json",
+    "title": "BLE-service schema definition",
+    "description": "Defines used BLE-services.",
+    "type": "object",
+    "required": [ "file-version", "ble-services"],
+    "properties": {
+       "file-version": {
+        "description": "Defines the version of the ble-services.yml file.",
+        "type": "string",
+        "pattern": "^[0-9]+(\\.[0-9]+){0,2}$"
+      },
+      "ble-services": {
+        "description": "The list of defined BLE-services.",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["service"],
+          "properties": {
+            "service": {"type": "object",
+              "required": ["name", "uuid", "description", "supported-characteristics"],
+              "properties": {
+                "name": {"type": "string", "description": "Name of the service"},
+                "uuid": {"type": "string", "description:": "UUID of the service"},
+                "description": {"type": "string"},
+                "application-note": {"type": "string", "description": "Additional information how to use this service"},
+                "ble-sig-reference": {"type": "string", "description": "Link to the document describing a service that is defined by the BLE SIG."},
+                "supported-characteristics":
+                  { "type": "array",
+                    "items":  {" type": "object",
+                    "required": ["characteristic"], "properties":{
+                      "characteristic": {
+                      "type": "object",
+                      "description": "Specification of a characteristic",
+                      "required": ["name", "uuid", "data-type", "access-properties", "description"],
+                      "properties": {
+                        "name": {"type": "string", "description": "Name of the characteristic"},
+                        "uuid": {"type": "string", "description": "UUID of the characteristic"},
+                        "description": {"type": "string"},
+                        "data-type": {"type": "string", "description": "Data type of the characteristic value"},
+                        "access-properties": {
+                          "type": "array",
+                          "description": "The properties of this BLE characteristic",
+                          "items": {"type": "string", "enum": ["read", "write", "notify", "indicate"]}
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

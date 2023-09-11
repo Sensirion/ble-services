@@ -1,0 +1,71 @@
+# yaml-language-server: $schema=./ble-service-schema.json
+file-version: 0.1.0
+
+ble-services:
+
+  - service:
+      name: Battery Service
+      uuid: 0000180f-0000-1000-8000-00805f9b34fb
+      ble-sig-reference: https://www.bluetooth.org/DocMan/handlers/DownloadDoc.ashx?doc_id=554952
+      supported-by: ["SHT43-DB"]
+      description: Allows to get the battery level from the measuring device.
+      supported-characteristics:
+        - characteristic:
+            name: Battery Level
+            uuid: "2a19"
+            description: "The current battery level expressed as % of the available capacity."
+            data-type: uint8
+            access-properties: [read, notify]
+
+  - service:
+      name: Data Logger Service
+      uuid: 00008000-B38D-4985-720E-0F993A68EE41
+      description: Service to control the data logging on a measuring device.
+      application-note: |
+        How to use the service:
+
+          #. To be able to calculate how many samples we have missed; the sampling interval has to be readout.
+
+          #. The measuring device returns the sampling interval in milliseconds.
+
+          #. Then we check how many samples are available at all.
+
+          #. The measuring device returns the number of available samples.
+
+          #. Based on the retrieved information, we determine how many samples we want to read. If the requested
+             number of samples is higher than the available number of samples, then all available samples are
+             transmitted.
+
+             If the requested number of samples is less than the available number of samples, the oldest samples are
+             omitted. If the requested number of samples is not specified, then all available samples are transmitted.
+
+        The steps 1 to 5 are optional, they are only required if not all samples should be transferred by the Data Logger.
+        This is useful if older samples have already been read from the logger and only the missing new samples are to
+        be transferred.
+      supported-characteristics:
+        - characteristic:
+            name: Logging interval
+            uuid: 00008001-B38D-4985-720E-0F993A68EE41
+            description: |
+              The time between two subsequent measurements in milliseconds.
+              Note: When the logging interval is changed, the logged samples will be removed.
+            data-type: uint32
+            access-properties: [read, write]
+        - characteristic:
+            name: Available samples
+            uuid: 00008002-B38D-4985-720E-0F993A68EE41
+            description: Get the number of samples that is available on the measuring device
+            data-type: uint16
+            access-properties: [read]
+        - characteristic:
+            name: Requested samples
+            uuid: 00008003-B38D-4985-720E-0F993A68EE41
+            description: Get or set the number of samples that are to be transferred
+            data-type: uint16
+            access-properties: [read, write]
+        - characteristic:
+            name: Data transfer
+            uuid: 00008003-B38D-4985-720E-0F993A68EE41
+            description: Notify the client that a new block of samples has been sent.
+            data-type: uint8[20]
+            access-properties: [notify]
