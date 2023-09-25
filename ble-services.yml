@@ -69,3 +69,44 @@ ble-services:
             description: Notify the client that a new block of samples has been sent.
             data-type: uint8[20]
             access-properties: [notify]
+  - service:
+      name: Device settings
+      uuid: 00008100-B38D-4985-720E-0F993A68EE41
+      description: |
+        This service contains various configuration settings that can be modified by a user.
+      supported-characteristics:
+        - characteristic:
+            name: Device settings version
+            uuid: 000081FF-B38D-4985-720E-0F993A68EE41
+            description: |
+              The actual version of the configuration settings. This version depends on the actual
+              firmware of a device and cannot be modified by a user. When a firmware uses new settings version it shall
+              import values that where previously set by the user if these values are still applicable.
+            data-type: uint8
+            access-properties: ["read"]
+        - characteristic:
+            name: Alternative device name
+            uuid: 00008120-B38D-4985-720E-0F993A68EE41
+            description: |
+              A name for the device that can be set by a user and shown instead of the device name
+              that is part of the Generic Access Profile (uuid 0x2a00). The maximal length of the
+              name is 32 characters.
+            data-type: string[32]
+            access-properties: [read, write]
+        - characteristic:
+            name: Is debug log enabled
+            uuid: 000081FE-B38D-4985-720E-0F993A68EE41
+            description: |
+              This flag allows to enable or disable debug traces to the UART. By default UART trace
+              is disabled.
+
+              *Note:* Enabling tracing will cause higher current consumption and therefore
+              reduce battery lifetime!
+            data-type: bool
+            access-properties: [read,write]
+        - characteristic:
+            name: Advertise sensor data
+            uuid: 00008130-B38D-4985-720E-0F993A68EE41
+            description: Flag to enable/ disable the advertisement of sensor data.
+            data-type: bool
+            access-properties: [read, write]
