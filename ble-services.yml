@@ -4,6 +4,67 @@ file-version: 0.1.0
 ble-services:
 
   - service:
+      name: Reboot Device Service
+      uuid: e6686821-f5b0-417f-aa27-89d1a1ae5425
+      description: |
+        Trigger the reboot or the over the air update (OTA).
+        This service uses the ST OTA application that is flashed on the
+        demo board and acts as boot loader.
+      supported-characteristics:
+        - characteristic:
+            name: Reboot request
+            uuid: 0000FE11-8e22-4541-9d4c-21edae82ed19
+            description: |
+              Trigger the reboot or OTA by writing to the characteristic.
+              The characteristic requires three bytes as parameter:
+              - byte[0]: Boot mode: 0 = SHT application, 1 = OTA application
+              - byte[1]: First sector to be erased (7 for demo board firmware)
+              - byte[2]: Number of sectors to erase.
+                (0-57; device settings start at page 65)
+            data-type: uint8[3]
+            access-properties: [write]
+
+  - service:
+      name: Relative Humidity Service
+      uuid: 00001234-B38D-4985-720E-0F993A68EE41
+      description: |
+        Allows to be notified when the measured humidity changes. This service
+        could be replaced by the BLE environmental service.
+      supported-characteristics:
+        - characteristic:
+            name: Relative humidity
+            uuid: 00001235-B38D-4985-720E-0F993A68EE41
+            description: Measured relative humidity in %.
+            data-type: uint8
+            access-properties: [read, notify]
+
+  - service:
+      name: Temperature service
+      uuid: 00002234-B38D-4985-720E-0F993A68EE41
+      description: |
+        Allows to be notified when the temperature changes. This service could
+        be replaced by the BLE environmental service.
+      supported-characteristics:
+        - characteristic:
+            name: Temperature
+            uuid: 00002235-B38D-4985-720E-0F993A68EE41
+            description: Temperature in degree celsius.
+            data-type: float
+            access-properties:  [read, notify]
+
+  - service:
+      name: SHT serial number service
+      uuid: 00006000-B38D-4985-720E-0F993A68EE41
+      description: Serial number of the embedded sht sensor
+      supported-characteristics:
+        - characteristic:
+            name: Serial number
+            uuid: 00006001-B38D-4985-720E-0F993A68EE41
+            description: Serial number
+            data-type: uint32
+            access-properties: [read]
+
+  - service:
       name: Battery Service
       uuid: 0000180f-0000-1000-8000-00805f9b34fb
       ble-sig-reference: https://www.bluetooth.org/DocMan/handlers/DownloadDoc.ashx?doc_id=554952
@@ -73,13 +134,14 @@ ble-services:
       name: Device settings
       uuid: 00008100-B38D-4985-720E-0F993A68EE41
       description: |
-        This service contains various configuration settings that can be modified by a user.
+        This service contains various device settings that can be modified by a user.
+
       supported-characteristics:
         - characteristic:
             name: Device settings version
             uuid: 000081FF-B38D-4985-720E-0F993A68EE41
             description: |
-              The actual version of the configuration settings. This version depends on the actual
+              The actual version of the device settings. This version depends on the actual
               firmware of a device and cannot be modified by a user. When a firmware uses new settings version it shall
               import values that where previously set by the user if these values are still applicable.
             data-type: uint8
