@@ -1,0 +1,24 @@
+name: 'Generate and publish'
+
+on:
+    workflow_call:
+    workflow_dispatch:
+    push:
+jobs:
+    generate_html:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v3
+        - name: Install-pipx
+          run: |
+            python3 -m pip install --user pipx
+            python3 -m pipx ensurepath
+        - name: install poetry
+          run: |
+            pipx install poetry
+        - name: Build-html
+          run: |
+            cd html_spec_builder
+            poetry install
+            poetry run build_html
