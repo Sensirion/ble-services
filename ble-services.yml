@@ -4,6 +4,55 @@ file-version: 0.1.0
 ble-services:
 
   - service:
+      name: Device Information Service
+      uuid: 0000180a-0000-1000-8000-00805f9b34fb
+      description: |
+        The device information service allows to retrieve various information
+        about a connected device. It is a service defined by the BLE string.
+        The Sensirion devices are supposed to implement a subset of the defined
+        characteristics only.
+      ble-sig-reference: https://www.bluetooth.org/docman/handlers/downloaddoc.ashx?doc_id=244369
+      supported-characteristics:
+        - characteristic:
+            name: Manufacturer Name String
+            uuid: 2a29
+            description: |
+              Name of the manufacturer. This will always be set ot 'Sensirion'.
+            data-type: string
+            access-properties: [read]
+        - characteristic:
+            name: Model Number String
+            uuid: 2a24
+            description: |
+              Name of the device model.
+            data-type: string
+            access-properties: [read]
+        - characteristic:
+            name: Serial Number String
+            uuid: 2a25
+            description: |
+              Serial number of the device as hex string. Each byte takes two
+              characters within this string (0-padded).
+              The last two bytes of the MAC address form the serial number.
+            data-type: string
+            access-properties: [read]
+        - characteristic:
+            name: Firmware Revision String
+            uuid: 2a26
+            description: |
+              The firmware revision in the form 'major.minor.patch'.
+              Major, minor, patch are decimal digits.
+            data-type: string
+            access-properties: [read]
+        - characteristic:
+            name: System ID
+            uuid: 2a23
+            description: |
+              The bytes of the BLE-MAC address.
+            data-type: byte[6]
+            access-properties: [read]
+
+  - service:
       name: Reboot Device Service
       uuid: e6686821-f5b0-417f-aa27-89d1a1ae5425
       description: |
@@ -121,13 +170,19 @@ ble-services:
         - characteristic:
             name: Requested samples
             uuid: 00008003-B38D-4985-720E-0F993A68EE41
-            description: Get or set the number of samples that are to be transferred
+            description: |
+              Get or set the number of samples that are to be transferred.
+              Writing to this characteristic will set the number of requested samples for the next download.
+              The read will just return the last requested number of samples.
             data-type: uint16
             access-properties: [read, write]
         - characteristic:
             name: Data transfer
             uuid: 00008003-B38D-4985-720E-0F993A68EE41
-            description: Notify the client that a new block of samples has been sent.
+            description: |
+              Notify the client that a new block of samples has been sent.
+              The download must only be triggered when a client subscribes to this
+              characteristic.
             data-type: uint8[20]
             access-properties: [notify]
   - service:
@@ -145,7 +200,7 @@ ble-services:
               firmware of a device and cannot be modified by a user. When a firmware uses new settings version it shall
               import values that where previously set by the user if these values are still applicable.
             data-type: uint8
-            access-properties: ["read"]
+            access-properties: [read]
         - characteristic:
             name: Alternative device name
             uuid: 00008120-B38D-4985-720E-0F993A68EE41
