@@ -4,6 +4,10 @@ from typing import List, Dict, Any, Final, Optional
 from docutils.core import publish_parts
 
 
+def name_to_id(name: str) -> str:
+    return name.lower().replace(' ', '_')
+
+
 def sizeof(type_name: str) -> int:
     type_name_list = list(type_name)
     match type_name_list:
@@ -12,11 +16,11 @@ def sizeof(type_name: str) -> int:
         case list('uint'), [x]:
             return x
         case [*_, 'i', 'n', 't', x]:
-            return int(x)//8
+            return int(x) // 8
         case [*_, 'i', 'n', 't', x, y]:
-            return int(f'{x}{y}')//8
+            return int(f'{x}{y}') // 8
         case [*_, '[', x, ']']:
-            return int(x)//8
+            return int(x) // 8
         case [*_, '[', x, y, ']']:
             return int(f'{x}{y}')
         case _:
@@ -102,6 +106,7 @@ def sample_fields(sample_type: Dict[str, Any]) -> List[str]:
 FILTERS: Final[Dict[str, Any]] = {'id_2_number': id_to_sample_number,
                                   'as_html': as_html, 'yesno': yesno,
                                   'sizeof': sizeof,
+                                  'name_2_id': name_to_id,
                                   'conversion_formula': conversion_formula}
 
 TESTS: Final[Dict[str, Any]] = {'advertisement_sample': is_advertisement_sample,
