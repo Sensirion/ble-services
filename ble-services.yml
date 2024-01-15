@@ -65,11 +65,12 @@ ble-services:
             uuid: 0000FE11-8e22-4541-9d4c-21edae82ed19
             description: |
               Trigger the reboot or OTA by writing to the characteristic.
+
               The characteristic requires three bytes as parameter:
-              - byte[0]: Boot mode: 0 = SHT application, 1 = OTA application
-              - byte[1]: First sector to be erased (7 for demo board firmware)
-              - byte[2]: Number of sectors to erase.
-                (0-57; device settings start at page 65)
+                - byte[0]: Boot mode: 0 = SHT application, 1 = OTA application
+                - byte[1]: First sector to be erased (7 for demo board firmware)
+                - byte[2]: Number of sectors to erase.
+                  (0-57; device settings start at page 65)
             data-type: uint8[3]
             access-properties: [write]
 
@@ -134,7 +135,8 @@ ble-services:
       application-note: |
         How to use the service:
 
-          #. To be able to calculate how many samples we have missed; the sampling interval has to be readout.
+          #. To be able to calculate how many samples we have missed; the sampling
+             interval has to be readout.
 
           #. The measuring device returns the sampling interval in milliseconds.
 
@@ -142,9 +144,8 @@ ble-services:
 
           #. The measuring device returns the number of available samples.
 
-          #. Based on the retrieved information, we determine how many samples we want to read. If the requested
-             number of samples is higher than the available number of samples, then all available samples are
-             transmitted.
+          #. Based on the retrieved information, we determine how many samples we want to read.
+             If the requested  number of samples is higher than the available number of samples, then all available samples are transmitted.
 
              If the requested number of samples is less than the available number of samples, the oldest samples are
              omitted. If the requested number of samples is not specified, then all available samples are transmitted.
