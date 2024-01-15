@@ -1,0 +1,131 @@
+{%macro ble_sample_frame(field_list) %}
+    <table class="sample-frame">
+        <tr>
+            <th class = "sample-frame-header">Id</th>
+            <th class = "sample-frame-header">Sample Data</th>
+        </tr>
+        <tr>
+            <td>
+                {%set ns = namespace(counter=0)%}
+
+                <table class="sample-id-layout">
+                    <tr>
+                        {%for id_field in field_list[:2]%}
+                        <th class="byte-header">
+                            byte-{{ns.counter}}
+                            {%set ns.counter = ns.counter + 1%}
+                        </th>
+                        {%endfor%}
+                    </tr>
+                        {%for id_field in field_list[:2]%}
+                            <td class="sample-data">{{id_field}}</td>
+                        {%endfor%}
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table class="sample-data-layout">
+                    <tr>
+                        {%for id_field in field_list[2:]%}
+                        <th class="byte-header">byte-{{ns.counter}}</th>
+                        {% set ns.counter = (ns.counter+1) %}
+                        {%endfor%}
+                    </tr>
+                    <tr>
+                        {%for id_field in field_list[2:]%}
+                        <td class="sample-data">{{id_field}}</td>
+                        {%endfor%}
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    <table>
+{%endmacro%}
+
+{%macro field_description(field) %}
+    <tr>
+        <td class="name">{{field.name}}</td>
+        <td class="description">{{field.description}}</td>
+        <td class="type">{{field['data-type']}}</td>
+        <td class="offset">{{field['byte-offset']}}</td>
+        <td class="size">{{field['data-type']|sizeof}}</td>
+        <td class="conversion">{{field|conversion_formula}}</td>
+    </tr>
+{%endmacro%}
+
+
+{% macro ble_characteristic_description(characteristic) %}
+    <tr>
+        <td class="name">{{characteristic.name}}</td>
+        <td class="uuid">{{characteristic.uuid}}</td>
+        <td class="type">{{characteristic['data-type']}}</td>
+        <td>
+            {{characteristic.description|as_html('char-desc')}}
+        </td>
+        <td class="access">{{characteristic['access-properties'] is read_access|yesno}}</td>
+        <td class="access">{{characteristic['access-properties'] is write_access|yesno}}</td>
+        <td class="access">{{characteristic['access-properties'] is notify|yesno}}</td>
+    </tr>
+{% endmacro %}
+
+{% macro ble_service_description(service_item) -%}<div>
+        <h3>{{service_item['name']}}</h3>
+        <div class="service-uuid">Service UUID: {{service_item['uuid']}}
+        {%if service_item is well_known_service %}
+            <p>
+            <dif class="ble-service-ref">
+            <a href="{{service_item['ble-sig-reference']}}">BLE service reference</a>
+            </div>
+        {%endif%}
+        </div>
+        {%if service_item is documented_with_app_note%}
+            <h4>Application Note:</h4>
+            {{service_item['application-note']|as_html('app-note')}}
+        {%endif%}
+        <h4 class="characteristics-title">Characteristics</h4>
+        <table class="characteristics_table">
+            <tr class="characteristics_table-header">
+                <th class="characteristics-table-header">Name</th>
+                <th class="characteristics-table-header">UUID</th>
+                <th class="characteristics-table-header">Type</th>
+                <th class="characteristics-table-header">Description</th>
+                <th class="characteristics-table-header">Read</th>
+                <th class="characteristics-table-header">Write</th>
+                <th class="characteristics-table-header">Notify</th>
+            </tr>
+        {%for item in service_item['supported-characteristics']%}
+            {{ble_characteristic_description(item.characteristic)|indent}}
+        {%endfor%}
+        </table>
+    </div>
+{%- endmacro %}
+
+{% macro ble_sample_type_description(sample_type) -%}<div>
+        <h3>Sample Type {{sample_type['id']|id_2_number}}</h3>
+        <div class="sample-description">Description: {{sample_type.description}}</div>
+        <div class="sample-id">
+        {%if sample_type['id'] is advertisement_sample%}
+            <p>Advertisement Type: {{sample_type['id'][0]}}</p>
+        {%else%}
+            <p>Sample Type Bytes: {{sample_type['id']}}</p>
+        {%endif%}
+        </div>
+        <h4>Sample Fields</h4>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Data-Type</th>
+                <th>Offset</th>
+                <th>Size</th>
+                <th>Conversion Function</th>
+            </tr>
+            {%for entry in sample_type.fields%}
+                {{field_description(entry.field)}}
+            {%endfor%}
+        </table>
+        <h4>Sample Byte Sequence</h4>
+
+        {{ble_sample_frame(sample_fields(sample_type))}}
+    </div>
+{%-endmacro%}
