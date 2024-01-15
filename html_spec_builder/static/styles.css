@@ -1,0 +1,76 @@
+div.service-uuid {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+table {
+    width: 80%;
+
+}
+
+table.sample-frame {
+    border: solid 1px black;
+    border-collapse: separate;
+}
+
+table.sample-data-layout {
+    width: 100%;
+    border: solid 1px black;
+    border-collapse: collapse;
+}
+
+table.sample-id-layout {
+    width: 100%;
+    border: solid 1px black;
+    border-collapse: collapse;
+}
+
+th {
+    margin: 20px;
+    background-color: aqua;
+    text-align: left;
+    .sample-frame-header&{
+        background-color: lightgray;
+        border: solid 1px black;
+    };
+    .byte-header&{
+
+        background-color: lightgray;
+        border: solid 1px black;
+    };
+}
+
+td {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    vertical-align: text-top;
+    .uuid& {
+        width: 15%;
+        overflow: auto;
+    };
+    .name& {
+        width: 20%;
+    };
+    .type& {
+        width: 10%;
+    }
+    .access& {
+        width: 5%;
+    }
+    .sample-data{
+        border: solid 1px black;
+        margin: 0px;
+    };
+}
+
+input[type='checkbox']{
+    pointer-events: none;
+    &:checked {
+        accent-color: green;
+    };
+    &:not(checked){
+        accent-color: red;
+    }
+}

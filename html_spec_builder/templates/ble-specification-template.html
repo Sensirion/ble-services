@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./static/styles.css">
+</head>
+<body>
+    {% import "jinja.macros" as macro%}
+    <div>
+        <h2>BLE Services</h2>
+        {%for entry in service_spec['ble-services']%}
+        {{macro.ble_service_description(entry.service)}}
+        {%endfor%}
+    </div>
+    <div>
+        <h2>BLE Sample Types</h2>
+        {%for entry in sample_spec['sample-types']%}
+        {{macro.ble_sample_type_description(entry['sample-type'])}}
+        {%endfor%}
+    </div>
+</body>
+</html>
