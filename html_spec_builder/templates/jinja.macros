@@ -17,6 +17,7 @@
                         </th>
                         {%endfor%}
                     </tr>
+                    <tr>
                         {%for id_field in field_list[:2]%}
                             <td class="sample-data">{{id_field}}</td>
                         {%endfor%}
@@ -39,7 +40,7 @@
                 </table>
             </td>
         </tr>
-    <table>
+    </table>
 {%endmacro%}
 
 {%macro field_description(field) %}
@@ -68,64 +69,82 @@
     </tr>
 {% endmacro %}
 
-{% macro ble_service_description(service_item) -%}<div>
-        <h3>{{service_item['name']}}</h3>
-        <div class="service-uuid">Service UUID: {{service_item['uuid']}}
-        {%if service_item is well_known_service %}
-            <p>
-            <dif class="ble-service-ref">
-            <a href="{{service_item['ble-sig-reference']}}">BLE service reference</a>
+{% macro ble_service_description(service_item) -%}
+        <h2>
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapse-{{service_item['name']|name_2_id}}" aria-expanded="false" aria-controls="collapse-{{service_item['name']|name_2_id}}}}">
+            <strong>{{service_item['name']}}</strong>
+            </button>
+        </h2>
+        <div id="collapse-{{service_item['name']|name_2_id}}" class="accordion-collapse collapse" data-bs-parent="#ble-services-accordion">
+            <div class="accordion-body">
+                <div class="service-uuid">Service UUID: {{service_item['uuid']}}
+                    {%if service_item is well_known_service %}
+                        <p>
+                        <div class="ble-service-ref">
+                        <a href="{{service_item['ble-sig-reference']}}">BLE service reference</a>
+                        </div>
+                    {%endif%}
+                </div>
+
+                {%if service_item is documented_with_app_note%}
+                    <h4>Application Note:</h4>
+                    {{service_item['application-note']|as_html('app-note')}}
+                {%endif%}
+                <h4 class="characteristics-title">Characteristics</h4>
+                <table class="characteristics_table">
+                    <tr class="characteristics_table-header">
+                        <th class="characteristics-table-header">Name</th>
+                        <th class="characteristics-table-header">UUID</th>
+                        <th class="characteristics-table-header">Type</th>
+                        <th class="characteristics-table-header">Description</th>
+                        <th class="characteristics-table-header">Read</th>
+                        <th class="characteristics-table-header">Write</th>
+                        <th class="characteristics-table-header">Notify</th>
+                    </tr>
+                {%for item in service_item['supported-characteristics']%}
+                    {{ble_characteristic_description(item.characteristic)|indent}}
+                {%endfor%}
+                </table>
             </div>
-        {%endif%}
         </div>
-        {%if service_item is documented_with_app_note%}
-            <h4>Application Note:</h4>
-            {{service_item['application-note']|as_html('app-note')}}
-        {%endif%}
-        <h4 class="characteristics-title">Characteristics</h4>
-        <table class="characteristics_table">
-            <tr class="characteristics_table-header">
-                <th class="characteristics-table-header">Name</th>
-                <th class="characteristics-table-header">UUID</th>
-                <th class="characteristics-table-header">Type</th>
-                <th class="characteristics-table-header">Description</th>
-                <th class="characteristics-table-header">Read</th>
-                <th class="characteristics-table-header">Write</th>
-                <th class="characteristics-table-header">Notify</th>
-            </tr>
-        {%for item in service_item['supported-characteristics']%}
-            {{ble_characteristic_description(item.characteristic)|indent}}
-        {%endfor%}
-        </table>
-    </div>
 {%- endmacro %}
 
-{% macro ble_sample_type_description(sample_type) -%}<div>
-        <h3>Sample Type {{sample_type['id']|id_2_number}}</h3>
-        <div class="sample-description">Description: {{sample_type.description}}</div>
-        <div class="sample-id">
-        {%if sample_type['id'] is advertisement_sample%}
-            <p>Advertisement Type: {{sample_type['id'][0]}}</p>
-        {%else%}
-            <p>Sample Type Bytes: {{sample_type['id']}}</p>
-        {%endif%}
-        </div>
-        <h4>Sample Fields</h4>
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Data-Type</th>
-                <th>Offset</th>
-                <th>Size</th>
-                <th>Conversion Function</th>
-            </tr>
-            {%for entry in sample_type.fields%}
-                {{field_description(entry.field)}}
-            {%endfor%}
-        </table>
-        <h4>Sample Byte Sequence</h4>
+{% macro ble_sample_type_description(sample_type) -%}
+        <h2>
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapse-sample-type-{{sample_type['id']|id_2_number}}" aria-expanded="false" aria-controls="collapse-sample-type-{{sample_type['id']|id_2_number}}">
+            <strong>Sample Type {{sample_type['id']|id_2_number}}</strong>
+            </button>
+        </h2>
+        <div id="collapse-sample-type-{{sample_type['id']|id_2_number}}" class="accordion-collapse collapse" data-bs-parent="#ble-sample-type-accordion">
+            <div class="accordion-body">
+                <div class="sample-description">Description: {{sample_type.description}}
+                </div>
+                <div class="sample-id">
+                    {%if sample_type['id'] is advertisement_sample%}
+                        <p>Advertisement Type: {{sample_type['id'][0]}}</p>
+                    {%else%}
+                        <p>Sample Type Bytes: {{sample_type['id']}}</p>
+                    {%endif%}
+                </div>
+                <h4>Sample Fields</h4>
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Data-Type</th>
+                        <th>Offset</th>
+                        <th>Size</th>
+                        <th>Conversion Function</th>
+                    </tr>
+                    {%for entry in sample_type.fields%}
+                        {{field_description(entry.field)}}
+                    {%endfor%}
+                </table>
+                <h4>Sample Byte Layout</h4>
 
-        {{ble_sample_frame(sample_fields(sample_type))}}
-    </div>
+                {{ble_sample_frame(sample_fields(sample_type))}}
+            </div>
+        </div>
 {%-endmacro%}
