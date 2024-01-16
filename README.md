@@ -1,9 +1,22 @@
-# BLE-services
+BLE Services on Sensirion Gadgets
+=================================
 
-Describe the BLE services that are used by Sensirion gadgets.
+Describe the BLE Interface of Sensirion Gadgets.
 
-The purpose of this repository is to provide a description of the BLE services
-that is precise enough to implement the services in various devices.
+General Information
+-------------------
+
+The Sensirion Gadgets send their measurement values in the advertisement data as
+part of the manufacturer data. The layout of the advertised data is specified
+in the description of the sample types.
+In addition to this each device act as GATT server and exposes some BLE Services.
+All the publicly used services are specified in BLE Services.
+
+The purpose of this repository is to provide a specification of the used
+interfaces that allows to successfully interact with these devices.
+
+Used Types
+----------
 
 Within the data descriptions we use these type names:
 
