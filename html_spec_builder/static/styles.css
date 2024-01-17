@@ -25,9 +25,13 @@ table.sample-id-layout {
     border-collapse: collapse;
 }
 
+table.characteristics{
+    border-bottom: solid 1px black;
+}
+
 th {
     margin: 20px;
-    background-color: aqua;
+    background-color: rgba(142, 170, 235, 0.607);
     text-align: left;
     .sample-frame-header&{
         background-color: lightgray;

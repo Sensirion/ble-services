@@ -1,6 +1,7 @@
+
 from functools import partial
 from typing import List, Dict, Any, Final, Optional
-
+import re
 from docutils.core import publish_parts
 
 
@@ -29,7 +30,7 @@ def sizeof(type_name: str) -> int:
 
 def as_html(rst_txt: str, style_class: str) -> str:
     html_txt = publish_parts(source=rst_txt, writer_name='html5_polyglot')['html_body']
-    html_txt = html_txt.replace('<main>', f'<div class="{style_class}">')
+    html_txt = re.sub(r'<main[^>]*>', f'<div class="{style_class}">', html_txt)
     html_txt = html_txt.replace('</main>', f'</div>')
     return html_txt
 

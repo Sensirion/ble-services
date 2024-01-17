@@ -92,7 +92,7 @@
                     {{service_item['application-note']|as_html('app-note')}}
                 {%endif%}
                 <h4 class="characteristics-title">Characteristics</h4>
-                <table class="characteristics_table">
+                <table class="characteristics">
                     <tr class="characteristics_table-header">
                         <th class="characteristics-table-header">Name</th>
                         <th class="characteristics-table-header">UUID</th>
@@ -148,3 +148,7 @@
             </div>
         </div>
 {%-endmacro%}
+
+{%macro overview(readme_section) %}
+    {{readme_section|as_html('card-body')}}
+{%endmacro%}
