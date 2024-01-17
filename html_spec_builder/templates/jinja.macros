@@ -1,4 +1,5 @@
-{%macro ble_sample_frame(field_list) %}
+{%macro ble_sample_frame(sample_type) %}
+    {%set field_list = sample_fields(sample_type)%}
     <table class="sample-frame">
         <tr>
             <th class = "sample-frame-header">Id</th>
@@ -25,6 +26,9 @@
                 </table>
             </td>
             <td>
+                {%if sample_type['id'] is not advertisement_sample %}
+                    {% set ns.counter = 0 %}
+                {%endif%}
                 <table class="sample-data-layout">
                     <tr>
                         {%for id_field in field_list[2:]%}
@@ -144,7 +148,7 @@
                 </table>
                 <h4>Sample Byte Layout</h4>
 
-                {{ble_sample_frame(sample_fields(sample_type))}}
+                {{ble_sample_frame(sample_type)}}
             </div>
         </div>
 {%-endmacro%}
