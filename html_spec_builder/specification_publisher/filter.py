@@ -1,7 +1,7 @@
-
+import re
 from functools import partial
 from typing import List, Dict, Any, Final, Optional
-import re
+
 from docutils.core import publish_parts
 
 
@@ -43,6 +43,18 @@ def id_to_sample_number(id_bytes: List[int]) -> int:
             return 0
         case _:
             return id_bytes[0] | id_bytes[1] << 8
+
+
+def sample_type_header(sample_type: Dict[str, Any]) -> str:
+    sample_number = id_to_sample_number(sample_type['id'])
+    field_names = ''
+    if 'fields' in sample_type:
+        field_names = ", ".join([x['field']['name'] for x in sample_type['fields']])
+    return f'Sample Type {sample_number}', f'{{{field_names}}}'
+
+
+def get_sorted_sample_types(sample_type_list: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    return sorted(sample_type_list, key=lambda x: id_to_sample_number(x['sample-type']['id']))
 
 
 def is_advertisement_sample(id_bytes: List[int]) -> bool:
@@ -108,7 +120,9 @@ FILTERS: Final[Dict[str, Any]] = {'id_2_number': id_to_sample_number,
                                   'as_html': as_html, 'yesno': yesno,
                                   'sizeof': sizeof,
                                   'name_2_id': name_to_id,
-                                  'conversion_formula': conversion_formula}
+                                  'conversion_formula': conversion_formula,
+                                  'sample_type_header': sample_type_header,
+                                  'order_by_sample_number': get_sorted_sample_types}
 
 TESTS: Final[Dict[str, Any]] = {'advertisement_sample': is_advertisement_sample,
                                 'well_known_service': well_known_service,

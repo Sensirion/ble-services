@@ -1,12 +1,17 @@
 {%macro ble_sample_frame(sample_type) %}
     {%set field_list = sample_fields(sample_type)%}
-    <table class="sample-frame">
+    {%if sample_type['id'] is advertisement_sample %}
+        {% set sample_frame_class="sample-frame-adv-type" %}
+    {%else%}
+        {% set sample_frame_class="sample-frame-data-logger-type" %}
+    {%endif%}
+    <table class="{{sample_frame_class}}">
         <tr>
-            <th class = "sample-frame-header">Id</th>
-            <th class = "sample-frame-header">Sample Data</th>
+            <th class = "sample-frame-id">Id</th>
+            <th class = "sample-frame-data">Sample Data</th>
         </tr>
         <tr>
-            <td>
+            <td class = "sample-frame-id">
                 {%set ns = namespace(counter=0)%}
 
                 <table class="sample-id-layout">
@@ -25,7 +30,7 @@
                     </tr>
                 </table>
             </td>
-            <td>
+            <td class = "sample-frame-data">
                 {%if sample_type['id'] is not advertisement_sample %}
                     {% set ns.counter = 0 %}
                 {%endif%}
@@ -116,9 +121,10 @@
 
 {% macro ble_sample_type_description(sample_type) -%}
         <h2>
+            {%set sample_header = sample_type|sample_type_header%}
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapse-sample-type-{{sample_type['id']|id_2_number}}" aria-expanded="false" aria-controls="collapse-sample-type-{{sample_type['id']|id_2_number}}">
-            <strong>Sample Type {{sample_type['id']|id_2_number}}</strong>
+            <strong>{{sample_header[0]}} - </strong>{{sample_header[1]}}
             </button>
         </h2>
         <div id="collapse-sample-type-{{sample_type['id']|id_2_number}}" class="accordion-collapse collapse" data-bs-parent="#ble-sample-type-accordion">
