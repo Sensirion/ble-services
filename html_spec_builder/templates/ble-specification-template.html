@@ -55,7 +55,7 @@
                  role="tabpanel" aria-labelledby="pills-sample-types-tab" tabindex="0">
                 <h2>BLE Sample Types</h2>
                 <div class="accordion" id="ble-sample-type-accordion">
-                    {%for entry in sample_spec['sample-types']%}
+                    {%for entry in sample_spec['sample-types']|order_by_sample_number%}
                     <div class="accordion-item">
                         {{macro.ble_sample_type_description(entry['sample-type'])}}
                     </div>

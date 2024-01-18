@@ -10,17 +10,26 @@ table {
     margin-bottom: 20px
 }
 
-table.sample-frame {
+table.sample-frame-adv-type {
     border: solid 1px black;
     border-collapse: separate;
-
 }
+
+table.sample-frame-data-logger-type {
+    border-collapse: separate;
+    border-spacing: 20px 0px;
+    width: 95%;
+    margin: 5px;
+}
+
+
 
 table.sample-data-layout {
     width: 100%;
     border: solid 1px black;
     border-collapse: collapse;
     margin: 0px
+
 }
 
 table.sample-id-layout {
@@ -35,13 +44,15 @@ table.characteristics{
 }
 
 th {
-    margin: 20px;
     background-color: rgba(142, 170, 235, 0.607);
     text-align: left;
-    .sample-frame-header&{
+
+    .sample-frame-data&,
+    .sample-frame-id&{
         background-color: lightgray;
         border: solid 1px black;
     };
+
     .byte-header&{
 
         background-color: lightgray;
@@ -72,6 +83,13 @@ td {
         border: solid 1px black;
         margin: 0px;
     };
+
+}
+
+
+table.sample-frame-data-logger-type td{
+    width: max-content;
+    border: solid 1px black;
 }
 
 input[type='checkbox']{
