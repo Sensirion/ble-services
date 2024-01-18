@@ -41,12 +41,14 @@ def id_to_sample_number(id_bytes: List[int]) -> int:
             return x
         case [0xFF, 0]:
             return 0
+        case [0xFE, 0]:
+            return 0
         case _:
             return id_bytes[0] | id_bytes[1] << 8
 
 
 def is_advertisement_sample(id_bytes: List[int]) -> bool:
-    return 0 == id_bytes[0] or 0xFF == id_bytes[0]
+    return id_bytes[0] in [0, 0xFF, 0xFE]
 
 
 def has_access_property(access_properties: List[str], name) -> bool:
