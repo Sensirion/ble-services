@@ -23,7 +23,7 @@ Sensirion Gadgets.
 
 - **BLE Services**: Describes what services are available, their *UUID* and the
   exposed characteristics. Services that are public BLE services have a link to
-  download the BLE Service specification.
+  *download* the BLE Service specification.
 
 - **Sample Types**: Describes the data structures that contain measurement data.
   There are two kind of sample types.
@@ -65,3 +65,24 @@ Within the interface specifications we use these type names:
 - **type[n]**: Specifies a fixed size sequence of *<type\>*.
 
 **Note:** All multi-byte data types are *little endian*!
+
+Data Download
+~~~~~~~~~~~~~
+
+The first package sent when a client registerst to the **Data transfer** is a header
+containing information about the samples that will be sent.
+For now, please refer to https://github.com/Sensirion/arduino-ble-gadget/blob/master/documents/00-Sensirion_BLE_communication_protocol.pdf
+for full description of the download header.
+
+The field **Age of latest sample in ms** holds the difference between the time when the data download was started and the time when the 
+last sample has been logged on the gadget.
+
+To get the timestamp of a sample:
+
+timestamp_sample = timestamp_download_start - (Age_of_latest_sample_in_ms + sample_nr * sampling_interval_in_ms)
+
+where timestamp_download_start is a absolute timestamp the client needs to create when the starting to listen on the **Data transfer** characteristic.
+where sample_nr = sequence_number * samples_per_frame + sample_nr_in_frame
+where samples_per_frame depends on the Sample Type
+
+![Visualization for Age of latest sample in ms](./age_of_latest_sample_in_ms.png "Visualization for Age of latest sample in ms")
