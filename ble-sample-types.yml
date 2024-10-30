@@ -30,7 +30,28 @@ sample-types:
             data-type: uint16
 
   - sample-type:
-      description: SHT43-DB full advertisement sample
+      description: SHT4x-based gadgets data logging sample
+      id: [0x5, 0x0]
+      fields:
+        - field:
+            name: Temperature
+            byte-offset: 0
+            description: Measured temperature as a raw integer value
+            data-type: uint16
+            conversion:
+              formula: T = - 45 + ((175.0 * raw_value) / (2^16 - 1))
+        - field:
+            name: Humidity
+            byte-offset: 2
+            description: Measured relative humidity as a raw integer value
+            data-type: uint16
+            conversion:
+              offset : -6
+              scale: 125.0 / (2**16-1)
+              formula: RH = - 6 + (125.0 * raw_value) / (2^16 - 1)
+
+  - sample-type:
+      description: SHT4x-based gadgets full advertisement sample
       id: [0x0, 0x6]
       fields:
         - field:
@@ -61,26 +82,7 @@ sample-types:
       description: SHT43-DB no data advertisement sample
       id: [0xff, 0x0]
 
-  - sample-type:
-      description: SHT43-DB data logging sample
-      id: [0x5, 0x0]
-      fields:
-        - field:
-            name: Temperature
-            byte-offset: 0
-            description: Measured temperature as a raw integer value
-            data-type: uint16
-            conversion:
-              formula: T = - 45 + ((175.0 * raw_value) / (2^16 - 1))
-        - field:
-            name: Humidity
-            byte-offset: 2
-            description: Measured relative humidity as a raw integer value
-            data-type: uint16
-            conversion:
-              offset : -6
-              scale: 125.0 / (2**16-1)
-              formula: RH = - 6 + (125.0 * raw_value) / (2^16 - 1)
+
 
 
 
