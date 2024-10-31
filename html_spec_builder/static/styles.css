@@ -101,3 +101,21 @@ input[type='checkbox']{
         accent-color: red;
     }
 }
+
+.custom-nav{
+    background-color: #66cc33;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.custom-nav-link.active{
+    color: white !important; 
+    font-weight: bold;
+}
+
+.custom-nav-link{
+    color: #e0f5d6;
+    font-weight: 500;
+}
+
