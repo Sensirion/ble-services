@@ -109,7 +109,7 @@ sample-types:
             description: Measured relative humidity as a raw integer value
             data-type: uint16
             conversion:
-              offset:
+              offset: 0
               scale:  100.0/ (2**16 - 1)
               formula: RH = (100.0 * raw_value) / (2^16 - 1)
         - field:
