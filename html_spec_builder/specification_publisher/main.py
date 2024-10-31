@@ -13,14 +13,16 @@ _template_root: pathlib = pathlib.Path(__file__).parent.parent / 'templates'
 _static_root: pathlib = pathlib.Path(__file__).parent.parent / 'static'
 
 _services_spec: Final[str] = 'ble-services.yml'
-_sample_types_spec: Final[str] = 'ble-sample-types.yml'
+_ad_sample_types_spec: Final[str] = 'ble-ad-sample-types.yml'
+_dl_sample_types_spec: Final[str] = 'ble-dl-sample-types.yml'
 _out_dir = _specification_root / 'output'
 _readme = 'README.md'
 
 
 def build_html():
     service_spec = yaml.safe_load((_specification_root / _services_spec).read_text())
-    sample_type_spec = yaml.safe_load((_specification_root / _sample_types_spec).read_text())
+    ad_sample_type_spec = yaml.safe_load((_specification_root / _ad_sample_types_spec).read_text())
+    dl_sample_type_spec = yaml.safe_load((_specification_root / _dl_sample_types_spec).read_text())
     readme = (_specification_root / _readme).read_text()
 
     _out_dir.mkdir(parents=True, exist_ok=True)
@@ -36,7 +38,8 @@ def build_html():
     template = env.get_template("ble-specification-template.html")
     render_context = {'readme': readme,
                       'service_spec': service_spec,
-                      'sample_spec': sample_type_spec}
+                      'ad_sample_spec': ad_sample_type_spec,
+                      'dl_sample_spec': dl_sample_type_spec}
     static_output = _out_dir / 'static'
     if static_output.exists():
         shutil.rmtree(static_output, ignore_errors=True)

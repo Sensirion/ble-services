@@ -116,6 +116,7 @@ input[type='checkbox']{
 
 .custom-nav-link{
     color: #e0f5d6;
-    font-weight: 500;
+    font-weight: 400;
+    font-size: .9rem;
 }
 

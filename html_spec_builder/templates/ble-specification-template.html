@@ -31,9 +31,14 @@
                                     role="tab" aria-controls="pills-ble-services" aria-selected="false">BLE Services</button>
                         </li>
                         <li class="nav-item mx-2" role="presentation">
-                            <div class="nav-link custom-nav-link" id="pills-sample-types-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-sample-types" type="button"
-                                    role="tab" aria-controls="pills-sample-types" aria-selected="false">BLE Sample Types</button>
+                            <div class="nav-link custom-nav-link" id="pills-ad-sample-types-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-ad-sample-types" type="button"
+                                    role="tab" aria-controls="pills-ad-sample-types" aria-selected="false">Advertisement Sample Types</button>
+                        </li>
+                        <li class="nav-item mx-2" role="presentation">
+                            <div class="nav-link custom-nav-link" id="pills-dl-sample-types-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-dl-sample-types" type="button"
+                                    role="tab" aria-controls="pills-dl-sample-types" aria-selected="false">Download Sample Types</button>
                         </li>
                     </ul>
                 </div>
@@ -48,7 +53,7 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="pills-ble-services"
-                 role="tabpanel" aria-labelledby="pills-ble-services-tab" tabindex="0">
+                 role="tabpanel" aria-labelledby="pills-ble-services-tab" tabindex="1">
                 <h2>BLE Services</h2>
                 <p>
                     This section describes what services are available, their UUID and the exposed characteristics. 
@@ -62,11 +67,11 @@
                     {%endfor%}
                 </div>
             </div>
-            <div class="tab-pane fade" id="pills-sample-types"
-                 role="tabpanel" aria-labelledby="pills-sample-types-tab" tabindex="0">
-                <h2> Sample Types</h2>
+            <div class="tab-pane fade" id="pills-ad-sample-types"
+                 role="tabpanel" aria-labelledby="pills-ad-sample-types-tab" tabindex="2">
+                <h2>BLE Advertisement Sample Types</h2>
                 <div class="accordion" id="ble-sample-type-accordion">
-                    {%for entry in sample_spec['sample-types']|order_by_sample_number%}
+                    {%for entry in ad_sample_spec['sample-types']|order_by_sample_number%}
                     <div class="accordion-item">
                         {{macro.ble_sample_type_description(entry['sample-type'])}}
                     </div>
@@ -74,11 +79,11 @@
                 </div>
             </div>
 
-            <div class="tab-pane fade" id="pills-sample-types"
-                 role="tabpanel" aria-labelledby="pills-sample-types-tab" tabindex="0">
-                <h2>BLE Sample Types</h2>
-                <div class="accordion" id="ble-sample-type-accordion">
-                    {%for entry in sample_spec['sample-types']|order_by_sample_number%}
+            <div class="tab-pane fade" id="pills-dl-sample-types"
+                 role="tabpanel" aria-labelledby="pills-dl-sample-types-tab" tabindex="3">
+                <h2>BLE Download Sample Types</h2>
+                <div class="accordion" id="ble-dl-sample-type-accordion">
+                    {%for entry in dl_sample_spec['sample-types']|order_by_sample_number%}
                     <div class="accordion-item">
                         {{macro.ble_sample_type_description(entry['sample-type'])}}
                     </div>
