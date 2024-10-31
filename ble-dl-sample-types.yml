@@ -198,13 +198,358 @@ sample-types:
               scale:  1000.0/ (2**16 - 1)
               formula: RH = (1000.0 * raw_value) / (2^16 - 1)
 
+  - sample-type:
+      description: Temperature/Humidity/Formaldehyde data logging sample
+      id: [0x0, 0x0D]
+      fields:
+        - field:
+            name: Temperature
+            byte-offset: 0
+            description: Measured temperature as a raw integer value
+            data-type: uint16
+            conversion:
+              formula: T = - 45 + ((175.0 * raw_value) / (2^16 - 1))
+        - field:
+            name: Humidity
+            byte-offset: 2
+            description: Measured relative humidity as a raw integer value
+            data-type: uint16
+            conversion:
+              offset: 0
+              scale:  100.0/ (2**16 - 1)
+              formula: RH = (100.0 * raw_value) / (2^16 - 1)
+        - field:
+            name: HCHO
+            byte-offset: 4
+            description: Measured Formaldehyde concentration as a raw integer value
+            data-type: uint16
+            conversion:
+              offset: 0
+              scale:  1/5
+              formula: HCHO = raw_value / 5
 
+  - sample-type:
+      description: Temperature/Humidity/CO2/VOC/PM2.5/Formaldehyde data logging sample
+      id: [0x0, 0x13]
+      fields:
+        - field:
+            name: Temperature
+            byte-offset: 0
+            description: Measured temperature as a raw integer value
+            data-type: uint16
+            conversion:
+              formula: T = - 45 + ((175.0 * raw_value) / (2^16 - 1))
+        - field:
+            name: Humidity
+            byte-offset: 2
+            description: Measured relative humidity as a raw integer value
+            data-type: uint16
+            conversion:
+              offset: 0
+              scale:  100.0/ (2**16 - 1)
+              formula: RH = (100.0 * raw_value) / (2^16 - 1)
+        - field:
+            name: CO2
+            byte-offset: 4
+            description: Measured CO2 concentration as an integer value
+            data-type: uint16
+        - field:
+            name: VOC
+            byte-offset: 6
+            description: Measured VOC concentration as an integer value
+            data-type: uint16
+        - field:
+            name: PM2.5
+            byte-offset: 8
+            description: Measured PM2.5 concentration as a raw integer value
+            data-type: uint16
+            conversion:
+              offset: 0
+              scale:  1000.0/ (2**16 - 1)
+              formula: PM2.5 = (1000.0 * raw_value) / (2^16 - 1)
+        - field:
+            name: HCHO
+            byte-offset: 10
+            description: Measured HCHO concentration as a raw integer value
+            data-type: uint16
+            conversion:
+              offset: 0
+              scale:  1 / 5
+              formula: HCHO = raw_value / 5
 
+  - sample-type:
+      description: Temperature/Humidity/VOC/NOx data logging sample
+      id: [0x0, 0x15]
+      fields:
+        - field:
+            name: Temperature
+            byte-offset: 0
+            description: Measured temperature as a raw integer value
+            data-type: uint16
+            conversion:
+              formula: T = - 45 + ((175.0 * raw_value) / (2^16 - 1))
+        - field:
+            name: Humidity
+            byte-offset: 2
+            description: Measured relative humidity as a raw integer value
+            data-type: uint16
+            conversion:
+              offset: 0
+              scale:  100.0/ (2**16 - 1)
+              formula: RH = (100.0 * raw_value) / (2^16 - 1)
+        - field:
+            name: VOC
+            byte-offset: 4
+            description: Measured VOC concentration as an integer value
+            data-type: uint16
+        - field:
+            name: NOx
+            byte-offset: 6
+            description: Measured NOx concentration as an integer value
+            data-type: uint16
 
+  - sample-type:
+      description: Temperature/Humidity/VOC/NOx/PM2.5 data logging sample
+      id: [0x0, 0x17]
+      fields:
+        - field:
+            name: Temperature
+            byte-offset: 0
+            description: Measured temperature as a raw integer value
+            data-type: uint16
+            conversion:
+              formula: T = - 45 + ((175.0 * raw_value) / (2^16 - 1))
+        - field:
+            name: Humidity
+            byte-offset: 2
+            description: Measured relative humidity as a raw integer value
+            data-type: uint16
+            conversion:
+              offset: 0
+              scale:  100.0/ (2**16 - 1)
+              formula: RH = (100.0 * raw_value) / (2^16 - 1)
+        - field:
+            name: VOC
+            byte-offset: 4
+            description: Measured VOC concentration as an integer value
+            data-type: uint16
+        - field:
+            name: NOx
+            byte-offset: 6
+            description: Measured NOx concentration as an integer value
+            data-type: uint16
+        - field:
+            name: PM2.5
+            byte-offset: 8
+            description: Measured PM2.5 concentration as an integer value
+            data-type: uint16
+            conversion:
+              scale:  1 / 10
+              formula: PM25 = raw_value / 10
 
+  - sample-type:
+      description: Temperature/Humidity/CO2/VOC/NOx/PM2.5 data logging sample
+      id: [0x0, 0x19]
+      fields:
+        - field:
+            name: Temperature
+            byte-offset: 0
+            description: Measured temperature as a raw integer value
+            data-type: uint16
+            conversion:
+              formula: T = - 45 + ((175.0 * raw_value) / (2^16 - 1))
+        - field:
+            name: Humidity
+            byte-offset: 2
+            description: Measured relative humidity as a raw integer value
+            data-type: uint16
+            conversion:
+              offset: 0
+              scale:  100.0/ (2**16 - 1)
+              formula: RH = (100.0 * raw_value) / (2^16 - 1)
+        - field:
+            name: CO2
+            byte-offset: 4
+            description: Measured CO2 concentration as an integer value
+            data-type: uint16
+        - field:
+            name: VOC
+            byte-offset: 6
+            description: Measured VOC concentration as an integer value
+            data-type: uint16
+        - field:
+            name: NOx
+            byte-offset: 8
+            description: Measured NOx concentration as an integer value
+            data-type: uint16
+        - field:
+            name: PM2.5
+            byte-offset: 10
+            description: Measured PM2.5 concentration as an integer value
+            data-type: uint16
+            conversion:
+              scale:  1 / 10
+              formula: PM25 = raw_value / 10
 
+  - sample-type:
+      description: Temperature/Humidity/CO2/PM2.5 data logging sample
+      id: [0x0, 0x1B]
+      fields:
+        - field:
+            name: Temperature
+            byte-offset: 0
+            description: Measured temperature as a raw integer value
+            data-type: uint16
+            conversion:
+              formula: T = - 45 + ((175.0 * raw_value) / (2^16 - 1))
+        - field:
+            name: Humidity
+            byte-offset: 2
+            description: Measured relative humidity as a raw integer value
+            data-type: uint16
+            conversion:
+              offset: 0
+              scale:  100.0/ (2**16 - 1)
+              formula: RH = (100.0 * raw_value) / (2^16 - 1)
+        - field:
+            name: CO2
+            byte-offset: 4
+            description: Measured CO2 concentration as an integer value
+            data-type: uint16
+        - field:
+            name: PM2.5
+            byte-offset: 6
+            description: Measured PM2.5 concentration as an integer value
+            data-type: uint16
+            conversion:
+              scale:  1 / 10
+              formula: PM25 = raw_value / 10
 
+  - sample-type:
+      description: Temperature/Humidity/VOC/PM2.5 data logging sample
+      id: [0x0, 0x1D]
+      fields:
+        - field:
+            name: Temperature
+            byte-offset: 0
+            description: Measured temperature as a raw integer value
+            data-type: uint16
+            conversion:
+              formula: T = - 45 + ((175.0 * raw_value) / (2^16 - 1))
+        - field:
+            name: Humidity
+            byte-offset: 2
+            description: Measured relative humidity as a raw integer value
+            data-type: uint16
+            conversion:
+              offset: 0
+              scale:  100.0/ (2**16 - 1)
+              formula: RH = (100.0 * raw_value) / (2^16 - 1)
+        - field:
+            name: VOC
+            byte-offset: 4
+            description: Measured VOC concentration as an integer value
+            data-type: uint16
+        - field:
+            name: PM2.5
+            byte-offset: 6
+            description: Measured PM2.5 concentration as an integer value
+            data-type: uint16
+            conversion:
+              scale:  1 / 10
+              formula: PM25 = raw_value / 10
 
+  - sample-type:
+      description: Temperature/Humidity/CO2/VOC/PM2.5/Formaldehyde data logging sample
+      id: [0x0, 0x1F]
+      fields:
+        - field:
+            name: Temperature
+            byte-offset: 0
+            description: Measured temperature as a raw integer value
+            data-type: uint16
+            conversion:
+              formula: T = - 45 + ((175.0 * raw_value) / (2^16 - 1))
+        - field:
+            name: Humidity
+            byte-offset: 2
+            description: Measured relative humidity as a raw integer value
+            data-type: uint16
+            conversion:
+              scale:  100.0/ (2**16 - 1)
+              formula: RH = (100.0 * raw_value) / (2^16 - 1)
+        - field:
+            name: CO2
+            byte-offset: 4
+            description: Measured CO2 concentration as an integer value
+            data-type: uint16
+        - field:
+            name: VOC
+            byte-offset: 6
+            description: Measured VOC concentration as an integer value
+            data-type: uint16
+        - field:
+            name: PM2.5
+            byte-offset: 8
+            description: Measured PM2.5 concentration as an integer value
+            data-type: uint16
+            conversion:
+              scale:  1 / 10
+              formula: PM25 = raw_value / 10
+        - field:
+            name: HCHO
+            byte-offset: 10
+            description: Measured HCHO concentration as a raw integer value
+            data-type: uint16
+            conversion:
+              scale:  1 / 5
+              formula: HCHO = raw_value / 5
 
+  - sample-type:
+      description: PM data logging sample
+      id: [0x0, 0x21]
+      fields:
+        - field:
+            name: PM1.0
+            byte-offset: 0
+            description: Measured PM1.0 concentration as an integer value
+            data-type: uint16
+            conversion:
+              scale:  1 / 10
+              formula: PM1 = raw_value / 10
+        - field:
+            name: PM2.5
+            byte-offset: 2
+            description: Measured PM2.5 concentration as an integer value
+            data-type: uint16
+            conversion:
+              scale:  1 / 10
+              formula: PM25 = raw_value / 10
+        - field:
+            name: PM4.0
+            byte-offset: 4
+            description: Measured PM4.0 concentration as an integer value
+            data-type: uint16
+            conversion:
+              scale:  1 / 10
+              formula: PM4 = raw_value / 10
+        - field:
+            name: PM10
+            byte-offset: 6
+            description: Measured PM10 concentration as an integer value
+            data-type: uint16
+            conversion:
+              scale:  1 / 10
+              formula: PM10 = raw_value / 10
+
+  - sample-type:
+      description: CO2 data logging sample
+      id: [0x0, 0x23]
+      fields:
+        - field:
+            name: CO2
+            byte-offset: 0
+            description: Measured CO2 concentration as an integer value
+            data-type: uint16
 
 
