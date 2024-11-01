@@ -46,6 +46,12 @@ def id_to_sample_number(id_bytes: List[int]) -> int:
         case _:
             return id_bytes[0] | id_bytes[1] << 8
 
+def id_array_to_hex_str(id_bytes: List[int]) -> List[str]:
+    return [hex(n) for n in id_bytes]
+
+def id_to_hex_str(id_byte: int) -> str:
+    return hex(id_byte)
+
 
 def sample_type_header(sample_type: Dict[str, Any]) -> str:
     sample_number = id_to_sample_number(sample_type['id'])
@@ -95,9 +101,9 @@ def sample_fields(sample_type: Dict[str, Any]) -> List[str]:
     id = sample_type['id']
     sample_bytes = []
     if is_advertisement_sample(id):
-        sample_bytes.extend([f'AdvType={id[0]}', f'SampleType={id[1]}'])
+        sample_bytes.extend([f'AdvType={hex(id[0])}', f'SampleType={hex(id[1])}'])
     else:
-        sample_bytes.extend([f'SampleType-LSB={id[0]}', f'SampleType-MSB={id[1]}'])
+        sample_bytes.extend([f'SampleType-LSB={hex(id[0])}', f'SampleType-MSB={hex(id[1])}'])
     if 'fields' not in sample_type:
         return sample_bytes
     fields = sample_type['fields']
@@ -124,7 +130,9 @@ FILTERS: Final[Dict[str, Any]] = {'id_2_number': id_to_sample_number,
                                   'name_2_id': name_to_id,
                                   'conversion_formula': conversion_formula,
                                   'sample_type_header': sample_type_header,
-                                  'order_by_sample_number': get_sorted_sample_types}
+                                  'order_by_sample_number': get_sorted_sample_types,
+                                  'id_to_hex_str': id_to_hex_str,
+                                  'id_array_to_hex_str':id_array_to_hex_str}
 
 TESTS: Final[Dict[str, Any]] = {'advertisement_sample': is_advertisement_sample,
                                 'well_known_service': well_known_service,
