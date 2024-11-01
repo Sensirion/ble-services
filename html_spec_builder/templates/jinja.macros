@@ -57,8 +57,8 @@
         <td class="name">{{field.name}}</td>
         <td class="description">{{field.description}}</td>
         <td class="type">{{field['data-type']}}</td>
-        <td class="offset">{{field['byte-offset']}}</td>
-        <td class="size">{{field['data-type']|sizeof}}</td>
+        <td class="offset">{{field['byte-offset']}}B</td>
+        <td class="size">{{field['data-type']|sizeof}}B</td>
         <td class="conversion">{{field|conversion_formula}}</td>
     </tr>
 {%endmacro%}
@@ -133,9 +133,14 @@
                 </div>
                 <div class="sample-id">
                     {%if sample_type['id'] is advertisement_sample%}
-                        <p>Advertisement Type: {{sample_type['id'][0]}}</p>
+                        <p>
+                        Advertisement Type: {{sample_type['id'][0]|id_to_hex_str}}
+                        <br>
+                        Sample Type: {{sample_type['id'][1]|id_to_hex_str}}
+                        </p>
+
                     {%else%}
-                        <p>Sample Type Bytes: {{sample_type['id']}}</p>
+                        <p>Sample Type: {{sample_type['id']|id_array_to_hex_str}}</p>
                     {%endif%}
                 </div>
                 <h4>Sample Fields</h4>
@@ -159,6 +164,6 @@
         </div>
 {%-endmacro%}
 
-{%macro overview(readme_section) %}
-    {{readme_section|as_html('card-body')}}
+{%macro overview(overview_section) %}
+    {{overview_section|as_html('card-body')}}
 {%endmacro%}

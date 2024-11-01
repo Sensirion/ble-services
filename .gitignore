@@ -1,3 +1,4 @@
 .vscode/
 .idea/
 html_spec_builder/specification_publisher/__pycache__/
+output/
