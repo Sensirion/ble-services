@@ -70,6 +70,12 @@
             <div class="tab-pane fade" id="pills-ad-sample-types"
                  role="tabpanel" aria-labelledby="pills-ad-sample-types-tab" tabindex="2">
                 <h2>BLE Advertisement Sample Types</h2>
+                <p>
+                    Advertisement sample types are measurement data that is sent along the manufacturer data of the BLE
+                    advertisement. <br>
+                    The measurement data is always preceded by 2 bytes, the "Sample Advertisement Type" that 
+                    is always set to "0x00" and the "Sample Type" that is set based on the type of the broadcasted data.
+                </p>
                 <div class="accordion" id="ble-sample-type-accordion">
                     {%for entry in ad_sample_spec['sample-types']|order_by_sample_number%}
                     <div class="accordion-item">
@@ -82,6 +88,13 @@
             <div class="tab-pane fade" id="pills-dl-sample-types"
                  role="tabpanel" aria-labelledby="pills-dl-sample-types-tab" tabindex="3">
                 <h2>BLE Download Sample Types</h2>
+                <p>
+                    Measurement data that is sent when downloading data using the
+                    <b>Data Logger Service</b>. <br>
+                    The data logger sample type has a two byte identifier (here called "sample type")
+                    that is sent in the beginning of the download procedure.<br><br>
+                    The measurement data sent in subsequent packets, do not include the sample type bytes.
+                </p>
                 <div class="accordion" id="ble-dl-sample-type-accordion">
                     {%for entry in dl_sample_spec['sample-types']|order_by_sample_number%}
                     <div class="accordion-item">
