@@ -159,6 +159,6 @@
         </div>
 {%-endmacro%}
 
-{%macro overview(readme_section) %}
-    {{readme_section|as_html('card-body')}}
+{%macro overview(overview_section) %}
+    {{overview_section|as_html('card-body')}}
 {%endmacro%}

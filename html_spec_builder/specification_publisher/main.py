@@ -16,14 +16,14 @@ _services_spec: Final[str] = 'ble-services.yml'
 _ad_sample_types_spec: Final[str] = 'ble-ad-sample-types.yml'
 _dl_sample_types_spec: Final[str] = 'ble-dl-sample-types.yml'
 _out_dir = _specification_root / 'output'
-_readme = 'README.md'
+_overview = _static_root / 'overview_page.md'
 
 
 def build_html():
     service_spec = yaml.safe_load((_specification_root / _services_spec).read_text())
     ad_sample_type_spec = yaml.safe_load((_specification_root / _ad_sample_types_spec).read_text())
     dl_sample_type_spec = yaml.safe_load((_specification_root / _dl_sample_types_spec).read_text())
-    readme = (_specification_root / _readme).read_text()
+    overview = (_specification_root / _overview).read_text()
 
     _out_dir.mkdir(parents=True, exist_ok=True)
     env = Environment(
@@ -36,7 +36,7 @@ def build_html():
     env.globals.update(GLOBALS)
 
     template = env.get_template("ble-specification-template.html")
-    render_context = {'readme': readme,
+    render_context = {'overview': overview,
                       'service_spec': service_spec,
                       'ad_sample_spec': ad_sample_type_spec,
                       'dl_sample_spec': dl_sample_type_spec}
