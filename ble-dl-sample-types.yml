@@ -139,7 +139,7 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/CO2 data logging sample
-      id: [0x0, 0x9]
+      id: [0x9, 0x0]
       fields:
         - field:
             name: Temperature
@@ -165,7 +165,7 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/CO2/PM2.5 data logging sample
-      id: [0x0, 0x0B]
+      id: [0x0B, 0x0]
       fields:
         - field:
             name: Temperature
@@ -200,7 +200,7 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/Formaldehyde data logging sample
-      id: [0x0, 0x0D]
+      id: [0x0D, 0x0]
       fields:
         - field:
             name: Temperature
@@ -230,7 +230,7 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/CO2/VOC/PM2.5/Formaldehyde data logging sample
-      id: [0x0, 0x13]
+      id: [0x13, 0x00]
       fields:
         - field:
             name: Temperature
@@ -279,7 +279,7 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/VOC/NOx data logging sample
-      id: [0x0, 0x15]
+      id: [0x15, 0x00]
       fields:
         - field:
             name: Temperature
@@ -310,7 +310,7 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/VOC/NOx/PM2.5 data logging sample
-      id: [0x0, 0x17]
+      id: [0x17, 0x00]
       fields:
         - field:
             name: Temperature
@@ -349,7 +349,7 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/CO2/VOC/NOx/PM2.5 data logging sample
-      id: [0x0, 0x19]
+      id: [0x19, 0x00]
       fields:
         - field:
             name: Temperature
@@ -393,7 +393,7 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/CO2/PM2.5 data logging sample
-      id: [0x0, 0x1B]
+      id: [0x1B, 0x00]
       fields:
         - field:
             name: Temperature
@@ -427,7 +427,7 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/VOC/PM2.5 data logging sample
-      id: [0x0, 0x1D]
+      id: [0x1D, 0x00]
       fields:
         - field:
             name: Temperature
@@ -461,7 +461,7 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/CO2/VOC/PM2.5/Formaldehyde data logging sample
-      id: [0x0, 0x1F]
+      id: [0x1F, 0x00]
       fields:
         - field:
             name: Temperature
@@ -507,7 +507,7 @@ sample-types:
 
   - sample-type:
       description: PM data logging sample
-      id: [0x0, 0x21]
+      id: [0x21, 0x00]
       fields:
         - field:
             name: PM1.0
@@ -544,7 +544,7 @@ sample-types:
 
   - sample-type:
       description: CO2 data logging sample
-      id: [0x0, 0x23]
+      id: [0x23, 0x0]
       fields:
         - field:
             name: CO2

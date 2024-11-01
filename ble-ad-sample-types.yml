@@ -133,7 +133,7 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/CO2 advertisement sample
-      id: [0x0A ,0x0]
+      id: [0x0 ,0x0A]
       fields:
         - field:
             name: Device id
@@ -164,7 +164,7 @@ sample-types:
     
   - sample-type:
       description: Temperature/Humidity/CO2/PM2.5 advertisement sample
-      id: [0x0C ,0x0]
+      id: [0x0, 0x0C]
       fields:
         - field:
             name: Device id
@@ -204,7 +204,7 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/Formaldehyde advertisement sample
-      id: [0x0E ,0x0]
+      id: [0x0, 0x0E]
       fields:
         - field:
             name: Device id
@@ -239,7 +239,7 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/Formaldehyde advertisement sample
-      id: [0x10 ,0x0]
+      id: [0x0, 0x10]
       fields:
         - field:
             name: Device id
@@ -279,7 +279,7 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/CO2/VOC/PM2.5/Formaldehyde advertisement sample
-      id: [0x14 ,0x0]
+      id: [0x0, 0x14]
       fields:
         - field:
             name: Device id
@@ -333,7 +333,7 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/VOC/NOx advertisement sample
-      id: [0x16, 0x0]
+      id: [0x0, 0x16]
       fields:
         - field:
             name: Device id
@@ -368,7 +368,7 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/VOC/NOx/PM2.5 advertisement sample
-      id: [0x18, 0x0]
+      id: [0x0, 0x18]
       fields:
         - field:
             name: Device id
@@ -411,7 +411,7 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/CO2/VOC/NOx/PM2.5 advertisement sample
-      id: [0x1A, 0x0]
+      id: [0x0, 0x1A]
       fields:
         - field:
             name: Device id
@@ -459,7 +459,7 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/CO2/PM2.5 advertisement sample
-      id: [0x1C, 0x0]
+      id: [0x0, 0x1C]
       fields:
         - field:
             name: Device id
@@ -497,7 +497,7 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/VOC/PM2.5 advertisement sample
-      id: [0x1C, 0x0]
+      id: [0x0, 0x1E]
       fields:
         - field:
             name: Device id
@@ -535,7 +535,7 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/VOC/PM2.5 advertisement sample
-      id: [0x20, 0x0]
+      id: [0x0, 0x20]
       fields:
         - field:
             name: Device id
@@ -586,7 +586,7 @@ sample-types:
 
   - sample-type:
       description: PM advertisement sample
-      id: [0x22, 0x0]
+      id: [0x0, 0x22]
       fields:
         - field:
             name: Device id
@@ -628,7 +628,7 @@ sample-types:
 
   - sample-type:
       description: PM advertisement sample
-      id: [0x24, 0x0]
+      id: [0x0, 0x24]
       fields:
         - field:
             name: Device id
