@@ -1,108 +1,154 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>BLE Services used by Sensirion Gadgets</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-css-reset/dist/reset.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-css-reset/dist/reset.min.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="./static/styles.css">
 </head>
-    <body class="container-xxl">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-        <nav class="navbar sticky-top navbar-expand-md my-3 rounded-3 custom-nav">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#"><img src="./static/sensirion_logo_white.png" alt="Sensirion logo" height="30"></a>
-                <span class="me-2">BLE INTERFACES</span> 
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>          
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav nav nav-underline" id="pills-tab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <div class="nav-link custom-nav-link active" id="pills-overview-tab"
-                                    data-bs-toggle="pill" data-bs-target="#pills-overview" type="button"
-                                    role="tab" aria-controls="pills-overview" aria-selected="true">Overview</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <div class="nav-link custom-nav-link" id="pills-ble-services-tab"
-                                    data-bs-toggle="pill" data-bs-target="#pills-ble-services" type="button"
-                                    role="tab" aria-controls="pills-ble-services" aria-selected="false">BLE Services</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <div class="nav-link custom-nav-link" id="pills-ad-sample-types-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-ad-sample-types" type="button"
-                                    role="tab" aria-controls="pills-ad-sample-types" aria-selected="false">Advertisement Sample Types</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <div class="nav-link custom-nav-link" id="pills-dl-sample-types-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-dl-sample-types" type="button"
-                                    role="tab" aria-controls="pills-dl-sample-types" aria-selected="false">Download Sample Types</button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-          </nav>
-        {% import "jinja.macros" as macro%}
-        <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-overview"
-                 role="tabpanel" aria-labelledby="pills-overview-tab" tabindex="0">
-                <div class="card">
-                    {{macro.overview(overview)}}
-                </div>
-            </div>
-            <div class="tab-pane fade" id="pills-ble-services"
-                 role="tabpanel" aria-labelledby="pills-ble-services-tab" tabindex="1">
-                <h2>BLE Services</h2>
-                <p>
-                    This section describes what services are available, their UUID and the exposed characteristics. 
-                    Services that are public BLE services have a link to download the BLE Service specification.
-                </p>
-                <div class="accordion" id="ble-services-accordion">
-                    {%for entry in service_spec['ble-services']%}
-                    <div class="accordion-item">
-                        {{macro.ble_service_description(entry.service)}}
-                    </div>
-                    {%endfor%}
-                </div>
-            </div>
-            <div class="tab-pane fade" id="pills-ad-sample-types"
-                 role="tabpanel" aria-labelledby="pills-ad-sample-types-tab" tabindex="2">
-                <h2>BLE Advertisement Sample Types</h2>
-                <p>
-                    Advertisement sample types are measurement data that is sent along the manufacturer data of the BLE
-                    advertisement. <br>
-                    The measurement data is always preceded by 2 bytes, the "Sample Advertisement Type" that 
-                    is always set to "0x00" and the "Sample Type" that is set based on the type of the broadcasted data.
-                </p>
-                <div class="accordion" id="ble-sample-type-accordion">
-                    {%for entry in ad_sample_spec['sample-types']|order_by_sample_number%}
-                    <div class="accordion-item">
-                        {{macro.ble_sample_type_description(entry['sample-type'])}}
-                    </div>
-                    {%endfor%}
-                </div>
-            </div>
-
-            <div class="tab-pane fade" id="pills-dl-sample-types"
-                 role="tabpanel" aria-labelledby="pills-dl-sample-types-tab" tabindex="3">
-                <h2>BLE Download Sample Types</h2>
-                <p>
-                    Measurement data that is sent when downloading data using the
-                    <b>Data Logger Service</b>. <br>
-                    The data logger sample type has a two byte identifier (here called "sample type")
-                    that is sent in the beginning of the download procedure.<br><br>
-                    The measurement data sent in subsequent packets, do not include the sample type bytes.
-                </p>
-                <div class="accordion" id="ble-dl-sample-type-accordion">
-                    {%for entry in dl_sample_spec['sample-types']|order_by_sample_number%}
-                    <div class="accordion-item">
-                        {{macro.ble_sample_type_description(entry['sample-type'])}}
-                    </div>
-                    {%endfor%}
-                </div>
-            </div>
+<body class="container-xxl">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+<nav class="navbar sticky-top navbar-expand-md my-3 rounded-3 custom-nav">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="./static/sensirion_logo_white.png" alt="Sensirion logo" height="30"></a>
+        <span class="me-2">BLE INTERFACES</span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav nav nav-underline" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link custom-nav-link active" id="pills-overview-tab"
+                            data-bs-toggle="pill" data-bs-target="#pills-overview" type="button"
+                            role="tab" aria-controls="pills-overview" aria-selected="true">Overview
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link custom-nav-link" id="pills-ble-services-tab"
+                            data-bs-toggle="pill" data-bs-target="#pills-ble-services" type="button"
+                            role="tab" aria-controls="pills-ble-services" aria-selected="false">BLE Services
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link custom-nav-link" id="pills-ad-sample-types-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-ad-sample-types" type="button"
+                            role="tab" aria-controls="pills-ad-sample-types" aria-selected="false">Live Data
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link custom-nav-link" id="pills-dl-sample-types-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-dl-sample-types" type="button"
+                            role="tab" aria-controls="pills-dl-sample-types" aria-selected="false">Data Download
+                    </button>
+                </li>
+            </ul>
         </div>
-    </body>
+    </div>
+</nav>
+{% import "jinja.macros" as macro %}
+<div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-overview"
+         role="tabpanel" aria-labelledby="pills-overview-tab" tabindex="0">
+        <div class="card">
+            {{ macro.overview(overview) }}
+        </div>
+    </div>
+    <div class="tab-pane fade" id="pills-ble-services"
+         role="tabpanel" aria-labelledby="pills-ble-services-tab" tabindex="1">
+        <h2>BLE Services</h2>
+        <p>
+            This section describes what services are available, their UUID and the exposed characteristics.
+            Services that are public BLE services have a link to download the BLE Service specification.
+        </p>
+        <div class="accordion" id="ble-services-accordion">
+            {% for entry in service_spec['ble-services'] %}
+                <div class="accordion-item">
+                    {{ macro.ble_service_description(entry.service) }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="tab-pane fade" id="pills-ad-sample-types"
+         role="tabpanel" aria-labelledby="pills-ad-sample-types-tab" tabindex="2">
+        <h2>Live Data</h2>
+        <p>
+            Live data is sent as the manufacturer data of the BLE advertising data.<br/>
+            Each live data sample starts with an advertisement type and a sample type.<br/>
+            The advertisement type is set to 0x00 for advertisements containing live data,
+            and the sample type is set based on the type of the broadcast data.<br/><br/>
+            Please note that the sample data and local name can use at most 20 bytes combined.
+            Therefore, we use "S" as the local name for DIY Gadgets.
+            This allows us to send up to eight signals as live data.
+        </p>
+        <p>
+            The following image shows an example of a live data sample as sent by the SHT43 Demo Board.
+            <img src="./static/BleAdvertisingData.png" alt="BLE Data Download" width="100%"/>
+        </p>
+        <section>
+            <h2>Supported Sample Types</h2>
+            <div class="accordion" id="ble-sample-type-accordion">
+                {% for entry in ad_sample_spec['sample-types']|order_by_sample_number %}
+                    <div class="accordion-item">
+                        {{ macro.ble_sample_type_description(entry['sample-type']) }}
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+
+    <div class="tab-pane fade" id="pills-dl-sample-types"
+         role="tabpanel" aria-labelledby="pills-dl-sample-types-tab" tabindex="3">
+        <h2>Data Download</h2>
+        <p>
+            SHT31 Smart Gadget (Smart Humigadget) does not support this data download service.
+            Documentation for the SHT31 Gadget can be found <a
+                href="https://sensirion.com/media/documents/429F0DF6/61643DC1/Sensirion_Humidity_Sensors_SHT3x_Smart-Gadget_User-Guide_1.pdf">here </a>.
+        </p>
+        <p>
+            The data download is implemented by the <b>Data Logger Service</b>.
+            The documentation can be found in the "BLE Services" section.
+        </p>
+        <p>
+            The data download is split into frames of 20 bytes each. <br/>
+            Each frame starts with a two-byte sequence number, followed by 18 bytes of data.
+            <br/><br/>
+            The first frame contains the header including all necessary information for the
+            data download:
+        </p>
+        <ul>
+            <li>The Version and Protocol: Set both to 0x00</li>
+            <li>The sample type ID: This defines what signals are sent.
+                You can find a list of supported sample types below.
+                E.g. for the SHT43 Demo Board, this is 0x05
+            </li>
+            <li>The sampling interval in milliseconds</li>
+            <li>The age of the latest measurement in milliseconds.
+                The age is defined as the difference between the time when the data download was started
+                and the time when the last sample has been logged on the gadget.
+            </li>
+            <li>The number of samples available for download.</li>
+        </ul>
+        <p>
+            The next frames contain the measurement data for the selected sample type.<br/><br/>
+            The following image shows an example of a data download sequence for sample type 0x00.
+            <img src="./static/BleDataDownload.png" alt="BLE Data Download" width="100%"/>
+        </p>
+        <section>
+            <h2>Supported Sample Types</h2>
+            <div class="accordion" id="ble-dl-sample-type-accordion">
+                {% for entry in dl_sample_spec['sample-types']|order_by_sample_number %}
+                    <div class="accordion-item">
+                        {{ macro.ble_sample_type_description(entry['sample-type']) }}
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+</div>
+</body>
 </html>

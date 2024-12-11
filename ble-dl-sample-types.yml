@@ -6,7 +6,7 @@ sample-types:
       id: [0x00, 0x00]
       samples-per-packet: 4
       suitable-for:
-        - Smart Humigadget
+        - SHT3x sensor
       fields:
         - field:
             name: Temperature
@@ -98,7 +98,7 @@ sample-types:
             data-type: 2 bytes
             notes: |
               The reserved field needs to be added for the download samples.
-              They will however be dropped by the MyAmbience app.
+              It will however be dropped by the MyAmbience app.
 
   - sample-type:
       description: SHT4x-based gadgets data logging sample
@@ -162,7 +162,7 @@ sample-types:
             data-type: 2 bytes
             notes: |
               The reserved field needs to be added for the download samples.
-              They will however be dropped by the MyAmbience app.
+              It will however be dropped by the MyAmbience app.
 
   - sample-type:
       description: Temperature/Humidity/CO2 data logging sample

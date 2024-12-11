@@ -37,16 +37,16 @@ sample-types:
             data-type: uint16
         - field:
             name: reserved
-            notes: It is not necessary to send this field and is ignored by the MyAmbience app.
+            notes: It is not necessary to send this field and it is ignored by the MyAmbience app.
             byte-offset: 10
             description: reserved value
             data-type: 2 bytes
 
   - sample-type:
-      description: SHT3x-based gadget advertisement sample
+      description: SHT3x advertisement sample
       id: [0x0, 0x4]
       suitable-for:
-        - Smart Humigadget
+        - SHT3x sensors
       fields:
         - field:
             name: Device id
@@ -108,7 +108,7 @@ sample-types:
       id: [0x0 ,0x8]
       suitable-for:
         - MyCo2 Gadget
-      notes: Deprecated, use sample type 0x0A instead.
+      notes: Deprecated, use sample type 10 instead.
       fields:
         - field:
             name: Device id
@@ -138,7 +138,7 @@ sample-types:
             data-type: uint16
         - field:
             name: reserved
-            notes: It is not necessary to send this field and is ignored by the MyAmbience app.
+            notes: It is not necessary to send this field and it is ignored by the MyAmbience app.
             byte-offset: 10
             description: reserved value
             data-type: 2 bytes

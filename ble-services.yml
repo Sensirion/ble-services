@@ -180,6 +180,10 @@ ble-services:
       uuid: 00008000-b38d-4985-720e-0f993a68ee41
       description: Service to control the data logging on a measuring device.
       application-note: |
+        The Smart Humigadget (a.k.a SHT3x Gadget) does not support the data logger service.
+        Documentation for the SHT3x Gadget can be found here:
+        https://sensirion.com/media/documents/429F0DF6/61643DC1/Sensirion_Humidity_Sensors_SHT3x_Smart-Gadget_User-Guide_1.pdf
+
         How to use the service:
 
           #. To be able to calculate how many samples we have missed; the sampling
@@ -319,8 +323,9 @@ ble-services:
            uuid: 00007004-b38d-4985-720e-0f993a68ee41
            description: Force re-calibration of the SCD sensor.
            notes: |
-             co2 level is encoded in lower two bytes, little endian.
-             the first two bytes are obfuscation and can be ignored.
+             CO2 level is encoded in the lower two bytes, little endian.
+             For DIY Gadgets, the first two bytes are ignored.
+             For the MyCo2 Gadget the first two bytes have to match a Sensirion internal verification code.
            data-type: uint16
            access-properties: [write]
            implemented-by:
