@@ -4,6 +4,8 @@ sample-types:
   - sample-type:
       description: AQ Minion advertisement sample
       id: [0x0, 0x3]
+      suitable-for:
+        - AQ Minion
       fields:
         - field:
             name: Device id
@@ -43,6 +45,8 @@ sample-types:
   - sample-type:
       description: SHT3x-based gadget advertisement sample
       id: [0x0, 0x4]
+      suitable-for:
+        - Smart Humigadget
       fields:
         - field:
             name: Device id
@@ -71,6 +75,9 @@ sample-types:
   - sample-type:
       description: SHT4x-based gadgets full advertisement sample
       id: [0x0, 0x6]
+      suitable-for:
+        - SHT40 Gadget
+        - SHT43 Demo Board
       fields:
         - field:
             name: Device id
@@ -99,6 +106,9 @@ sample-types:
   - sample-type:
       description: MyCO2 advertisement sample
       id: [0x0 ,0x8]
+      suitable-for:
+        - MyCo2 Gadget
+      notes: Deprecated, use sample type 0x0A instead.
       fields:
         - field:
             name: Device id
@@ -136,6 +146,9 @@ sample-types:
   - sample-type:
       description: Temperature/Humidity/CO2 advertisement sample
       id: [0x0 ,0x0A]
+      suitable-for:
+        - MyCo2 Gadget
+        - CO2 sensors
       fields:
         - field:
             name: Device id
@@ -167,6 +180,8 @@ sample-types:
   - sample-type:
       description: Temperature/Humidity/CO2/PM2.5 advertisement sample
       id: [0x0, 0x0C]
+      suitable-for:
+        - SEN63C module
       fields:
         - field:
             name: Device id
@@ -207,6 +222,8 @@ sample-types:
   - sample-type:
       description: Temperature/Humidity/Formaldehyde advertisement sample
       id: [0x0, 0x0E]
+      suitable-for:
+        - Formaldehyde sensors
       fields:
         - field:
             name: Device id
@@ -242,6 +259,8 @@ sample-types:
   - sample-type:
       description: Temperature/Humidity/Formaldehyde advertisement sample
       id: [0x0, 0x10]
+      suitable-for:
+        - SEN54 module
       fields:
         - field:
             name: Device id
@@ -371,6 +390,8 @@ sample-types:
   - sample-type:
       description: Temperature/Humidity/VOC/NOx/PM2.5 advertisement sample
       id: [0x0, 0x18]
+      suitable-for:
+        - SEN55 module
       fields:
         - field:
             name: Device id
@@ -414,6 +435,8 @@ sample-types:
   - sample-type:
       description: Temperature/Humidity/CO2/VOC/NOx/PM2.5 advertisement sample
       id: [0x0, 0x1A]
+      suitable-for:
+        - SEN66 module
       fields:
         - field:
             name: Device id
@@ -462,6 +485,8 @@ sample-types:
   - sample-type:
       description: Temperature/Humidity/CO2/PM2.5 advertisement sample
       id: [0x0, 0x1C]
+      suitable-for:
+        - SEN63C module
       fields:
         - field:
             name: Device id
@@ -500,6 +525,9 @@ sample-types:
   - sample-type:
       description: Temperature/Humidity/VOC/PM2.5 advertisement sample
       id: [0x0, 0x1E]
+      suitable-for:
+        - SEN55 module
+        - SEN65 module
       fields:
         - field:
             name: Device id
@@ -536,7 +564,7 @@ sample-types:
               formula: PM25 = raw_value / 10
 
   - sample-type:
-      description: Temperature/Humidity/VOC/PM2.5 advertisement sample
+      description: Temperature/Humidity/CO2/VOC/PM2.5/Formaldehyde advertisement sample
       id: [0x0, 0x20]
       fields:
         - field:
@@ -589,6 +617,9 @@ sample-types:
   - sample-type:
       description: PM advertisement sample
       id: [0x0, 0x22]
+      suitable-for:
+        - SEN50 module
+        - SEN60 module
       fields:
         - field:
             name: Device id
@@ -631,6 +662,8 @@ sample-types:
   - sample-type:
       description: CO2 advertisement sample
       id: [0x0, 0x24]
+      suitable-for:
+        - CO2 sensors
       fields:
         - field:
             name: Device id
@@ -673,3 +706,5 @@ sample-types:
       description: SHT43-DB no data advertisement sample
       id: [0xff, 0x0]
       notes: This sample type is used by the SHT43 demo board if advertisement samples are disabled.
+      suitable-for:
+        - SHT43 Demo Board

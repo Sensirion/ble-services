@@ -25,6 +25,7 @@
                 "id": {"type": "array",
                        "description": "Id of the sample type. Each element in the array is one byte. The index 0 of the array is byte 0. In samples used for advertisement, the id is part of the sample-type. For data logger the id is transmitted separately from the sample data.",
                        "items": {"type": "string"}, "minItems":2, "maxItems": 2},
+                "notes": {"type": "string", "description": "Additional notes about the sample type"},
                 "suitable-for": {
                   "type":  "array",
                   "description": "List of devices or sensors this sample type can be used for",

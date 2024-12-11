@@ -15,42 +15,70 @@ ble-services:
       supported-characteristics:
         - characteristic:
             name: Manufacturer Name String
-            uuid: 2a29
+            uuid: 00002a29-0000-1000-8000-00805f9b34fb
             description: |
               Name of the manufacturer. This will always be set ot 'Sensirion'.
             data-type: string
             access-properties: [read]
+            implemented-by:
+              - Smart Humigadget
+              - SHT40 Gadget
+              - SHT43 Demo Board
+              - MyCo2 Gadget
+              - AQ Minion
         - characteristic:
             name: Model Number String
-            uuid: 2a24
+            uuid: 00002a24-0000-1000-8000-00805f9b34fb
             description: |
               Name of the device model.
             data-type: string
             access-properties: [read]
+            implemented-by:
+              - Smart Humigadget
+              - SHT40 Gadget
+              - SHT43 Demo Board
+              - MyCo2 Gadget
+              - AQ Minion
         - characteristic:
             name: Serial Number String
-            uuid: 2a25
+            uuid: 00002a25-0000-1000-8000-00805f9b34fb
             description: |
               Serial number of the device as hex string. Each byte takes two
               characters within this string (0-padded).
               The last two bytes of the MAC address form the serial number.
             data-type: string
             access-properties: [read]
+            implemented-by:
+              - Smart Humigadget
+              - SHT43 Demo Board
+              - AQ Minion
         - characteristic:
             name: Firmware Revision String
-            uuid: 2a26
+            uuid: 00002a26-0000-1000-8000-00805f9b34fb
             description: |
               The firmware revision in the form 'major.minor.patch'.
               Major, minor, patch are decimal digits.
             data-type: string
             access-properties: [read]
+            implemented-by:
+              - Smart Humigadget
+              - SHT40 Gadget
+              - SHT43 Demo Board
+              - MyCo2 Gadget
+              - AQ Minion
         - characteristic:
             name: System ID
-            uuid: 2a23
+            uuid: 00002a23-0000-1000-8000-00805f9b34fb
             description: |
               The bytes of the BLE-MAC address.
             data-type: byte[6]
             access-properties: [read]
+            implemented-by:
+              - Smart Humigadget
+              - SHT40 Gadget
+              - SHT43 Demo Board
+              - MyCo2 Gadget
+              - AQ Minion
 
   - service:
       name: Reboot Device Service
@@ -73,6 +101,8 @@ ble-services:
                   (0-57; device settings start at page 65)
             data-type: uint8[3]
             access-properties: [write]
+            implemented-by:
+              - SHT43 Demo Board
 
   - service:
       name: Relative Humidity Service
@@ -87,6 +117,11 @@ ble-services:
             description: Measured relative humidity in %.
             data-type: uint8
             access-properties: [read, notify]
+            implemented-by:
+              - Smart Humigadget
+              - SHT40 Gadget
+              - MyCo2 Gadget
+              - AQ Minion
 
   - service:
       name: Temperature service
@@ -101,6 +136,11 @@ ble-services:
             description: Temperature in degree celsius.
             data-type: float
             access-properties:  [read, notify]
+            implemented-by:
+              - Smart Humigadget
+              - SHT40 Gadget
+              - MyCo2 Gadget
+              - AQ Minion
 
   - service:
       name: SHT serial number service
@@ -113,6 +153,8 @@ ble-services:
             description: Serial number
             data-type: uint32
             access-properties: [read]
+            implemented-by:
+              - SHT43 Demo Board
 
   - service:
       name: Battery Service
@@ -127,6 +169,11 @@ ble-services:
             description: "The current battery level expressed as % of the available capacity."
             data-type: uint8
             access-properties: [read, notify]
+            implemented-by:
+              - Smart Humigadget
+              - SHT40 Gadget
+              - SHT43 Demo Board
+              - DIY Gadget
 
   - service:
       name: Data Logger Service
@@ -162,12 +209,16 @@ ble-services:
               Note: When the logging interval is changed, the logged samples will be removed.
             data-type: uint32
             access-properties: [read, write]
+            implemented-by:
+              - All Sensirion devices
         - characteristic:
             name: Available samples
             uuid: 00008002-b38d-4985-720e-0f993a68ee41
             description: Get the number of samples that is available on the measuring device
             data-type: uint16
             access-properties: [read]
+            implemented-by:
+              - All Sensirion devices
         - characteristic:
             name: Requested samples
             uuid: 00008003-b38d-4985-720e-0f993a68ee41
@@ -177,6 +228,8 @@ ble-services:
               The read will just return the last requested number of samples.
             data-type: uint16
             access-properties: [read, write]
+            implemented-by:
+              - All Sensirion devices
         - characteristic:
             name: Data transfer
             uuid: 00008003-b38d-4985-720e-0f993a68ee41
@@ -186,6 +239,8 @@ ble-services:
               characteristic.
             data-type: uint8[20]
             access-properties: [notify]
+            implemented-by:
+              - All Sensirion devices
   - service:
       name: Device settings
       uuid: 00008100-b38d-4985-720e-0f993a68ee41
@@ -202,6 +257,8 @@ ble-services:
               import values that where previously set by the user if these values are still applicable.
             data-type: uint8
             access-properties: [read]
+            implemented-by:
+              - SHT43 Demo Board
         - characteristic:
             name: Alternative device name
             uuid: 00008120-b38d-4985-720e-0f993a68ee41
@@ -211,6 +268,9 @@ ble-services:
               name is 32 characters.
             data-type: string[32]
             access-properties: [read, write]
+            implemented-by:
+              - SHT43 Demo Board
+              - DIY Gadget
         - characteristic:
             name: Is debug log enabled
             uuid: 000081fe-b38d-4985-720e-0f993a68ee41
@@ -222,18 +282,24 @@ ble-services:
               reduce battery lifetime!
             data-type: bool
             access-properties: [read,write]
+            implemented-by:
+              - SHT43 Demo Board
         - characteristic:
             name: Advertise sensor data
             uuid: 00008130-b38d-4985-720e-0f993a68ee41
             description: Flag to enable/ disable the advertisement of sensor data.
             data-type: bool
             access-properties: [read, write]
+            implemented-by:
+              - SHT43 Demo Board
         - characteristic:
             name: "Wi-Fi SSID"
             uuid: 00008171-b38d-4985-720e-0f993a68ee41
             description: The SSID of the Wi-Fi network to connect to.
             data-type: string
             access-properties: [read, write]
+            implemented-by:
+              - DIY Gadget
         - characteristic:
             name: "Wi-Fi Password"
             uuid: 00008172-b38d-4985-720e-0f993a68ee41
@@ -241,6 +307,8 @@ ble-services:
             notes: The password must be sent after the SSID.
             data-type: string
             access-properties: [read, write]
+            implemented-by:
+              - DIY Gadget
   - service:
      name: SCD Service
      uuid: 00007000-b38d-4985-720e-0f993a68ee41
@@ -255,3 +323,6 @@ ble-services:
              the first two bytes are obfuscation and can be ignored.
            data-type: uint16
            access-properties: [write]
+           implemented-by:
+             - MyCo2 Gadget
+             - DIY Gadget
