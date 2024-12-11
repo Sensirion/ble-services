@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=./ble-sample-types-schema.json
+# yaml-language-server: $schema=./ble-sample-types-adv-schema.json
 file-version: 0.1.0
 sample-types:
   - sample-type:
@@ -34,11 +34,12 @@ sample-types:
             byte-offset: 8
             data-type: uint16
         - field:
-            name: VOC-raw
-            description: Measured raw VOC value
+            name: reserved
+            notes: It is not necessary to send this field and is ignored by the MyAmbience app.
             byte-offset: 10
-            data-type: uint16
-  
+            description: reserved value
+            data-type: 2 bytes
+
   - sample-type:
       description: SHT3x-based gadget advertisement sample
       id: [0x0, 0x4]
@@ -94,7 +95,7 @@ sample-types:
               offset: -6
               scale:  125.0 / (2**16 - 1)
               formula: RH = - 6 + (125.0 * raw_value) / (2^16 - 1)
-  
+
   - sample-type:
       description: MyCO2 advertisement sample
       id: [0x0 ,0x8]
@@ -127,6 +128,7 @@ sample-types:
             data-type: uint16
         - field:
             name: reserved
+            notes: It is not necessary to send this field and is ignored by the MyAmbience app.
             byte-offset: 10
             description: reserved value
             data-type: 2 bytes
@@ -161,7 +163,7 @@ sample-types:
             byte-offset: 8
             description: Measured CO2 as an integer value
             data-type: uint16
-    
+
   - sample-type:
       description: Temperature/Humidity/CO2/PM2.5 advertisement sample
       id: [0x0, 0x0C]
@@ -627,7 +629,7 @@ sample-types:
               formula: PM10 = raw_value / 10
 
   - sample-type:
-      description: PM advertisement sample
+      description: CO2 advertisement sample
       id: [0x0, 0x24]
       fields:
         - field:
@@ -640,7 +642,34 @@ sample-types:
             byte-offset: 4
             description: Measured CO2 concentration as an integer value
             data-type: uint16
-        
+
+  - sample-type:
+      description: Air velocity and temperature advertisement sample
+      id: [0x0, 0x26]
+      fields:
+        - field:
+            name: Device id
+            description: Id of the device
+            byte-offset: 2
+            data-type: uint16
+        - field:
+            name: AV
+            byte-offset: 4
+            description: Measured air velocity as a raw integer value
+            data-type: uint16
+            conversion:
+              scale: 1024.0 / (2**16 - 1)
+              offset: 0
+              formula: AV = (raw_value * 1024) / (2^16 - 1)
+        - field:
+            name: Temperature
+            byte-offset: 6
+            description: Measured temperature as a raw integer value
+            data-type: uint16
+            conversion:
+              formula: T = - 45 + ((175.0 * raw_value) / (2^16 - 1))
+
   - sample-type:
       description: SHT43-DB no data advertisement sample
       id: [0xff, 0x0]
+      notes: This sample type is used by the SHT43 demo board if advertisement samples are disabled.

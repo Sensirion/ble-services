@@ -62,7 +62,7 @@ ble-services:
       supported-characteristics:
         - characteristic:
             name: Reboot request
-            uuid: 0000FE11-8e22-4541-9d4c-21edae82ed19
+            uuid: 0000fe11-8e22-4541-9d4c-21edae82ed19
             description: |
               Trigger the reboot or OTA by writing to the characteristic.
 
@@ -76,40 +76,40 @@ ble-services:
 
   - service:
       name: Relative Humidity Service
-      uuid: 00001234-B38D-4985-720E-0F993A68EE41
+      uuid: 00001234-b38d-4985-720e-0f993a68ee41
       description: |
         Allows to be notified when the measured humidity changes. This service
         could be replaced by the BLE environmental service.
       supported-characteristics:
         - characteristic:
             name: Relative humidity
-            uuid: 00001235-B38D-4985-720E-0F993A68EE41
+            uuid: 00001235-b38d-4985-720e-0f993a68ee41
             description: Measured relative humidity in %.
             data-type: uint8
             access-properties: [read, notify]
 
   - service:
       name: Temperature service
-      uuid: 00002234-B38D-4985-720E-0F993A68EE41
+      uuid: 00002234-b38d-4985-720e-0f993a68ee41
       description: |
         Allows to be notified when the temperature changes. This service could
         be replaced by the BLE environmental service.
       supported-characteristics:
         - characteristic:
             name: Temperature
-            uuid: 00002235-B38D-4985-720E-0F993A68EE41
+            uuid: 00002235-b38d-4985-720e-0f993a68ee41
             description: Temperature in degree celsius.
             data-type: float
             access-properties:  [read, notify]
 
   - service:
       name: SHT serial number service
-      uuid: 00006000-B38D-4985-720E-0F993A68EE41
+      uuid: 00006000-b38d-4985-720e-0f993a68ee41
       description: Serial number of the embedded sht sensor
       supported-characteristics:
         - characteristic:
             name: Serial number
-            uuid: 00006001-B38D-4985-720E-0F993A68EE41
+            uuid: 00006001-b38d-4985-720e-0f993a68ee41
             description: Serial number
             data-type: uint32
             access-properties: [read]
@@ -130,7 +130,7 @@ ble-services:
 
   - service:
       name: Data Logger Service
-      uuid: 00008000-B38D-4985-720E-0F993A68EE41
+      uuid: 00008000-b38d-4985-720e-0f993a68ee41
       description: Service to control the data logging on a measuring device.
       application-note: |
         How to use the service:
@@ -156,7 +156,7 @@ ble-services:
       supported-characteristics:
         - characteristic:
             name: Logging interval
-            uuid: 00008001-B38D-4985-720E-0F993A68EE41
+            uuid: 00008001-b38d-4985-720e-0f993a68ee41
             description: |
               The time between two subsequent measurements in milliseconds.
               Note: When the logging interval is changed, the logged samples will be removed.
@@ -164,13 +164,13 @@ ble-services:
             access-properties: [read, write]
         - characteristic:
             name: Available samples
-            uuid: 00008002-B38D-4985-720E-0F993A68EE41
+            uuid: 00008002-b38d-4985-720e-0f993a68ee41
             description: Get the number of samples that is available on the measuring device
             data-type: uint16
             access-properties: [read]
         - characteristic:
             name: Requested samples
-            uuid: 00008003-B38D-4985-720E-0F993A68EE41
+            uuid: 00008003-b38d-4985-720e-0f993a68ee41
             description: |
               Get or set the number of samples that are to be transferred.
               Writing to this characteristic will set the number of requested samples for the next download.
@@ -179,7 +179,7 @@ ble-services:
             access-properties: [read, write]
         - characteristic:
             name: Data transfer
-            uuid: 00008003-B38D-4985-720E-0F993A68EE41
+            uuid: 00008003-b38d-4985-720e-0f993a68ee41
             description: |
               Notify the client that a new block of samples has been sent.
               The download must only be triggered when a client subscribes to this
@@ -188,14 +188,14 @@ ble-services:
             access-properties: [notify]
   - service:
       name: Device settings
-      uuid: 00008100-B38D-4985-720E-0F993A68EE41
+      uuid: 00008100-b38d-4985-720e-0f993a68ee41
       description: |
         This service contains various device settings that can be modified by a user.
 
       supported-characteristics:
         - characteristic:
             name: Device settings version
-            uuid: 000081FF-B38D-4985-720E-0F993A68EE41
+            uuid: 000081ff-b38d-4985-720e-0f993a68ee41
             description: |
               The actual version of the device settings. This version depends on the actual
               firmware of a device and cannot be modified by a user. When a firmware uses new settings version it shall
@@ -204,7 +204,7 @@ ble-services:
             access-properties: [read]
         - characteristic:
             name: Alternative device name
-            uuid: 00008120-B38D-4985-720E-0F993A68EE41
+            uuid: 00008120-b38d-4985-720e-0f993a68ee41
             description: |
               A name for the device that can be set by a user and shown instead of the device name
               that is part of the Generic Access Profile (uuid 0x2a00). The maximal length of the
@@ -213,7 +213,7 @@ ble-services:
             access-properties: [read, write]
         - characteristic:
             name: Is debug log enabled
-            uuid: 000081FE-B38D-4985-720E-0F993A68EE41
+            uuid: 000081fe-b38d-4985-720e-0f993a68ee41
             description: |
               This flag allows to enable or disable debug traces to the UART. By default UART trace
               is disabled.
@@ -224,7 +224,34 @@ ble-services:
             access-properties: [read,write]
         - characteristic:
             name: Advertise sensor data
-            uuid: 00008130-B38D-4985-720E-0F993A68EE41
+            uuid: 00008130-b38d-4985-720e-0f993a68ee41
             description: Flag to enable/ disable the advertisement of sensor data.
             data-type: bool
             access-properties: [read, write]
+        - characteristic:
+            name: "Wi-Fi SSID"
+            uuid: 00008171-b38d-4985-720e-0f993a68ee41
+            description: The SSID of the Wi-Fi network to connect to.
+            data-type: string
+            access-properties: [read, write]
+        - characteristic:
+            name: "Wi-Fi Password"
+            uuid: 00008172-b38d-4985-720e-0f993a68ee41
+            description: The password of the Wi-Fi network to connect to.
+            notes: The password must be sent after the SSID.
+            data-type: string
+            access-properties: [read, write]
+  - service:
+     name: SCD Service
+     uuid: 00007000-b38d-4985-720e-0f993a68ee41
+     description: Service to control the SCD specific features, like force re-calibration.
+     supported-characteristics:
+       - characteristic:
+           name: SCD force re-calibration
+           uuid: 00007004-b38d-4985-720e-0f993a68ee41
+           description: Force re-calibration of the SCD sensor.
+           notes: |
+             co2 level is encoded in lower two bytes, little endian.
+             the first two bytes are obfuscation and can be ignored.
+           data-type: uint16
+           access-properties: [write]

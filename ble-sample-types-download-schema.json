@@ -7,24 +7,30 @@
     "required": [ "file-version", "sample-types"],
     "properties": {
        "file-version": {
-        "description": "Defines the version of the ble-sample-types.yml file.",
+        "description": "Defines the version of the ble-dl-sample-types.yml file.",
         "type": "string",
         "pattern": "^[0-9]+(\\.[0-9]+){0,2}$"
       },
       "sample-types": {
-        "description": "The list of defined BLE-sample-types.",
+        "description": "The list of defined BLE sample types used for downloading data.",
         "type": "array",
         "items": {
           "type": "object",
           "required": ["sample-type"],
           "properties": {
             "sample-type": {"type": "object",
-              "required": ["description", "id"],
+              "required": ["description", "id", "samples-per-packet"],
               "properties": {
                 "description": {"type": "string", "description": "Name of the service"},
                 "id": {"type": "array",
                        "description": "Id of the sample type. Each element in the array is one byte. The index 0 of the array is byte 0. In samples used for advertisement, the id is part of the sample-type. For data logger the id is transmitted separately from the sample data.",
-                       "items": {"type": "number"}, "minItems":2, "maxItems": 2},
+                       "items": {"type": "string"}, "minItems":2, "maxItems": 2},
+                "samples-per-packet": {"type": "number", "description": "Number of samples per packet"},
+                "suitable-for": {
+                  "type":  "array",
+                  "description": "List of devices or sensors this sample type can be used for",
+                  "items": {"type": "string"}
+                },
                 "fields":
                   { "type": "array",
                     "items":  {" type": "object",
@@ -38,6 +44,7 @@
                         "description": {"type": "string"},
                         "byte-offset": {"type": "number", "description": "Byte position of this field within the sample type"},
                         "data-type": {"type": "string", "description": "Data type of the characteristic value"},
+                        "notes": {"type": "string", "description": "Additional notes about the sample type"},
                         "conversion": {
                           "type": "object", "description": "Conversion function or parameters to convert value into physical unit",
                           "properties": {
