@@ -1,0 +1,68 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "ble-sample-types-schema.json",
+    "title": "Sample types",
+    "description": "Specifies the various sample types",
+    "type": "object",
+    "required": [ "file-version", "sample-types"],
+    "properties": {
+       "file-version": {
+        "description": "Defines the version of the ble-dl-sample-types.yml file.",
+        "type": "string",
+        "pattern": "^[0-9]+(\\.[0-9]+){0,2}$"
+      },
+      "sample-types": {
+        "description": "The list of defined BLE sample types used for downloading data.",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["sample-type"],
+          "properties": {
+            "sample-type": {"type": "object",
+              "required": ["description", "id", "samples-per-packet"],
+              "properties": {
+                "description": {"type": "string", "description": "Name of the service"},
+                "id": {"type": "array",
+                       "description": "2-byte ID of the download sample type in big-endian byte order.",
+                       "items": {"type": "string"}, "minItems":2, "maxItems": 2},
+                "samples-per-packet": {"type": "number", "description": "Number of samples per packet"},
+                "notes": {"type": "string", "description": "Additional notes about the sample type"},
+                "suitable-for": {
+                  "type":  "array",
+                  "description": "List of devices or sensors this sample type can be used for",
+                  "items": {"type": "string"}
+                },
+                "fields":
+                  { "type": "array",
+                    "items":  {" type": "object",
+                    "required": ["field"], "properties":{
+                      "field": {
+                      "type": "object",
+                      "description": "field definition",
+                      "required": ["name", "description", "data-type", "byte-offset"],
+                      "properties": {
+                        "name": {"type": "string", "description": "Name of the characteristic"},
+                        "description": {"type": "string"},
+                        "byte-offset": {"type": "number", "description": "Byte position of this field within the sample type"},
+                        "data-type": {"type": "string", "description": "Data type of the characteristic value"},
+                        "notes": {"type": "string", "description": "Additional notes about the sample type"},
+                        "conversion": {
+                          "type": "object", "description": "Conversion function or parameters to convert value into physical unit",
+                          "properties": {
+                            "formula": {"type": "string"},
+                            "offset": {"type": ["number","string"], "description": "The offset of the linear conversion; this is supposed to be a number or a valid python expression"},
+                            "scale": {"type": ["number", "string"], "description": "The scale of the linear conversion; this is supposed to be a number or a valid python expression"}
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

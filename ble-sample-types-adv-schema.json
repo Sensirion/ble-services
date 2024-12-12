@@ -7,12 +7,12 @@
     "required": [ "file-version", "sample-types"],
     "properties": {
        "file-version": {
-        "description": "Defines the version of the ble-sample-types.yml file.",
+        "description": "Defines the version of the ble-ad-sample-types.yml file.",
         "type": "string",
         "pattern": "^[0-9]+(\\.[0-9]+){0,2}$"
       },
       "sample-types": {
-        "description": "The list of defined BLE-sample-types.",
+        "description": "The list of defined BLE sample types in BLE advertisement data.",
         "type": "array",
         "items": {
           "type": "object",
@@ -23,8 +23,14 @@
               "properties": {
                 "description": {"type": "string", "description": "Name of the service"},
                 "id": {"type": "array",
-                       "description": "Id of the sample type. Each element in the array is one byte. The index 0 of the array is byte 0. In samples used for advertisement, the id is part of the sample-type. For data logger the id is transmitted separately from the sample data.",
-                       "items": {"type": "number"}, "minItems":2, "maxItems": 2},
+                       "description": "2-byte ID of the advertising sample type in big-endian byte order.",
+                       "items": {"type": "string"}, "minItems":2, "maxItems": 2},
+                "notes": {"type": "string", "description": "Additional notes about the sample type"},
+                "suitable-for": {
+                  "type":  "array",
+                  "description": "List of devices or sensors this sample type can be used for",
+                  "items": {"type": "string"}
+                },
                 "fields":
                   { "type": "array",
                     "items":  {" type": "object",
@@ -38,6 +44,7 @@
                         "description": {"type": "string"},
                         "byte-offset": {"type": "number", "description": "Byte position of this field within the sample type"},
                         "data-type": {"type": "string", "description": "Data type of the characteristic value"},
+                        "notes": {"type": "string", "description": "Additional notes about the sample type"},
                         "conversion": {
                           "type": "object", "description": "Conversion function or parameters to convert value into physical unit",
                           "properties": {

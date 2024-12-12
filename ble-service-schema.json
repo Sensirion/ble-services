@@ -39,6 +39,11 @@
                         "uuid": {"type": "string", "description": "UUID of the characteristic"},
                         "description": {"type": "string"},
                         "data-type": {"type": "string", "description": "Data type of the characteristic value"},
+                        "implemented-by": {
+                          "type":  "array",
+                          "description": "List of devices that implement this characteristic",
+                          "items": {"type": "string"}
+                        },
                         "access-properties": {
                           "type": "array",
                           "description": "The properties of this BLE characteristic",

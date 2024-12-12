@@ -1,9 +1,11 @@
-# yaml-language-server: $schema=./ble-sample-types-schema.json
+# yaml-language-server: $schema=./ble-sample-types-adv-schema.json
 file-version: 0.1.0
 sample-types:
   - sample-type:
       description: AQ Minion advertisement sample
       id: [0x0, 0x3]
+      suitable-for:
+        - AQ Minion
       fields:
         - field:
             name: Device id
@@ -34,14 +36,17 @@ sample-types:
             byte-offset: 8
             data-type: uint16
         - field:
-            name: VOC-raw
-            description: Measured raw VOC value
+            name: reserved
+            notes: It is not necessary to send this field and it is ignored by the MyAmbience app.
             byte-offset: 10
-            data-type: uint16
-  
+            description: reserved value
+            data-type: 2 bytes
+
   - sample-type:
-      description: SHT3x-based gadget advertisement sample
+      description: SHT3x advertisement sample
       id: [0x0, 0x4]
+      suitable-for:
+        - SHT3x sensors
       fields:
         - field:
             name: Device id
@@ -70,6 +75,9 @@ sample-types:
   - sample-type:
       description: SHT4x-based gadgets full advertisement sample
       id: [0x0, 0x6]
+      suitable-for:
+        - SHT40 Gadget
+        - SHT43 Demo Board
       fields:
         - field:
             name: Device id
@@ -94,10 +102,13 @@ sample-types:
               offset: -6
               scale:  125.0 / (2**16 - 1)
               formula: RH = - 6 + (125.0 * raw_value) / (2^16 - 1)
-  
+
   - sample-type:
       description: MyCO2 advertisement sample
       id: [0x0 ,0x8]
+      suitable-for:
+        - MyCo2 Gadget
+      notes: Deprecated, use sample type 10 instead.
       fields:
         - field:
             name: Device id
@@ -127,6 +138,7 @@ sample-types:
             data-type: uint16
         - field:
             name: reserved
+            notes: It is not necessary to send this field and it is ignored by the MyAmbience app.
             byte-offset: 10
             description: reserved value
             data-type: 2 bytes
@@ -134,6 +146,9 @@ sample-types:
   - sample-type:
       description: Temperature/Humidity/CO2 advertisement sample
       id: [0x0 ,0x0A]
+      suitable-for:
+        - MyCo2 Gadget
+        - CO2 sensors
       fields:
         - field:
             name: Device id
@@ -161,10 +176,12 @@ sample-types:
             byte-offset: 8
             description: Measured CO2 as an integer value
             data-type: uint16
-    
+
   - sample-type:
       description: Temperature/Humidity/CO2/PM2.5 advertisement sample
       id: [0x0, 0x0C]
+      suitable-for:
+        - SEN63C module
       fields:
         - field:
             name: Device id
@@ -205,6 +222,8 @@ sample-types:
   - sample-type:
       description: Temperature/Humidity/Formaldehyde advertisement sample
       id: [0x0, 0x0E]
+      suitable-for:
+        - Formaldehyde sensors
       fields:
         - field:
             name: Device id
@@ -240,6 +259,8 @@ sample-types:
   - sample-type:
       description: Temperature/Humidity/Formaldehyde advertisement sample
       id: [0x0, 0x10]
+      suitable-for:
+        - SEN54 module
       fields:
         - field:
             name: Device id
@@ -369,6 +390,8 @@ sample-types:
   - sample-type:
       description: Temperature/Humidity/VOC/NOx/PM2.5 advertisement sample
       id: [0x0, 0x18]
+      suitable-for:
+        - SEN55 module
       fields:
         - field:
             name: Device id
@@ -412,6 +435,8 @@ sample-types:
   - sample-type:
       description: Temperature/Humidity/CO2/VOC/NOx/PM2.5 advertisement sample
       id: [0x0, 0x1A]
+      suitable-for:
+        - SEN66 module
       fields:
         - field:
             name: Device id
@@ -460,6 +485,8 @@ sample-types:
   - sample-type:
       description: Temperature/Humidity/CO2/PM2.5 advertisement sample
       id: [0x0, 0x1C]
+      suitable-for:
+        - SEN63C module
       fields:
         - field:
             name: Device id
@@ -498,6 +525,9 @@ sample-types:
   - sample-type:
       description: Temperature/Humidity/VOC/PM2.5 advertisement sample
       id: [0x0, 0x1E]
+      suitable-for:
+        - SEN55 module
+        - SEN65 module
       fields:
         - field:
             name: Device id
@@ -534,7 +564,7 @@ sample-types:
               formula: PM25 = raw_value / 10
 
   - sample-type:
-      description: Temperature/Humidity/VOC/PM2.5 advertisement sample
+      description: Temperature/Humidity/CO2/VOC/PM2.5/Formaldehyde advertisement sample
       id: [0x0, 0x20]
       fields:
         - field:
@@ -587,6 +617,9 @@ sample-types:
   - sample-type:
       description: PM advertisement sample
       id: [0x0, 0x22]
+      suitable-for:
+        - SEN50 module
+        - SEN60 module
       fields:
         - field:
             name: Device id
@@ -627,8 +660,10 @@ sample-types:
               formula: PM10 = raw_value / 10
 
   - sample-type:
-      description: PM advertisement sample
+      description: CO2 advertisement sample
       id: [0x0, 0x24]
+      suitable-for:
+        - CO2 sensors
       fields:
         - field:
             name: Device id
@@ -640,7 +675,36 @@ sample-types:
             byte-offset: 4
             description: Measured CO2 concentration as an integer value
             data-type: uint16
-        
+
+  - sample-type:
+      description: Air velocity and temperature advertisement sample
+      id: [0x0, 0x26]
+      fields:
+        - field:
+            name: Device id
+            description: Id of the device
+            byte-offset: 2
+            data-type: uint16
+        - field:
+            name: AV
+            byte-offset: 4
+            description: Measured air velocity as a raw integer value
+            data-type: uint16
+            conversion:
+              scale: 1024.0 / (2**16 - 1)
+              offset: 0
+              formula: AV = (raw_value * 1024) / (2^16 - 1)
+        - field:
+            name: Temperature
+            byte-offset: 6
+            description: Measured temperature as a raw integer value
+            data-type: uint16
+            conversion:
+              formula: T = - 45 + ((175.0 * raw_value) / (2^16 - 1))
+
   - sample-type:
       description: SHT43-DB no data advertisement sample
       id: [0xff, 0x0]
+      notes: This sample type is used by the SHT43 demo board if advertisement samples are disabled.
+      suitable-for:
+        - SHT43 Demo Board
