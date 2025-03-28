@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=./ble-sample-types-download-schema.json
+# yaml-language-server: $schema=./schemas/ble-sample-types-download-schema.json
 file-version: 0.1.0
 sample-types:
   - sample-type:
