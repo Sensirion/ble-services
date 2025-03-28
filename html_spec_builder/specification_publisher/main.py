@@ -8,7 +8,7 @@ import yaml
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from specification_publisher.filter import TESTS, FILTERS, GLOBALS
 
-_specification_root: pathlib.Path = pathlib.Path(__file__).parent.parent.parent  # root folder of the yml specification
+_specification_root: pathlib.Path = pathlib.Path(__file__).parent.parent.parent / 'data_source'  # root folder of the yml specification
 _template_root: pathlib = pathlib.Path(__file__).parent.parent / 'templates'
 _static_root: pathlib = pathlib.Path(__file__).parent.parent / 'static'
 
