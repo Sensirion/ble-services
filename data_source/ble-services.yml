@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=./ble-service-schema.json
+# yaml-language-server: $schema=./schemas/ble-service-schema.json
 file-version: 0.1.0
 
 ble-services:

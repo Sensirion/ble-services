@@ -9,3 +9,6 @@ With a python environment having the dependencies installed with poetry(see pypr
 python specification_publisher/main.py
 ```
 This will create an `output` directory where the HTML resources are located.
+
+# Node setup
+We use node version `22.11.0`
