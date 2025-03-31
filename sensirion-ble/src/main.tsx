@@ -1,11 +1,20 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import {StrictMode} from 'react'
+import {createRoot} from 'react-dom/client'
 import './index.css'
-import App from './App.tsx'
+import './colors.css'
+import NavigationBar from "./components/navbar.tsx";
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+    <StrictMode>
+        <div id="navbar-container">
+            <NavigationBar/>
+        </div>
+        <div id="body">
+
+        </div>
+        <div id="footer">
+            FOOTER
+        </div>
+    </StrictMode>,
 )
 
