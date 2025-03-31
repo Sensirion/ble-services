@@ -14,8 +14,7 @@
 }
 
 /* reset */
-button,
-p {
+button{
     all: unset;
 }
 
