@@ -1,4 +1,5 @@
 import NavigationBar from "./navbar.tsx";
+import FooterBar from "./footer.tsx";
 
 function ServicesPage() {
     return <>
@@ -6,9 +7,7 @@ function ServicesPage() {
         <div id="body">
             Some content about services
         </div>
-        <div id="footer">
-            FOOTER
-        </div>
+        <FooterBar/>
     </>
 }
 

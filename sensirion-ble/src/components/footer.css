@@ -1,0 +1,21 @@
+.footer {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    width: 80vw;
+    z-index: 1;
+
+    background-color: var(--color-sensi-green-80);
+    color: var(--color-off-white);
+
+    margin: 5px 0;
+    border-radius: 6px;
+
+    --nav-text-size: 1.1rem;
+}
+
+.footer__copyright{
+    padding: 1rem 1rem;
+    font-size: 1.2rem;
+}

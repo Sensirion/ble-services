@@ -1,5 +1,6 @@
 import NavigationBar from "./navbar.tsx";
 import './overview.css'
+import FooterBar from "./footer.tsx";
 
 function OverviewPage() {
     return <>
@@ -94,9 +95,7 @@ function OverviewPage() {
                 <span className="overview_bold">Note:</span>All multi-byte data types are *little endian*!
             </p>
         </div>
-        <div id="footer">
-            FOOTER
-        </div>
+        <FooterBar/>
     </>
 }
 
