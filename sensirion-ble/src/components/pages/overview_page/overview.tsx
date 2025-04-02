@@ -1,6 +1,6 @@
-import NavigationBar from "./navbar.tsx";
+import NavigationBar from "../../common/navbar.tsx";
 import './overview.css'
-import FooterBar from "./footer.tsx";
+import FooterBar from "../../common/footer.tsx";
 
 function OverviewPage() {
     return <>

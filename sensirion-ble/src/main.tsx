@@ -6,8 +6,8 @@ import {
 } from "react-router";
 import './index.css'
 import './colors.css'
-import OverviewPage from "./components/overview.tsx";
-import ServicesPage from "./components/services.tsx";
+import OverviewPage from "./components/pages/overview_page/overview.tsx";
+import BleInfoPage from "./components/pages/ble_info_page/ble_info_page.tsx";
 
 
 const contentRouter = createBrowserRouter([
@@ -17,7 +17,7 @@ const contentRouter = createBrowserRouter([
     },
     {
         path: "/services",
-        element: ServicesPage(),
+        element: BleInfoPage(),
     },
 ]);
 
