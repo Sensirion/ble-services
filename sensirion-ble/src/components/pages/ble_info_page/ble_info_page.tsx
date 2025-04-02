@@ -2,8 +2,11 @@ import NavigationBar from "../../common/navbar.tsx";
 import FooterBar from "../../common/footer.tsx";
 import ServicesList from "./services_list.tsx";
 import FilterArea from "./filters.tsx";
+import {Tabs} from "radix-ui";
 
 import "./ble_info_page.css";
+import DownloadSampleList from "./dl_sample_list.tsx";
+import AdvertisementSampleList from "./ad_sample_list.tsx";
 
 function BleInfoPage() {
     return (
@@ -25,6 +28,24 @@ function BleInfoPage() {
                     There are different sample types in use depending on whether it is a
                     live data stream or a data download stream.
                 </p>
+                <Tabs.Root className="ble_info__tabs_root">
+                    <Tabs.List className="ble_info__tabs_list">
+                        <Tabs.Trigger className="ble_info__tabs_trigger" value="live" >
+                            Live Data
+                        </Tabs.Trigger>
+                        <Tabs.Trigger className="ble_info__tabs_trigger" value="download">
+                            Download Data
+                        </Tabs.Trigger>
+                    </Tabs.List>
+                    <Tabs.Content className="ble_info__tabs_content" value="live">
+                        <AdvertisementSampleList/>
+                    </Tabs.Content>
+                    <Tabs.Content className="ble_info__tabs_content" value="download">
+                        <DownloadSampleList/>
+                    </Tabs.Content>
+                </Tabs.Root>
+
+
             </div>
 
             <FooterBar/>
