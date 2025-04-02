@@ -12,7 +12,7 @@ function ServicesList() {
     return <Accordion.Root type="single">
         {bleServices["ble-services"].map((s, i) => {
             return (
-                <Accordion.Item value={"service-" + i} className="accordion">
+                <Accordion.Item value={"service-" + i} className="accordion" key={"service-" + i}>
                     <Accordion.Header className="accordion__header">
                         <Accordion.Trigger className="accordion__header__trigger">
                             <div>{s.service.name}</div>

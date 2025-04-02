@@ -11,7 +11,7 @@ function AdvertisementSampleList() {
     return <Accordion.Root type="single">
         {advSamples["sample-types"].map((s, i) => {
             return (
-                <Accordion.Item value={"service-" + i} className="accordion">
+                <Accordion.Item value={"ad-sample-" + i} className="accordion" key={"ad-sample-" + i}>
                     <Accordion.Header className="accordion__header">
                         <Accordion.Trigger className="accordion__header__trigger">
                             <div>{s['sample-type'].description}</div>
