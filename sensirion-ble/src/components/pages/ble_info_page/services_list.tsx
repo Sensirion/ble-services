@@ -1,6 +1,6 @@
 import {Accordion} from "radix-ui";
 import {ChevronIcon} from "../../vectors/chevronIcon.tsx";
-import "./services_list.css"
+import "./accordion.css"
 
 // @ts-expect-error: untyped object import
 import services from "../../../resources/ble-services.yml";

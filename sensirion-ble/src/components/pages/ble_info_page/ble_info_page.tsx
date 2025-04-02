@@ -30,7 +30,7 @@ function BleInfoPage() {
                 </p>
                 <Tabs.Root className="ble_info__tabs_root">
                     <Tabs.List className="ble_info__tabs_list">
-                        <Tabs.Trigger className="ble_info__tabs_trigger" value="live" >
+                        <Tabs.Trigger className="ble_info__tabs_trigger" value="live">
                             Live Data
                         </Tabs.Trigger>
                         <Tabs.Trigger className="ble_info__tabs_trigger" value="download">
@@ -44,10 +44,7 @@ function BleInfoPage() {
                         <DownloadSampleList/>
                     </Tabs.Content>
                 </Tabs.Root>
-
-
             </div>
-
             <FooterBar/>
         </>
     );
