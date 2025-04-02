@@ -12,3 +12,10 @@ This will create an `output` directory where the HTML resources are located.
 
 # Node setup
 We use node version `22.11.0`
+
+## YAML schema update
+In case of YAML schema change, the Type definitions need to be redefined.
+It can be done using:
+```
+json2ts -i '../data_source/schemas/*.json' -o src/types
+```

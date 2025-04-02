@@ -1,7 +1,7 @@
 import "./navbar.css";
 import {NavigationMenu} from "radix-ui";
 import {NavLink} from "react-router";
-import {SensirionLogo} from "./sensirionLogo.tsx";
+import {SensirionLogo} from "./vectors/sensirionLogo.tsx";
 
 const NavigationBar = () => {
     return (
