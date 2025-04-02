@@ -28,7 +28,7 @@ function BleInfoPage() {
                     There are different sample types in use depending on whether it is a
                     live data stream or a data download stream.
                 </p>
-                <Tabs.Root className="ble_info__tabs_root">
+                <Tabs.Root className="ble_info__tabs_root" defaultValue="live">
                     <Tabs.List className="ble_info__tabs_list">
                         <Tabs.Trigger className="ble_info__tabs_trigger" value="live">
                             Live Data
