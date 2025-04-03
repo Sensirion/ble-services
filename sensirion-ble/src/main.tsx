@@ -13,11 +13,11 @@ import BleInfoPage from "./components/pages/ble_info_page/ble_info_page.tsx";
 const contentRouter = createBrowserRouter([
     {
         index: true,
-        element: OverviewPage(),
+        Component: OverviewPage,
     },
     {
         path: "/services",
-        element: BleInfoPage(),
+        Component: BleInfoPage,
     },
 ]);
 
