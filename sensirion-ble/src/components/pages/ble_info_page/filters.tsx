@@ -1,11 +1,22 @@
 import {Select} from "radix-ui";
 import "./filters.css"
+import {useContext} from "react";
+import {FilterContext} from "./contexts.tsx";
+
+const availableGadgets: string[] = ['Smart Humigadget', 'SHT40 Gadget', 'SHT43 Demo Board', 'MyCo2 Gadget', 'AQ Minion']
+const availableSignals: string[] = ['Temperature', 'Humidity', 'CO2', 'PM2.5', 'VOC', 'NOx', 'AV']
+const availableSensors: string[] = ['SHT3x', 'SHT4x']
+
 
 function FilterSelectGadget() {
+    const fContext = useContext(FilterContext);
     return (
         <div className="services__filter_select">
             <label>Gadget</label>
-            <Select.Root>
+            <Select.Root
+                onValueChange={(e) => fContext.setFilters({...fContext.filters, 'selectedGadget': e})}
+                defaultValue={fContext.filters.selectedGadget}
+            >
                 <Select.Trigger className="filter__select_trigger" aria-label="Food">
                     <Select.Value placeholder="Select a gadget…"/>
                     <Select.Icon className="filter__select_icon"></Select.Icon>
@@ -15,16 +26,16 @@ function FilterSelectGadget() {
                         <Select.ScrollUpButton className="filter__select_scroll_button"></Select.ScrollUpButton>
                         <Select.Viewport className="filter__select_viewport">
                             <Select.Group>
-                                <Select.Item className="filter__select_item" value="1">
-                                    <Select.ItemText>SHT Gadget</Select.ItemText>
-                                    <Select.ItemIndicator
-                                        className="filter__select_item_indicator"></Select.ItemIndicator>
-                                </Select.Item>
-                                <Select.Item className="filter__select_item" value="2">
-                                    <Select.ItemText>SHT43 demo board</Select.ItemText>
-                                    <Select.ItemIndicator
-                                        className="filter__select_item_indicator"></Select.ItemIndicator>
-                                </Select.Item>
+                                {
+                                    availableGadgets.map((g, i) => {
+                                        return <Select.Item className="filter__select_item" value={g}
+                                                            key={"gadget-" + i}>
+                                            <Select.ItemText>{g}</Select.ItemText>
+                                            <Select.ItemIndicator
+                                                className="filter__select_item_indicator"></Select.ItemIndicator>
+                                        </Select.Item>
+                                    })
+                                }
                             </Select.Group>
                         </Select.Viewport>
                         <Select.ScrollDownButton className="SelectScrollButton"></Select.ScrollDownButton>
@@ -36,10 +47,14 @@ function FilterSelectGadget() {
 }
 
 function FilterSelectSignalType() {
+    const fContext = useContext(FilterContext);
     return (
         <div className="services__filter_select">
             <label>Signal Type</label>
-            <Select.Root>
+            <Select.Root
+                onValueChange={(e) => fContext.setFilters({...fContext.filters, 'selectedSignals': [e]})}
+                defaultValue={fContext.filters.selectedSignals[0]}
+            >
                 <Select.Trigger className="filter__select_trigger" aria-label="Food">
                     <Select.Value placeholder="Select signal types…"/>
                     <Select.Icon className="filter__select_icon"></Select.Icon>
@@ -49,16 +64,16 @@ function FilterSelectSignalType() {
                         <Select.ScrollUpButton className="filter__select_scroll_button"></Select.ScrollUpButton>
                         <Select.Viewport className="filter__select_viewport">
                             <Select.Group>
-                                <Select.Item className="filter__select_item" value="1">
-                                    <Select.ItemText>Temperature</Select.ItemText>
-                                    <Select.ItemIndicator
-                                        className="filter__select_item_indicator"></Select.ItemIndicator>
-                                </Select.Item>
-                                <Select.Item className="filter__select_item" value="2">
-                                    <Select.ItemText>Humidity</Select.ItemText>
-                                    <Select.ItemIndicator
-                                        className="filter__select_item_indicator"></Select.ItemIndicator>
-                                </Select.Item>
+                                {
+                                    availableSignals.map((s, i) => {
+                                        return <Select.Item className="filter__select_item" value={s}
+                                                            key={"signal-" + i}>
+                                            <Select.ItemText>{s}</Select.ItemText>
+                                            <Select.ItemIndicator
+                                                className="filter__select_item_indicator"></Select.ItemIndicator>
+                                        </Select.Item>
+                                    })
+                                }
                             </Select.Group>
                         </Select.Viewport>
                         <Select.ScrollDownButton className="filter__select_scroll_button"></Select.ScrollDownButton>
@@ -70,10 +85,14 @@ function FilterSelectSignalType() {
 }
 
 function FilterSelectSensor() {
+    const fContext = useContext(FilterContext);
     return (
         <div className="services__filter_select">
             <label>Sensor</label>
-            <Select.Root>
+            <Select.Root
+                onValueChange={(e) => fContext.setFilters({...fContext.filters, 'selectedSensor': [e]})}
+                defaultValue={fContext.filters.selectedSensor[0]}
+            >
                 <Select.Trigger className="filter__select_trigger" aria-label="Food">
                     <Select.Value placeholder="Select a sensor…"/>
                     <Select.Icon className="filter__select_icon"></Select.Icon>
@@ -83,16 +102,16 @@ function FilterSelectSensor() {
                         <Select.ScrollUpButton className="filter__select_scroll_button"></Select.ScrollUpButton>
                         <Select.Viewport className="filter__select_viewport">
                             <Select.Group>
-                                <Select.Item className="filter__select_item" value="1">
-                                    <Select.ItemText>SHT3x</Select.ItemText>
-                                    <Select.ItemIndicator
-                                        className="filter__select_item_indicator"></Select.ItemIndicator>
-                                </Select.Item>
-                                <Select.Item className="filter__select_item" value="2">
-                                    <Select.ItemText>SHT4x</Select.ItemText>
-                                    <Select.ItemIndicator
-                                        className="filter__select_item_indicator"></Select.ItemIndicator>
-                                </Select.Item>
+                                {
+                                    availableSensors.map((s, i) => {
+                                        return <Select.Item className="filter__select_item" value={s}
+                                                            key={"sensor-" + i}>
+                                            <Select.ItemText>{s}</Select.ItemText>
+                                            <Select.ItemIndicator
+                                                className="filter__select_item_indicator"></Select.ItemIndicator>
+                                        </Select.Item>
+                                    })
+                                }
                             </Select.Group>
                         </Select.Viewport>
                         <Select.ScrollDownButton className="filter__select_scroll_button"></Select.ScrollDownButton>
@@ -102,6 +121,7 @@ function FilterSelectSensor() {
         </div>
     );
 }
+
 
 function FilterArea() {
     return <div className="services__filter_area">
