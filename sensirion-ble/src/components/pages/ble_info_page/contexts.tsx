@@ -3,7 +3,7 @@ import {SearchCriterias} from "../../../types/search-criterias.d.tsx";
 
 export interface FilterContextType {
     filters: SearchCriterias;
-    setFilters: (filters: SearchCriterias) => void;
+    setFilters: (_filters: SearchCriterias) => void;
 }
 
 const defaultFilterContextType: FilterContextType = {
