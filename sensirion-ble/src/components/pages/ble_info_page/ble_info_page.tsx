@@ -1,6 +1,6 @@
 import NavigationBar from "../../common/navbar.tsx";
 import FooterBar from "../../common/footer.tsx";
-import ServicesList from "./services_list.tsx";
+import ServicesList from "./services/services_list.tsx";
 import FilterArea from "./filters.tsx";
 import {Tabs} from "radix-ui";
 import {useState} from 'react';

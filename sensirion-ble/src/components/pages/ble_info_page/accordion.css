@@ -67,7 +67,6 @@ h3.accordion__header {
 
 .accordion__content[data-state="open"] {
   animation: slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1);
-  height: 10rem;
 }
 
 .accordion__content[data-state="closed"] {
@@ -79,13 +78,13 @@ h3.accordion__header {
     height: 0;
   }
   to {
-    height: 10rem;
+    height: fit-content;
   }
 }
 
 @keyframes slideUp {
   from {
-    height: 10rem;
+    height: fit-content;
   }
   to {
     height: 0;

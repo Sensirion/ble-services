@@ -24,7 +24,7 @@
                 "name": {"type": "string", "description": "Name of the service"},
                 "uuid": {"type": "string", "description:": "UUID of the service"},
                 "description": {"type": "string"},
-                "application-note": {"type": "string", "description": "Additional information how to use this service"},
+                "application-note": {"type": "string", "description": "Additional information how to use this service formatted in markdown."},
                 "ble-sig-reference": {"type": "string", "description": "Link to the document describing a service that is defined by the BLE SIG."},
                 "supported-characteristics":
                   { "type": "array",

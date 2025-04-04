@@ -1,0 +1,38 @@
+.service_info_header {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.service_info_header__details {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.service_info_header__details > div {
+    border: 1px solid #ccc;
+    background-color: #D7D7D7;
+    padding: 0.5rem;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.service_info_header__details > .type {
+    min-width: 3.5rem;
+    text-align: center;
+
+    &.legacy {
+        color: var(--color-orange);
+    }
+
+    &.public {
+        color: var(--color-sensi-green);
+    }
+}
+
+.service_info_header__details__characteristics {
+    min-width: 8rem;
+}

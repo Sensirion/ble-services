@@ -1,13 +1,15 @@
 import {Accordion} from "radix-ui";
-import {ChevronIcon} from "../../vectors/chevronIcon.tsx";
-import "./accordion.css"
+import {ChevronIcon} from "../../../vectors/chevronIcon.tsx";
+import "../accordion.css"
 
 // @ts-expect-error: untyped object import
-import services from "../../../resources/ble-services.yml";
-import type {BLEServiceSchemaDefinition} from "../../../types/ble-service-schema";
+import services from "../../../../resources/ble-services.yml";
+import type {BLEServiceSchemaDefinition} from "../../../../types/ble-service-schema";
+import ServiceInfoContent from "./service_info_content.tsx";
+import ServiceInfoHeader from "./service_info_header.tsx";
 import {useContext} from "react";
-import {FilterContext} from "./contexts.tsx";
-import {SearchCriterias} from "../../../types/search-criterias.d.tsx";
+import {FilterContext} from "../contexts.tsx";
+import {SearchCriterias} from "../../../../types/search-criterias.d.tsx";
 
 const bleServices = services as BLEServiceSchemaDefinition;
 
@@ -30,7 +32,11 @@ function ServicesList() {
                 <Accordion.Item value={"service-" + i} className="accordion" key={"service-" + i}>
                     <Accordion.Header className="accordion__header">
                         <Accordion.Trigger className="accordion__header__trigger">
-                            <div>{s.service.name}</div>
+                            <ServiceInfoHeader
+                                name={s.service.name}
+                                isLegacy={!s.service["ble-sig-reference"]}
+                                numberOfCharacteristics={s.service["supported-characteristics"].length}
+                                uuid={s.service.uuid}/>
                             <ChevronIcon
                                 className="accordion__header__chevron"
                                 aria-hidden
@@ -38,7 +44,7 @@ function ServicesList() {
                         </Accordion.Trigger>
                     </Accordion.Header>
                     <Accordion.Content className="accordion__content">
-                        {JSON.stringify(s.service)}
+                        <ServiceInfoContent content={s.service} />
                     </Accordion.Content>
                 </Accordion.Item>
             );
