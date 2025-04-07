@@ -4,19 +4,29 @@ interface ServiceInfoHeaderProps {
     name: string,
     isLegacy: boolean,
     numberOfCharacteristics: number,
-    uuid: string
+    uuid: string,
+    onClick: () => void,
+    className: string
 }
 
-const ServiceInfoHeader = ({name, isLegacy, numberOfCharacteristics, uuid}: ServiceInfoHeaderProps) => {
+const ServiceInfoHeader = ({
+                               name,
+                               isLegacy,
+                               numberOfCharacteristics,
+                               uuid,
+                               onClick,
+                               className
+                           }: ServiceInfoHeaderProps) => {
     return (
-      <div className="service_info_header">
-          <div>{name}</div>
-          <div className="service_info_header__details">
-              <div className="service_info_header__details__uuid">{uuid}</div>
-              <div className="service_info_header__details__characteristics">{numberOfCharacteristics} Characteristic{numberOfCharacteristics > 1 ? 's' : ''}</div>
-              <div className={`type ${isLegacy ? 'legacy' : 'public'}`}>{isLegacy ? 'Legacy' : 'Public'}</div>
-          </div>
-      </div>
+        <div className={`service_info_header ${className}`} onClick={onClick}>
+            <div>{name}</div>
+            <div className="service_info_header__details">
+                <div className="service_info_header__details__uuid">{uuid}</div>
+                <div
+                    className="service_info_header__details__characteristics">{numberOfCharacteristics} Characteristic{numberOfCharacteristics > 1 ? 's' : ''}</div>
+                <div className={`type ${isLegacy ? 'legacy' : 'public'}`}>{isLegacy ? 'Legacy' : 'Public'}</div>
+            </div>
+        </div>
     );
 }
 
