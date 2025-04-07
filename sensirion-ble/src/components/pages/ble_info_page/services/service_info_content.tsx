@@ -17,7 +17,7 @@ interface ServiceInfoProps {
 
 const ServiceInfoContent = ({content}: ServiceInfoProps) => {
     return(
-        <div>
+        <div className="service_info_content">
             <div>
                 <b>Service UUID:</b> {content.uuid} <ReferenceLink link={content["ble-sig-reference"]} />
             </div>

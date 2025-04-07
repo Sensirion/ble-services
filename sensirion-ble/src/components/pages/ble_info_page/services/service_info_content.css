@@ -1,3 +1,7 @@
+.service_info_content {
+    margin: 20px;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;

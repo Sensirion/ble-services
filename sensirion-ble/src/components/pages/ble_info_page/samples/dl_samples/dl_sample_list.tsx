@@ -1,14 +1,20 @@
 // @ts-expect-error: untyped object import
-import samples from "../../../resources/ble-dl-sample-types.yml";
-import type {SampleTypes} from "../../../types/ble-sample-types-download-schema";
+import samples from "../../../../../resources/ble-dl-sample-types.yml";
+import type {SampleTypes} from "../../../../../types/ble-sample-types-download-schema";
 import {Accordion} from "radix-ui";
-import {ChevronIcon} from "../../vectors/chevronIcon.tsx";
-import {SearchCriterias} from "../../../types/search-criterias.d.tsx";
+import {ChevronIcon} from "../../../../vectors/chevronIcon.tsx";
+import {SearchCriterias} from "../../../../../types/search-criterias.d.tsx";
 import {useContext} from "react";
-import {FilterContext} from "./contexts.tsx";
+import {FilterContext} from "../../contexts.tsx";
+import {AdSampleFields} from "../ad_samples/ad_sample_list.tsx";
+import DlSampleContent from "./dl_sample_content.tsx";
+import SampleHeader from "../sample_header.tsx";
+
+export type DlSample = SampleTypes["sample-types"][number]["sample-type"];
+export type DlSampleId = DlSample["id"];
+export type DlSampleFields = DlSample["fields"];
 
 const dlSamples = samples as SampleTypes;
-
 
 function DownloadSampleList() {
     const fContext = useContext(FilterContext);
@@ -31,13 +37,26 @@ function DownloadSampleList() {
         return filteredSamples;
     }
 
+    function calculateSignals(fields: AdSampleFields) {
+        if (!fields) {
+            return 0;
+        }
+        return fields.filter(f => !["reserved", "Device id"].includes(f.field.name)).length;
+    }
+
     return <Accordion.Root type="single">
         {filterDownloadSampleList(fContext.filters).map((s, i) => {
             return (
                 <Accordion.Item value={"dl-sample-" + i} className="accordion" key={"dl-sample-" + i}>
                     <Accordion.Header className="accordion__header">
                         <Accordion.Trigger className="accordion__header__trigger">
-                            <div>{s['sample-type'].description}</div>
+                            <SampleHeader
+                                name={s["sample-type"].description}
+                                signals={s["sample-type"].fields ?
+                                    s["sample-type"].fields.map(field => field.field.name) : undefined}
+                                sampleType={s["sample-type"].id["sample-type"].at(0)!}
+                                numberOfSignals={calculateSignals(s["sample-type"].fields)}
+                            />
                             <ChevronIcon
                                 className="accordion__header__chevron"
                                 aria-hidden
@@ -45,7 +64,7 @@ function DownloadSampleList() {
                         </Accordion.Trigger>
                     </Accordion.Header>
                     <Accordion.Content className="accordion__content">
-                        {JSON.stringify(s['sample-type'])}
+                        <DlSampleContent content={s["sample-type"]} />
                     </Accordion.Content>
                 </Accordion.Item>
             );

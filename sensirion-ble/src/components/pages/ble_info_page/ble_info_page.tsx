@@ -6,10 +6,11 @@ import {Tabs} from "radix-ui";
 import {useState} from 'react';
 
 import "./ble_info_page.css";
-import DownloadSampleList from "./dl_sample_list.tsx";
-import AdvertisementSampleList from "./ad_sample_list.tsx";
+import DownloadSampleList from "./samples/dl_samples/dl_sample_list.tsx";
+import AdvertisementSampleList from "./samples/ad_samples/ad_sample_list.tsx";
 import {SearchCriterias} from "../../../types/search-criterias.d.tsx";
 import {FilterContext} from "./contexts.tsx";
+import {MathJaxContext} from "better-react-mathjax";
 
 
 const initialSearchCriterias: SearchCriterias = {
@@ -18,10 +19,14 @@ const initialSearchCriterias: SearchCriterias = {
     selectedSignals: []
 }
 
+const mathJaxConfig = {
+        loader: { load: ["input/asciimath"] }
+}
+
 function BleInfoPage() {
     const [filters, setFilters] = useState<SearchCriterias>(initialSearchCriterias);
     return (
-        <>
+        <MathJaxContext config={mathJaxConfig}>
             <NavigationBar/>
             <div id="body" className="ble_info__container">
                 <FilterContext.Provider value={{filters: filters, setFilters: setFilters}}>
@@ -59,7 +64,7 @@ function BleInfoPage() {
                 </FilterContext.Provider>
             </div>
             <FooterBar/>
-        </>
+        </MathJaxContext>
     );
 }
 

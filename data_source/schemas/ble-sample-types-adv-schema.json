@@ -54,7 +54,7 @@
                         "conversion": {
                           "type": "object", "description": "Conversion function or parameters to convert value into physical unit",
                           "properties": {
-                            "formula": {"type": "string"},
+                            "formula": {"type": "string", "description": "The conversion as an asciimath expression."},
                             "offset": {"type": ["number","string"], "description": "The offset of the linear conversion; this is supposed to be a number or a valid python expression"},
                             "scale": {"type": ["number", "string"], "description": "The scale of the linear conversion; this is supposed to be a number or a valid python expression"}
                           }

@@ -1,0 +1,28 @@
+.sample_header {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sample_header__children {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sample_header__children > div {
+    display: flex;
+    gap: 0.5rem;
+
+    border: 1px solid #ccc;
+    background-color: #D7D7D7;
+    padding: 0.5rem;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.sample_header__sample_type {
+    min-width: 7rem;
+}
