@@ -17,5 +17,5 @@ We use node version `22.11.0`
 In case of YAML schema change, the Type definitions need to be redefined.
 It can be done using:
 ```
-json2ts -i '../data_source/schemas/*.json' -o src/types
+json2ts -i 'src/resources/schemas/*.json' -o src/types
 ```

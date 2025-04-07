@@ -36,3 +36,7 @@
 .service_info_header__details__characteristics {
     min-width: 8rem;
 }
+
+.service_info_header__details__uuid {
+    min-width: 18.5rem;
+}

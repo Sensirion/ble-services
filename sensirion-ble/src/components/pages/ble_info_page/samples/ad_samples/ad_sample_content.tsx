@@ -22,10 +22,8 @@ const AdSampleContent = ({content}: AdSampleProps) => {
 
 const ByteLayoutTable = ({id, fields}: {id: AdSampleId, fields: AdSampleFields}) => {
     if (!fields) {
-        return null;
+        return <div>Missing data!</div>;
     }
-
-    console.log(Number(5).toString(16))
 
     return (
         <table>
@@ -57,8 +55,8 @@ const ByteLayoutTable = ({id, fields}: {id: AdSampleId, fields: AdSampleFields})
                         <table>
                             <thead>
                                 <tr>
-                                    {fields.map((f, index) => (
-                                        <React.Fragment key={f.field.name}>
+                                    {fields.map((_f, index) => (
+                                        <React.Fragment key={index}>
                                             <th>Byte {2 * index + 2}</th>
                                             <th>Byte {2 * index + 3}</th>
                                         </React.Fragment>
@@ -67,8 +65,8 @@ const ByteLayoutTable = ({id, fields}: {id: AdSampleId, fields: AdSampleFields})
                             </thead>
                             <tbody>
                                 <tr>
-                                    {fields.map((f) => (
-                                        <React.Fragment key={f.field.name}>
+                                    {fields.map((f, index) => (
+                                        <React.Fragment key={index}>
                                             <td>{f.field.name}-LSB</td>
                                             <td>{f.field.name}-MSB</td>
                                         </React.Fragment>

@@ -13,9 +13,6 @@
 }
 
 .sample_header__children > div {
-    display: flex;
-    gap: 0.5rem;
-
     border: 1px solid #ccc;
     background-color: #D7D7D7;
     padding: 0.5rem;
@@ -23,6 +20,15 @@
     text-align: center;
 }
 
+.sample_header__signal_icons {
+    display: flex;
+    gap: 0.5rem;
+}
+
 .sample_header__sample_type {
     min-width: 7rem;
+}
+
+.sample_header__signals {
+    min-width: 4rem;
 }
