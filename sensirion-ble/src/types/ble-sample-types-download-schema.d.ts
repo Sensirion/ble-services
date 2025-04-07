@@ -23,12 +23,18 @@ export interface SampleTypes {
        */
       description: string;
       /**
-       * 2-byte ID of the download sample type in big-endian byte order.
-       *
-       * @minItems 2
-       * @maxItems 2
+       * The ID of the download sample.
        */
-      id: [string, string];
+      id: {
+        /**
+         * 2-byte ID of the download sample type in big-endian byte order.
+         *
+         * @minItems 2
+         * @maxItems 2
+         */
+        "sample-type": [string, string];
+        [k: string]: unknown;
+      };
       /**
        * Number of samples per packet
        */

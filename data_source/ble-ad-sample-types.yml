@@ -3,7 +3,9 @@ file-version: 0.1.0
 sample-types:
   - sample-type:
       description: AQ Minion advertisement sample
-      id: [0x0, 0x3]
+      id:
+        ad-type: 0x0
+        sample-type: 0x3
       suitable-for:
         - AQ Minion
       fields:
@@ -44,7 +46,9 @@ sample-types:
 
   - sample-type:
       description: SHT3x advertisement sample
-      id: [0x0, 0x4]
+      id:
+        ad-type: 0x0
+        sample-type: 0x4
       suitable-for:
         - SHT3x sensors
       fields:
@@ -74,7 +78,9 @@ sample-types:
 
   - sample-type:
       description: SHT4x-based gadgets full advertisement sample
-      id: [0x0, 0x6]
+      id:
+        ad-type: 0x0
+        sample-type: 0x6
       suitable-for:
         - SHT40 Gadget
         - SHT43 Demo Board
@@ -105,7 +111,9 @@ sample-types:
 
   - sample-type:
       description: MyCO2 advertisement sample
-      id: [0x0 ,0x8]
+      id:
+        ad-type: 0x0
+        sample-type: 0x8
       suitable-for:
         - MyCo2 Gadget
       notes: Deprecated, use sample type 10 instead.
@@ -145,7 +153,9 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/CO2 advertisement sample
-      id: [0x0 ,0x0A]
+      id:
+        ad-type: 0x0
+        sample-type: 0x0A
       suitable-for:
         - MyCo2 Gadget
         - CO2 sensors
@@ -179,7 +189,9 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/CO2/PM2.5 advertisement sample
-      id: [0x0, 0x0C]
+      id:
+        ad-type: 0x0
+        sample-type: 0x0C
       suitable-for:
         - SEN63C module
       fields:
@@ -221,7 +233,9 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/Formaldehyde advertisement sample
-      id: [0x0, 0x0E]
+      id:
+        ad-type: 0x0
+        sample-type: 0x0E
       suitable-for:
         - Formaldehyde sensors
       fields:
@@ -258,7 +272,9 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/Formaldehyde advertisement sample
-      id: [0x0, 0x10]
+      id:
+        ad-type: 0x0
+        sample-type: 0x10
       suitable-for:
         - SEN54 module
       fields:
@@ -300,7 +316,9 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/CO2/VOC/PM2.5/Formaldehyde advertisement sample
-      id: [0x0, 0x14]
+      id:
+        ad-type: 0x0
+        sample-type: 0x14
       fields:
         - field:
             name: Device id
@@ -354,7 +372,9 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/VOC/NOx advertisement sample
-      id: [0x0, 0x16]
+      id:
+        ad-type: 0x0
+        sample-type: 0x16
       fields:
         - field:
             name: Device id
@@ -389,7 +409,9 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/VOC/NOx/PM2.5 advertisement sample
-      id: [0x0, 0x18]
+      id:
+        ad-type: 0x0
+        sample-type: 0x18
       suitable-for:
         - SEN55 module
       fields:
@@ -434,7 +456,9 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/CO2/VOC/NOx/PM2.5 advertisement sample
-      id: [0x0, 0x1A]
+      id:
+        ad-type: 0x0
+        sample-type: 0x1A
       suitable-for:
         - SEN66 module
       fields:
@@ -484,7 +508,9 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/CO2/PM2.5 advertisement sample
-      id: [0x0, 0x1C]
+      id:
+        ad-type: 0x0
+        sample-type: 0x1C
       suitable-for:
         - SEN63C module
       fields:
@@ -524,7 +550,9 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/VOC/PM2.5 advertisement sample
-      id: [0x0, 0x1E]
+      id:
+        ad-type: 0x0
+        sample-type: 0x1E
       suitable-for:
         - SEN55 module
         - SEN65 module
@@ -565,7 +593,9 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/CO2/VOC/PM2.5/Formaldehyde advertisement sample
-      id: [0x0, 0x20]
+      id:
+        ad-type: 0x0
+        sample-type: 0x20
       fields:
         - field:
             name: Device id
@@ -616,7 +646,9 @@ sample-types:
 
   - sample-type:
       description: PM advertisement sample
-      id: [0x0, 0x22]
+      id:
+        ad-type: 0x0
+        sample-type: 0x22
       suitable-for:
         - SEN50 module
         - SEN60 module
@@ -661,7 +693,9 @@ sample-types:
 
   - sample-type:
       description: CO2 advertisement sample
-      id: [0x0, 0x24]
+      id:
+        ad-type: 0x0
+        sample-type: 0x24
       suitable-for:
         - CO2 sensors
       fields:
@@ -678,7 +712,9 @@ sample-types:
 
   - sample-type:
       description: Air velocity and temperature advertisement sample
-      id: [0x0, 0x26]
+      id:
+        ad-type: 0x0
+        sample-type: 0x26
       fields:
         - field:
             name: Device id
@@ -704,7 +740,9 @@ sample-types:
 
   - sample-type:
       description: SHT43-DB no data advertisement sample
-      id: [0xff, 0x0]
+      id:
+        ad-type: 0xff
+        sample-type: 0x0
       notes: This sample type is used by the SHT43 demo board if advertisement samples are disabled.
       suitable-for:
         - SHT43 Demo Board

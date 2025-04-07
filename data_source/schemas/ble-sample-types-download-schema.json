@@ -7,9 +7,9 @@
     "required": [ "file-version", "sample-types"],
     "properties": {
        "file-version": {
-        "description": "Defines the version of the ble-dl-sample-types.yml file.",
-        "type": "string",
-        "pattern": "^[0-9]+(\\.[0-9]+){0,2}$"
+          "description": "Defines the version of the ble-dl-sample-types.yml file.",
+          "type": "string",
+          "pattern": "^[0-9]+(\\.[0-9]+){0,2}$"
       },
       "sample-types": {
         "description": "The list of defined BLE sample types used for downloading data.",
@@ -22,9 +22,17 @@
               "required": ["description", "id", "samples-per-packet"],
               "properties": {
                 "description": {"type": "string", "description": "Name of the service"},
-                "id": {"type": "array",
-                       "description": "2-byte ID of the download sample type in big-endian byte order.",
-                       "items": {"type": "string"}, "minItems":2, "maxItems": 2},
+                "id": {
+                  "type": "object",
+                  "description": "The ID of the download sample.",
+                  "required": ["sample-type"],
+                  "properties": {
+                    "sample-type": {
+                      "type": "array",
+                      "description": "2-byte ID of the download sample type in big-endian byte order.",
+                      "items": {"type": "string"}, "minItems":2, "maxItems": 2}
+                  }
+                },
                 "samples-per-packet": {"type": "number", "description": "Number of samples per packet"},
                 "notes": {"type": "string", "description": "Additional notes about the sample type"},
                 "suitable-for": {

@@ -23,12 +23,19 @@ export interface SampleTypes {
        */
       description: string;
       /**
-       * 2-byte ID of the advertising sample type in big-endian byte order.
-       *
-       * @minItems 2
-       * @maxItems 2
+       * The ID of the advertisement sample.
        */
-      id: [string, string];
+      id: {
+        /**
+         * The byte for the advertisement type. 0x00 if there are sensor data values sent in the advertisement, 0xff if no sensor data is sent.
+         */
+        "ad-type": string;
+        /**
+         * The byte for the sample type.
+         */
+        "sample-type": string;
+        [k: string]: unknown;
+      };
       /**
        * Additional notes about the sample type
        */
