@@ -22,9 +22,15 @@
               "required": ["description", "id"],
               "properties": {
                 "description": {"type": "string", "description": "Name of the service"},
-                "id": {"type": "array",
-                       "description": "2-byte ID of the advertising sample type in big-endian byte order.",
-                       "items": {"type": "string"}, "minItems":2, "maxItems": 2},
+                "id": {
+                  "type": "object",
+                  "description": "The ID of the advertisement sample.",
+                  "required": ["ad-type", "sample-type"],
+                  "properties": {
+                    "ad-type": {"type": "string", "description": "The byte for the advertisement type. 0x00 if there are sensor data values sent in the advertisement, 0xff if no sensor data is sent."},
+                    "sample-type": {"type": "string", "description": "The byte for the sample type."}
+                  }
+                },
                 "notes": {"type": "string", "description": "Additional notes about the sample type"},
                 "suitable-for": {
                   "type":  "array",

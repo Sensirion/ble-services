@@ -3,7 +3,8 @@ file-version: 0.1.0
 sample-types:
   - sample-type:
       description: SHT3x data logger sample
-      id: [0x00, 0x00]
+      id:
+        sample-type: [0x00, 0x00]
       samples-per-packet: 4
       suitable-for:
         - SHT3x sensor
@@ -29,7 +30,8 @@ sample-types:
 
   - sample-type:
       description: SHT3x data logger sample with VOC
-      id: [0x01, 0x00]
+      id:
+        sample-type: [0x01, 0x00]
       samples-per-packet: 3
       suitable-for:
         - AQ Minion
@@ -62,7 +64,8 @@ sample-types:
 
   - sample-type:
       description: AQ Minion data logger sample with VOC
-      id: [0x02, 0x00]
+      id:
+        sample-type: [0x02, 0x00]
       samples-per-packet: 2
       notes: Deprecated, use sample type 0x1 instead.
       suitable-for:
@@ -102,7 +105,8 @@ sample-types:
 
   - sample-type:
       description: SHT4x-based gadgets data logging sample
-      id: [0x5, 0x0]
+      id:
+        sample-type: [0x05, 0x00]
       samples-per-packet: 4
       suitable-for:
         - SHT40 Gadget
@@ -128,7 +132,8 @@ sample-types:
 
   - sample-type:
       description: MyCO2 data logging sample
-      id: [0x7, 0x0]
+      id:
+        sample-type: [0x07, 0x00]
       samples-per-packet: 2
       notes: Deprecated, use sample type 0x9 instead.
       suitable-for:
@@ -166,7 +171,8 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/CO2 data logging sample
-      id: [0x9, 0x0]
+      id:
+        sample-type: [0x09, 0x00]
       samples-per-packet: 3
       suitable-for:
         - MyCo2 Gadget
@@ -196,7 +202,8 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/CO2/PM2.5 data logging sample
-      id: [0x0B, 0x0]
+      id:
+        sample-type: [0x0B, 0x00]
       samples-per-packet: 2
       fields:
         - field:
@@ -232,7 +239,8 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/Formaldehyde data logging sample
-      id: [0x0D, 0x0]
+      id:
+        sample-type: [0x0D, 0x00]
       samples-per-packet: 3
       suitable-for:
         - Formaldehyde sensors
@@ -265,7 +273,8 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/VOC/PM2.5 data logging sample
-      id: [0x0F, 0x00]
+      id:
+        sample-type: [0x0F, 0x00]
       samples-per-packet: 2
       fields:
         - field:
@@ -301,7 +310,8 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/CO2/VOC/PM2.5/Formaldehyde data logging sample
-      id: [0x13, 0x00]
+      id:
+        sample-type: [0x13, 0x00]
       samples-per-packet: 1
       fields:
         - field:
@@ -352,7 +362,8 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/VOC/NOx data logging sample
-      id: [0x15, 0x00]
+      id:
+        sample-type: [0x15, 0x00]
       samples-per-packet: 2
       suitable-for:
         - SGP41 sensor
@@ -386,7 +397,8 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/VOC/NOx/PM2.5 data logging sample
-      id: [0x17, 0x00]
+      id:
+        sample-type: [0x17, 0x00]
       samples-per-packet: 1
       suitable-for:
         - SEN55 module
@@ -429,7 +441,8 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/CO2/VOC/NOx/PM2.5 data logging sample
-      id: [0x19, 0x00]
+      id:
+        sample-type: [0x19, 0x00]
       samples-per-packet: 1
       suitable-for:
         - SEN66 module
@@ -476,7 +489,8 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/CO2/PM2.5 data logging sample
-      id: [0x1B, 0x00]
+      id:
+        sample-type: [0x1B, 0x00]
       samples-per-packet: 2
       suitable-for:
         - SEN66 module
@@ -514,7 +528,8 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/VOC/PM2.5 data logging sample
-      id: [0x1D, 0x00]
+      id:
+        sample-type: [0x1D, 0x00]
       samples-per-packet: 2
       suitable-for:
         - SEN54 module
@@ -552,7 +567,8 @@ sample-types:
 
   - sample-type:
       description: Temperature/Humidity/CO2/VOC/PM2.5/Formaldehyde data logging sample
-      id: [0x1F, 0x00]
+      id:
+        sample-type: [0x1F, 0x00]
       samples-per-packet: 1
       fields:
         - field:
@@ -599,7 +615,8 @@ sample-types:
 
   - sample-type:
       description: PM data logging sample
-      id: [0x21, 0x00]
+      id:
+        sample-type: [0x21, 0x00]
       samples-per-packet: 1
       suitable-for:
         - SEN50 module
@@ -640,7 +657,8 @@ sample-types:
 
   - sample-type:
       description: CO2 data logging sample
-      id: [0x23, 0x0]
+      id:
+        sample-type: [0x23, 0x00]
       samples-per-packet: 1
       suitable-for:
         - CO2 sensors
@@ -653,7 +671,8 @@ sample-types:
 
   - sample-type:
       description: Air velocity and temperature data logging sample
-      id: [0x25, 0x0]
+      id:
+        sample-type: [0x25, 0x00]
       samples-per-packet: 4
       fields:
         - field:
