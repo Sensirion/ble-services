@@ -12,7 +12,7 @@ const ServiceInfoHeader = ({name, isLegacy, numberOfCharacteristics, uuid}: Serv
       <div className="service_info_header">
           <div>{name}</div>
           <div className="service_info_header__details">
-              <div>{uuid}</div>
+              <div className="service_info_header__details__uuid">{uuid}</div>
               <div className="service_info_header__details__characteristics">{numberOfCharacteristics} Characteristic{numberOfCharacteristics > 1 ? 's' : ''}</div>
               <div className={`type ${isLegacy ? 'legacy' : 'public'}`}>{isLegacy ? 'Legacy' : 'Public'}</div>
           </div>

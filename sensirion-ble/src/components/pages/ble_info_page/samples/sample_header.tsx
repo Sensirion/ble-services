@@ -9,18 +9,20 @@ interface SampleHeaderProps {
     signals?: string[],
     sampleType: string,
     numberOfSignals: number,
+    gadgets?: string[],
     children?: ReactNode,
 }
 
-const SampleHeader = ({name, signals, sampleType, numberOfSignals, children}: SampleHeaderProps) => {
+const SampleHeader = ({name, signals, sampleType, numberOfSignals, gadgets, children}: SampleHeaderProps) => {
     return (
       <div className="sample_header">
           <div>{name}</div>
           <div className="sample_header__children">
-              {signals ? <div className="sample_header__signals"><SignalIcons signals={signals} /></div> : ''}
-              <div className="sample_header__sample_type">Sample type {sampleType}</div>
-              <div className="sample_header__signals">{numberOfSignals} Signals</div>
+              {signals ? <div className="sample_header__signal_icons"><SignalIcons signals={signals}/></div> : ''}
+              {gadgets ? <div className="sample_header__used_by">{gadgets.join(", ")}</div> : ""}
+              <div className="sample_header__signals">{numberOfSignals} Signal{numberOfSignals !== 1 ? 's' : ''}</div>
               {children}
+              <div className="sample_header__sample_type">Sample type {sampleType}</div>
           </div>
       </div>
     );

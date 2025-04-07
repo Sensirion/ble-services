@@ -55,6 +55,7 @@ function DownloadSampleList() {
                                 signals={s["sample-type"].fields ?
                                     s["sample-type"].fields.map(field => field.field.name) : undefined}
                                 sampleType={s["sample-type"].id["sample-type"].at(0)!}
+                                gadgets={s["sample-type"]["suitable-for"]}
                                 numberOfSignals={calculateSignals(s["sample-type"].fields)}
                             />
                             <ChevronIcon
