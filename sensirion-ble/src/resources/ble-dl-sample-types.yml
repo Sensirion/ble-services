@@ -17,7 +17,7 @@ sample-types:
             conversion:
               offset: -45
               scale: 175.0 / (2**16 - 1)
-              formula: T =  - 45 + ((175.0 * raw_value) / (2^16 - 1))
+              formula: T =  - 45 + ((175.0 * "raw_value") / (2^16 - 1))
         - field:
             name: Humidity
             description: Measured relative humidity as a raw integer value
@@ -26,7 +26,7 @@ sample-types:
             conversion:
               offset: 0
               scale:   100.0 / (2**16 - 1)
-              formula: RH = (100.0 * raw_value) / (2^16 - 1)
+              formula: RH = (100.0 * "raw_value") / (2^16 - 1)
 
   - sample-type:
       description: SHT3x data logger sample with VOC
@@ -45,7 +45,7 @@ sample-types:
             conversion:
               offset: -45
               scale: 175.0 / (2**16 - 1)
-              formula: T =  - 45 + ((175.0 * raw_value) / (2^16 - 1))
+              formula: T =  - 45 + ((175.0 * "raw_value") / (2^16 - 1))
         - field:
             name: Humidity
             description: Measured relative humidity as a raw integer value
@@ -54,7 +54,7 @@ sample-types:
             conversion:
               offset: 0
               scale:   100.0 / (2**16 - 1)
-              formula: RH = (100.0 * raw_value) / (2^16 - 1)
+              formula: RH = (100.0 * "raw_value") / (2^16 - 1)
         - field:
             name: VOC
             description: Measured VOC value
@@ -79,7 +79,7 @@ sample-types:
             conversion:
               offset: -45
               scale: 175.0 / (2**16 - 1)
-              formula: T =  - 45 + ((175.0 * raw_value) / (2^16 - 1))
+              formula: T =  - 45 + ((175.0 * "raw_value") / (2^16 - 1))
         - field:
             name: Humidity
             description: Measured relative humidity as a raw integer value
@@ -88,7 +88,7 @@ sample-types:
             conversion:
               offset: 0
               scale:   100.0 / (2**16 - 1)
-              formula: RH = (100.0 * raw_value) / (2^16 - 1)
+              formula: RH = (100.0 * "raw_value") / (2^16 - 1)
         - field:
             name: VOC
             description: Measured VOC value
@@ -119,7 +119,7 @@ sample-types:
             description: Measured temperature as a raw integer value
             data-type: uint16
             conversion:
-              formula: T = - 45 + ((175.0 * raw_value) / (2^16 - 1))
+              formula: T = - 45 + ((175.0 * "raw_value") / (2^16 - 1))
         - field:
             name: Humidity
             byte-offset: 2
@@ -128,7 +128,7 @@ sample-types:
             conversion:
               offset : -6
               scale: 125.0 / (2**16-1)
-              formula: RH = - 6 + (125.0 * raw_value) / (2^16 - 1)
+              formula: RH = - 6 + (125.0 * "raw_value") / (2^16 - 1)
 
   - sample-type:
       description: MyCO2 data logging sample
@@ -145,7 +145,7 @@ sample-types:
             description: Measured temperature as a raw integer value
             data-type: uint16
             conversion:
-              formula: T = - 45 + ((175.0 * raw_value) / (2^16 - 1))
+              formula: T = - 45 + ((175.0 * "raw_value") / (2^16 - 1))
         - field:
             name: Humidity
             byte-offset: 2
@@ -154,7 +154,7 @@ sample-types:
             conversion:
               offset: 0
               scale:  100.0 / (2**16 - 1)
-              formula: RH = (100.0 * raw_value) / (2^16 - 1)
+              formula: RH = (100.0 * "raw_value") / (2^16 - 1)
         - field:
             name: CO2
             byte-offset: 4
@@ -184,7 +184,7 @@ sample-types:
             description: Measured temperature as a raw integer value
             data-type: uint16
             conversion:
-              formula: T = - 45 + ((175.0 * raw_value) / (2^16 - 1))
+              formula: T = - 45 + ((175.0 * "raw_value") / (2^16 - 1))
         - field:
             name: Humidity
             byte-offset: 2
@@ -193,7 +193,7 @@ sample-types:
             conversion:
               offset: 0
               scale:  100.0 / (2**16 - 1)
-              formula: RH = (100.0 * raw_value) / (2^16 - 1)
+              formula: RH = (100.0 * "raw_value") / (2^16 - 1)
         - field:
             name: CO2
             byte-offset: 4
@@ -212,7 +212,7 @@ sample-types:
             description: Measured temperature as a raw integer value
             data-type: uint16
             conversion:
-              formula: T = - 45 + ((175.0 * raw_value) / (2^16 - 1))
+              formula: T = - 45 + ((175.0 * "raw_value") / (2^16 - 1))
         - field:
             name: Humidity
             byte-offset: 2
@@ -221,7 +221,7 @@ sample-types:
             conversion:
               offset: 0
               scale:  100.0 / (2**16 - 1)
-              formula: RH = (100.0 * raw_value) / (2^16 - 1)
+              formula: RH = (100.0 * "raw_value") / (2^16 - 1)
         - field:
             name: CO2
             byte-offset: 4
@@ -235,7 +235,7 @@ sample-types:
             conversion:
               offset: 0
               scale:  1000.0 / (2**16 - 1)
-              formula: RH = (1000.0 * raw_value) / (2^16 - 1)
+              formula: RH = (1000.0 * "raw_value") / (2^16 - 1)
 
   - sample-type:
       description: Temperature/Humidity/Formaldehyde data logging sample
@@ -251,7 +251,7 @@ sample-types:
             description: Measured temperature as a raw integer value
             data-type: uint16
             conversion:
-              formula: T = - 45 + ((175.0 * raw_value) / (2^16 - 1))
+              formula: T = - 45 + ((175.0 * "raw_value") / (2^16 - 1))
         - field:
             name: Humidity
             byte-offset: 2
@@ -260,7 +260,7 @@ sample-types:
             conversion:
               offset: 0
               scale:  100.0 / (2**16 - 1)
-              formula: RH = (100.0 * raw_value) / (2^16 - 1)
+              formula: RH = (100.0 * "raw_value") / (2^16 - 1)
         - field:
             name: HCHO
             byte-offset: 4
@@ -269,7 +269,7 @@ sample-types:
             conversion:
               offset: 0
               scale:  1/5
-              formula: HCHO = raw_value / 5
+              formula: HCHO = "raw_value" / 5
 
   - sample-type:
       description: Temperature/Humidity/VOC/PM2.5 data logging sample
@@ -283,7 +283,7 @@ sample-types:
             description: Measured temperature as a raw integer value
             data-type: uint16
             conversion:
-              formula: T = - 45 + ((175.0 * raw_value) / (2^16 - 1))
+              formula: T = - 45 + ((175.0 * "raw_value") / (2^16 - 1))
         - field:
             name: Humidity
             byte-offset: 2
@@ -292,7 +292,7 @@ sample-types:
             conversion:
               offset: 0
               scale:  100.0 / (2**16 - 1)
-              formula: RH = (100.0 * raw_value) / (2^16 - 1)
+              formula: RH = (100.0 * "raw_value") / (2^16 - 1)
         - field:
             name: VOC
             description: Measured VOC value
@@ -306,7 +306,7 @@ sample-types:
             conversion:
               offset: 0
               scale:  1000.0 / (2**16 - 1)
-              formula: RH = (1000.0 * raw_value) / (2^16 - 1)
+              formula: RH = (1000.0 * "raw_value") / (2^16 - 1)
 
   - sample-type:
       description: Temperature/Humidity/CO2/VOC/PM2.5/Formaldehyde data logging sample
@@ -320,7 +320,7 @@ sample-types:
             description: Measured temperature as a raw integer value
             data-type: uint16
             conversion:
-              formula: T = - 45 + ((175.0 * raw_value) / (2^16 - 1))
+              formula: T = - 45 + ((175.0 * "raw_value") / (2^16 - 1))
         - field:
             name: Humidity
             byte-offset: 2
@@ -329,7 +329,7 @@ sample-types:
             conversion:
               offset: 0
               scale:  100.0 / (2**16 - 1)
-              formula: RH = (100.0 * raw_value) / (2^16 - 1)
+              formula: RH = (100.0 * "raw_value") / (2^16 - 1)
         - field:
             name: CO2
             byte-offset: 4
@@ -348,7 +348,7 @@ sample-types:
             conversion:
               offset: 0
               scale:  1000.0 / (2**16 - 1)
-              formula: PM2.5 = (1000.0 * raw_value) / (2^16 - 1)
+              formula: PM2.5 = (1000.0 * "raw_value") / (2^16 - 1)
         - field:
             name: HCHO
             byte-offset: 10
@@ -358,7 +358,7 @@ sample-types:
             conversion:
               offset: 0
               scale:  1 / 5
-              formula: HCHO = raw_value / 5
+              formula: HCHO = "raw_value" / 5
 
   - sample-type:
       description: Temperature/Humidity/VOC/NOx data logging sample
@@ -374,7 +374,7 @@ sample-types:
             description: Measured temperature as a raw integer value
             data-type: uint16
             conversion:
-              formula: T = - 45 + ((175.0 * raw_value) / (2^16 - 1))
+              formula: T = - 45 + ((175.0 * "raw_value") / (2^16 - 1))
         - field:
             name: Humidity
             byte-offset: 2
@@ -383,7 +383,7 @@ sample-types:
             conversion:
               offset: 0
               scale:  100.0 / (2**16 - 1)
-              formula: RH = (100.0 * raw_value) / (2^16 - 1)
+              formula: RH = (100.0 * "raw_value") / (2^16 - 1)
         - field:
             name: VOC
             byte-offset: 4
@@ -410,7 +410,7 @@ sample-types:
             description: Measured temperature as a raw integer value
             data-type: uint16
             conversion:
-              formula: T = - 45 + ((175.0 * raw_value) / (2^16 - 1))
+              formula: T = - 45 + ((175.0 * "raw_value") / (2^16 - 1))
         - field:
             name: Humidity
             byte-offset: 2
@@ -419,7 +419,7 @@ sample-types:
             conversion:
               offset: 0
               scale:  100.0 / (2**16 - 1)
-              formula: RH = (100.0 * raw_value) / (2^16 - 1)
+              formula: RH = (100.0 * "raw_value") / (2^16 - 1)
         - field:
             name: VOC
             byte-offset: 4
@@ -437,7 +437,7 @@ sample-types:
             data-type: uint16
             conversion:
               scale:  1 / 10
-              formula: PM25 = raw_value / 10
+              formula: PM25 = "raw_value" / 10
 
   - sample-type:
       description: Temperature/Humidity/CO2/VOC/NOx/PM2.5 data logging sample
@@ -453,7 +453,7 @@ sample-types:
             description: Measured temperature as a raw integer value
             data-type: uint16
             conversion:
-              formula: T = - 45 + ((175.0 * raw_value) / (2^16 - 1))
+              formula: T = - 45 + ((175.0 * "raw_value") / (2^16 - 1))
         - field:
             name: Humidity
             byte-offset: 2
@@ -462,7 +462,7 @@ sample-types:
             conversion:
               offset: 0
               scale:  100.0 / (2**16 - 1)
-              formula: RH = (100.0 * raw_value) / (2^16 - 1)
+              formula: RH = (100.0 * "raw_value") / (2^16 - 1)
         - field:
             name: CO2
             byte-offset: 4
@@ -485,7 +485,7 @@ sample-types:
             data-type: uint16
             conversion:
               scale:  1 / 10
-              formula: PM25 = raw_value / 10
+              formula: PM25 = "raw_value" / 10
 
   - sample-type:
       description: Temperature/Humidity/CO2/PM2.5 data logging sample
@@ -502,7 +502,7 @@ sample-types:
             description: Measured temperature as a raw integer value
             data-type: uint16
             conversion:
-              formula: T = - 45 + ((175.0 * raw_value) / (2^16 - 1))
+              formula: T = - 45 + ((175.0 * "raw_value") / (2^16 - 1))
         - field:
             name: Humidity
             byte-offset: 2
@@ -511,7 +511,7 @@ sample-types:
             conversion:
               offset: 0
               scale:  100.0 / (2**16 - 1)
-              formula: RH = (100.0 * raw_value) / (2^16 - 1)
+              formula: RH = (100.0 * "raw_value") / (2^16 - 1)
         - field:
             name: CO2
             byte-offset: 4
@@ -524,7 +524,7 @@ sample-types:
             data-type: uint16
             conversion:
               scale:  1 / 10
-              formula: PM25 = raw_value / 10
+              formula: PM25 = "raw_value" / 10
 
   - sample-type:
       description: Temperature/Humidity/VOC/PM2.5 data logging sample
@@ -541,7 +541,7 @@ sample-types:
             description: Measured temperature as a raw integer value
             data-type: uint16
             conversion:
-              formula: T = - 45 + ((175.0 * raw_value) / (2^16 - 1))
+              formula: T = - 45 + ((175.0 * "raw_value") / (2^16 - 1))
         - field:
             name: Humidity
             byte-offset: 2
@@ -550,7 +550,7 @@ sample-types:
             conversion:
               offset: 0
               scale:  100.0 / (2**16 - 1)
-              formula: RH = (100.0 * raw_value) / (2^16 - 1)
+              formula: RH = (100.0 * "raw_value") / (2^16 - 1)
         - field:
             name: VOC
             byte-offset: 4
@@ -563,7 +563,7 @@ sample-types:
             data-type: uint16
             conversion:
               scale:  1 / 10
-              formula: PM25 = raw_value / 10
+              formula: PM25 = "raw_value" / 10
 
   - sample-type:
       description: Temperature/Humidity/CO2/VOC/PM2.5/Formaldehyde data logging sample
@@ -577,7 +577,7 @@ sample-types:
             description: Measured temperature as a raw integer value
             data-type: uint16
             conversion:
-              formula: T = - 45 + ((175.0 * raw_value) / (2^16 - 1))
+              formula: T = - 45 + ((175.0 * "raw_value") / (2^16 - 1))
         - field:
             name: Humidity
             byte-offset: 2
@@ -585,7 +585,7 @@ sample-types:
             data-type: uint16
             conversion:
               scale:  100.0 / (2**16 - 1)
-              formula: RH = (100.0 * raw_value) / (2^16 - 1)
+              formula: RH = (100.0 * "raw_value") / (2^16 - 1)
         - field:
             name: CO2
             byte-offset: 4
@@ -603,7 +603,7 @@ sample-types:
             data-type: uint16
             conversion:
               scale:  1 / 10
-              formula: PM25 = raw_value / 10
+              formula: PM25 = "raw_value" / 10
         - field:
             name: HCHO
             byte-offset: 10
@@ -611,7 +611,7 @@ sample-types:
             data-type: uint16
             conversion:
               scale:  1 / 5
-              formula: HCHO = raw_value / 5
+              formula: HCHO = "raw_value" / 5
 
   - sample-type:
       description: PM data logging sample
@@ -629,7 +629,7 @@ sample-types:
             data-type: uint16
             conversion:
               scale:  1 / 10
-              formula: PM1 = raw_value / 10
+              formula: PM1 = "raw_value" / 10
         - field:
             name: PM2.5
             byte-offset: 2
@@ -637,7 +637,7 @@ sample-types:
             data-type: uint16
             conversion:
               scale:  1 / 10
-              formula: PM25 = raw_value / 10
+              formula: PM25 = "raw_value" / 10
         - field:
             name: PM4.0
             byte-offset: 4
@@ -645,7 +645,7 @@ sample-types:
             data-type: uint16
             conversion:
               scale:  1 / 10
-              formula: PM4 = raw_value / 10
+              formula: PM4 = "raw_value" / 10
         - field:
             name: PM10
             byte-offset: 6
@@ -653,7 +653,7 @@ sample-types:
             data-type: uint16
             conversion:
               scale:  1 / 10
-              formula: PM10 = raw_value / 10
+              formula: PM10 = "raw_value" / 10
 
   - sample-type:
       description: CO2 data logging sample
@@ -683,11 +683,11 @@ sample-types:
             conversion:
               scale: 1024.0 / (2**16 - 1)
               offset: 0
-              formula: AV = (raw_value * 1024) / (2^16 - 1)
+              formula: AV = ("raw_value" * 1024) / (2^16 - 1)
         - field:
             name: Temperature
             byte-offset: 2
             description: Measured temperature as a raw integer value
             data-type: uint16
             conversion:
-              formula: T = - 45 + ((175.0 * raw_value) / (2^16 - 1))
+              formula: T = - 45 + ((175.0 * "raw_value") / (2^16 - 1))

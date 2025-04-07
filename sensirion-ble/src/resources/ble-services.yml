@@ -180,22 +180,22 @@ ble-services:
       uuid: 00008000-b38d-4985-720e-0f993a68ee41
       description: Service to control the data logging on a measuring device.
       application-note: |
-        The Smart Humigadget (a.k.a SHT3x Gadget) does not support the data logger service.
+        The Smart Humigadget (a.k.a SHT3x Gadget) does not support the data logger service.<br>
         Documentation for the SHT3x Gadget can be found here:
-        https://sensirion.com/media/documents/429F0DF6/61643DC1/Sensirion_Humidity_Sensors_SHT3x_Smart-Gadget_User-Guide_1.pdf
+        [SHT3x Gadget User Guide](https://sensirion.com/media/documents/429F0DF6/61643DC1/Sensirion_Humidity_Sensors_SHT3x_Smart-Gadget_User-Guide_1.pdf)
 
         How to use the service:
 
-          #. To be able to calculate how many samples we have missed; the sampling
+          1. To be able to calculate how many samples we have missed; the sampling
              interval has to be readout.
 
-          #. The measuring device returns the sampling interval in milliseconds.
+          2. The measuring device returns the sampling interval in milliseconds.
 
-          #. Then we check how many samples are available at all.
+          3. Then we check how many samples are available at all.
 
-          #. The measuring device returns the number of available samples.
+          4. The measuring device returns the number of available samples.
 
-          #. Based on the retrieved information, we determine how many samples we want to read.
+          5. Based on the retrieved information, we determine how many samples we want to read.
              If the requested  number of samples is higher than the available number of samples, then all available samples are transmitted.
 
              If the requested number of samples is less than the available number of samples, the oldest samples are

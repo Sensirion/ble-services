@@ -1,0 +1,19 @@
+.sample_content {
+    margin: 20px;
+}
+
+.sample_content__note {
+    display: flex;
+    align-items: center;
+    background-color: #fff9c4;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin: 20px;
+}
+
+.sample_content__note::before {
+    content: "⚠️";
+    margin-right: 10px;
+}
