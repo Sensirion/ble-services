@@ -32,7 +32,7 @@ function ServicesList() {
                 return <Dialog.Trigger asChild>
                     <ServiceInfoHeader
                         name={s.service.name}
-                        isLegacy={!s.service["ble-sig-reference"]}
+                        isCustom={!s.service["ble-sig-reference"]}
                         numberOfCharacteristics={s.service["supported-characteristics"].length}
                         uuid={s.service.uuid}
                         onClick={() => set_selected_service(s.service)}

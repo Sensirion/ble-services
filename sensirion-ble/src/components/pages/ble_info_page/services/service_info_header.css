@@ -21,10 +21,10 @@
 }
 
 .service_info_header__details > .type {
-    min-width: 3.5rem;
+    min-width: 4rem;
     text-align: center;
 
-    &.legacy {
+    &.custom {
         color: var(--color-orange);
     }
 

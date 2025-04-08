@@ -2,7 +2,7 @@ import "./service_info_header.css";
 
 interface ServiceInfoHeaderProps {
     name: string,
-    isLegacy: boolean,
+    isCustom: boolean,
     numberOfCharacteristics: number,
     uuid: string,
     onClick: () => void,
@@ -11,7 +11,7 @@ interface ServiceInfoHeaderProps {
 
 const ServiceInfoHeader = ({
                                name,
-                               isLegacy,
+                               isCustom,
                                numberOfCharacteristics,
                                uuid,
                                onClick,
@@ -24,7 +24,7 @@ const ServiceInfoHeader = ({
                 <div className="service_info_header__details__uuid">{uuid}</div>
                 <div
                     className="service_info_header__details__characteristics">{numberOfCharacteristics} Characteristic{numberOfCharacteristics > 1 ? 's' : ''}</div>
-                <div className={`type ${isLegacy ? 'legacy' : 'public'}`}>{isLegacy ? 'Legacy' : 'Public'}</div>
+                <div className={`type ${isCustom ? 'custom' : 'public'}`}>{isCustom ? 'Custom' : 'Public'}</div>
             </div>
         </div>
     );
