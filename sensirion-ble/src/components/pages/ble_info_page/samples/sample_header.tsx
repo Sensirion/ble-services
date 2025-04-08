@@ -18,7 +18,7 @@ const SampleHeader = ({name, signals, sampleType, numberOfSignals, gadgets, chil
       <div className="sample_header">
           <div>{name}</div>
           <div className="sample_header__children">
-              {signals ? <div className="sample_header__signal_icons"><SignalIcons signals={signals}/></div> : ''}
+              {signals?.length ? <div className="sample_header__signal_icons"><SignalIcons signals={signals}/></div> : ''}
               {gadgets ? <div className="sample_header__used_by">{gadgets.join(", ")}</div> : ""}
               <div className="sample_header__signals">{numberOfSignals} Signal{numberOfSignals !== 1 ? 's' : ''}</div>
               {children}
@@ -43,6 +43,7 @@ const signalIconMap: { [key: string]: IconDefinition } = {
 };
 
 const SignalIcons = ({signals}: {signals: string[]}) => {
+    console.log(signals);
     return (
         <>
             {signals.map((signal, index) => (

@@ -21,10 +21,6 @@ const DlSampleContent = ({content}: DlSampleProps) => {
 }
 
 const ByteLayoutTable = ({id, fields}: {id: DlSampleId, fields: DlSampleFields}) => {
-    if (!fields) {
-        return <div>Missing data!</div>;
-    }
-
     return (
         <table>
             <thead>
@@ -52,28 +48,31 @@ const ByteLayoutTable = ({id, fields}: {id: DlSampleId, fields: DlSampleFields})
                         </table>
                     </td>
                     <td>
-                        <table>
-                            <thead>
-                                <tr>
-                                    {fields.map((_f, index) => (
-                                        <React.Fragment key={index}>
-                                            <th>Byte {2 * index + 2}</th>
-                                            <th>Byte {2 * index + 3}</th>
-                                        </React.Fragment>
-                                    ))}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    {fields.map((f, index) => (
-                                        <React.Fragment key={index}>
-                                            <td>{f.field.name}-LSB</td>
-                                            <td>{f.field.name}-MSB</td>
-                                        </React.Fragment>
-                                    ))}
-                                </tr>
-                            </tbody>
-                        </table>
+                        {fields ?
+                            <table>
+                                <thead>
+                                    <tr>
+                                        {fields.map((_f, index) => (
+                                            <React.Fragment key={index}>
+                                                <th>Byte {2 * index + 2}</th>
+                                                <th>Byte {2 * index + 3}</th>
+                                            </React.Fragment>
+                                        ))}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        {fields.map((f, index) => (
+                                            <React.Fragment key={index}>
+                                                <td>{f.field.name}-LSB</td>
+                                                <td>{f.field.name}-MSB</td>
+                                            </React.Fragment>
+                                        ))}
+                                    </tr>
+                                </tbody>
+                            </table>
+                            : 'No data'
+                        }
                     </td>
                 </tr>
             </tbody>
