@@ -6,9 +6,9 @@ import {ChevronIcon} from "../../../../vectors/chevronIcon.tsx";
 import {SearchCriterias} from "../../../../../types/search-criterias.d.tsx";
 import {useContext} from "react";
 import {FilterContext} from "../../contexts.tsx";
-import {AdSampleFields} from "../ad_samples/ad_sample_list.tsx";
 import DlSampleContent from "./dl_sample_content.tsx";
 import SampleHeader from "../sample_header.tsx";
+import {getRelevantSignals} from "../../../../../utils.tsx";
 
 export type DlSample = SampleTypes["sample-types"][number]["sample-type"];
 export type DlSampleId = DlSample["id"];
@@ -37,13 +37,6 @@ function DownloadSampleList() {
         return filteredSamples;
     }
 
-    function calculateSignals(fields: AdSampleFields) {
-        if (!fields) {
-            return 0;
-        }
-        return fields.filter(f => !["reserved", "Device id"].includes(f.field.name)).length;
-    }
-
     return <Accordion.Root type="single">
         {filterDownloadSampleList(fContext.filters).map((s, i) => {
             return (
@@ -52,11 +45,10 @@ function DownloadSampleList() {
                         <Accordion.Trigger className="accordion__header__trigger">
                             <SampleHeader
                                 name={s["sample-type"].description}
-                                signals={s["sample-type"].fields ?
-                                    s["sample-type"].fields.map(field => field.field.name) : undefined}
+                                signals={getRelevantSignals(s["sample-type"].fields)}
                                 sampleType={s["sample-type"].id["sample-type"].at(0)!}
                                 gadgets={s["sample-type"]["suitable-for"]}
-                                numberOfSignals={calculateSignals(s["sample-type"].fields)}
+                                numberOfSignals={getRelevantSignals(s["sample-type"].fields).length}
                             />
                             <ChevronIcon
                                 className="accordion__header__chevron"
