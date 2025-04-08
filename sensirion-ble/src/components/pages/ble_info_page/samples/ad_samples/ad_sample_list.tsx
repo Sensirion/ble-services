@@ -40,16 +40,17 @@ function AdvertisementSampleList() {
 
     return <Accordion.Root type="single">
         {filterAdvertisementSampleList(fContext.filters).map((s, i) => {
+            const relevantSignals = getRelevantSignals(s["sample-type"].fields)
             return (
                 <Accordion.Item value={"ad-sample-" + i} className="accordion" key={"ad-sample-" + i}>
                     <Accordion.Header className="accordion__header">
                         <Accordion.Trigger className="accordion__header__trigger">
                             <SampleHeader
                                 name={s["sample-type"].description}
-                                signals={getRelevantSignals(s["sample-type"].fields)}
+                                signals={relevantSignals}
                                 sampleType={s["sample-type"].id["sample-type"]}
                                 gadgets={s["sample-type"]["suitable-for"]}
-                                numberOfSignals={getRelevantSignals(s["sample-type"].fields).length}
+                                numberOfSignals={relevantSignals.length}
                             />
                             <ChevronIcon
                                 className="accordion__header__chevron"

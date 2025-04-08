@@ -43,7 +43,6 @@ const signalIconMap: { [key: string]: IconDefinition } = {
 };
 
 const SignalIcons = ({signals}: {signals: string[]}) => {
-    console.log(signals);
     return (
         <>
             {signals.map((signal, index) => (
