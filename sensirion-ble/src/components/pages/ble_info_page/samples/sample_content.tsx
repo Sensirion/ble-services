@@ -30,7 +30,7 @@ const SampleContent = ({content, children}: SampleProps) => {
 
 const FieldsTable = ({fields}: {fields: AdSampleFields | DlSampleFields}) => {
     if (!fields) {
-        return null;
+        return <div>No fields!</div>
     }
 
     const calculateSize = (currentOffset: number, previousOffset: number | null) => {
