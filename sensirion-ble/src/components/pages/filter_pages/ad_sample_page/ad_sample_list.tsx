@@ -17,7 +17,7 @@ const advSamples = samples as SampleTypes;
 
 function AdvertisementSampleList() {
     const fContext = useContext(FilterContext);
-    const [selected_sample, set_selected_sample] = useState(filterAdvertisementSampleList(fContext.filters)[0]["sample-type"]);
+    const [selected_sample, set_selected_sample] = useState(filterAdvertisementSampleList(fContext.filters)?.[0]?.["sample-type"]);
 
     function filterAdvertisementSampleList(filters: SearchCriterias) {
         let filteredSamples = [...advSamples["sample-types"]]

@@ -14,7 +14,7 @@ const bleServices = services as BLEServiceSchemaDefinition;
 
 function ServicesList() {
     const fContext = useContext(FilterContext);
-    const [selected_service, set_selected_service] = useState(filterServicesList(fContext.filters)[0].service);
+    const [selected_service, set_selected_service] = useState(filterServicesList(fContext.filters)?.[0]?.service);
 
     // Filter on "Gadget" select according the implemented_by in characteristics list
     function filterServicesList(filters: SearchCriterias) {

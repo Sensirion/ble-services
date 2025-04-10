@@ -17,7 +17,7 @@ const dlSamples = samples as SampleTypes;
 
 function DownloadSampleList() {
     const fContext = useContext(FilterContext);
-    const [selected_sample, set_selected_sample] = useState(filterDownloadSampleList(fContext.filters)[0]["sample-type"]);
+    const [selected_sample, set_selected_sample] = useState(filterDownloadSampleList(fContext.filters)?.[0]?.["sample-type"]);
 
     function filterDownloadSampleList(filters: SearchCriterias) {
         // Filter on "Gadget" select according the suitable-for in sample
