@@ -1,11 +1,9 @@
 // @ts-expect-error: untyped object import
 import samples from "../../../../resources/ble-ad-sample-types.yml";
 import type {SampleTypes} from "../../../../types/ble-sample-types-adv-schema";
-import {Accordion} from "radix-ui";
-import {ChevronIcon} from "../../../vectors/chevronIcon.tsx";
-import "../common/accordion.css"
+import {Dialog} from "radix-ui";
 import {SearchCriterias} from "../../../../types/search-criterias.d.tsx";
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import {FilterContext} from "../common/contexts.tsx";
 import AdSampleContent from "./ad_sample_content.tsx";
 import SampleHeader from "../common/samples/sample_header.tsx";
@@ -19,6 +17,7 @@ const advSamples = samples as SampleTypes;
 
 function AdvertisementSampleList() {
     const fContext = useContext(FilterContext);
+    const [selected_sample, set_selected_sample] = useState(filterAdvertisementSampleList(fContext.filters)[0]["sample-type"]);
 
     function filterAdvertisementSampleList(filters: SearchCriterias) {
         let filteredSamples = [...advSamples["sample-types"]]
@@ -38,33 +37,35 @@ function AdvertisementSampleList() {
         return filteredSamples;
     }
 
-    return <Accordion.Root type="single">
-        {filterAdvertisementSampleList(fContext.filters).map((s, i) => {
-            const relevantSignals = getRelevantSignals(s["sample-type"].fields)
-            return (
-                <Accordion.Item value={"ad-sample-" + i} className="accordion" key={"ad-sample-" + i}>
-                    <Accordion.Header className="accordion__header">
-                        <Accordion.Trigger className="accordion__header__trigger">
-                            <SampleHeader
-                                name={s["sample-type"].description}
-                                signals={relevantSignals}
-                                sampleType={s["sample-type"].id["sample-type"]}
-                                gadgets={s["sample-type"]["suitable-for"]}
-                                numberOfSignals={relevantSignals.length}
-                            />
-                            <ChevronIcon
-                                className="accordion__header__chevron"
-                                aria-hidden
-                            />
-                        </Accordion.Trigger>
-                    </Accordion.Header>
-                    <Accordion.Content className="accordion__content">
-                        <AdSampleContent content={s["sample-type"]} />
-                    </Accordion.Content>
-                </Accordion.Item>
-            );
-        })}
-    </Accordion.Root>
+    return <Dialog.Root>
+        <div className="dialog_trigger_list">
+            {filterAdvertisementSampleList(fContext.filters).map((s) => {
+                const relevantSignals = getRelevantSignals(s["sample-type"].fields)
+                return <Dialog.Trigger asChild>
+                    <SampleHeader
+                        name={s["sample-type"].description}
+                        signals={relevantSignals}
+                        sampleType={s["sample-type"].id["sample-type"]}
+                        gadgets={s["sample-type"]["suitable-for"]}
+                        numberOfSignals={relevantSignals.length}
+                        onClick={() => set_selected_sample(s["sample-type"])}
+                        className="dialog_trigger_list__entry"
+                    />
+                </Dialog.Trigger>
+            })}
+        </div>
+
+        <Dialog.Portal>
+            <Dialog.Overlay className="dialog_overlay"/>
+            <Dialog.Content className="dialog_content" aria-describedby={undefined}>
+                <Dialog.Title className="dialog_title">{selected_sample.description}</Dialog.Title>
+                <Dialog.Close asChild>
+                    <button className="dialog_close_button" aria-label="Close">X</button>
+                </Dialog.Close>
+                <AdSampleContent content={selected_sample}/>
+            </Dialog.Content>
+        </Dialog.Portal>
+    </Dialog.Root>
 }
 
 export default AdvertisementSampleList

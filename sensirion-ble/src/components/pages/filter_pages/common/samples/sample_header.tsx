@@ -1,6 +1,15 @@
 import "./sample_header.css";
 import {ReactNode} from "react";
-import { faThermometerHalf, faTint, faSmog, faCloud, faWind, faVial, faExclamationTriangle, faFan } from '@fortawesome/free-solid-svg-icons';
+import {
+    faThermometerHalf,
+    faTint,
+    faSmog,
+    faCloud,
+    faWind,
+    faVial,
+    faExclamationTriangle,
+    faFan
+} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {IconDefinition} from "@fortawesome/fontawesome-svg-core";
 
@@ -11,20 +20,32 @@ interface SampleHeaderProps {
     numberOfSignals: number,
     gadgets?: string[],
     children?: ReactNode,
+    onClick: () => void,
+    className: string,
 }
 
-const SampleHeader = ({name, signals, sampleType, numberOfSignals, gadgets, children}: SampleHeaderProps) => {
+const SampleHeader = ({
+                          name,
+                          signals,
+                          sampleType,
+                          numberOfSignals,
+                          gadgets,
+                          children,
+                          onClick,
+                          className
+                      }: SampleHeaderProps) => {
     return (
-      <div className="sample_header">
-          <div>{name}</div>
-          <div className="sample_header__children">
-              {signals?.length ? <div className="sample_header__signal_icons"><SignalIcons signals={signals}/></div> : ''}
-              {gadgets ? <div className="sample_header__used_by">{gadgets.join(", ")}</div> : ""}
-              <div className="sample_header__signals">{numberOfSignals} Signal{numberOfSignals !== 1 ? 's' : ''}</div>
-              {children}
-              <div className="sample_header__sample_type">Sample type {sampleType}</div>
-          </div>
-      </div>
+        <div className={`sample_header ${className}`} onClick={onClick}>
+            <div>{name}</div>
+            <div className="sample_header__children">
+                {signals?.length ?
+                    <div className="sample_header__signal_icons"><SignalIcons signals={signals}/></div> : ''}
+                {gadgets ? <div className="sample_header__used_by">{gadgets.join(", ")}</div> : ""}
+                <div className="sample_header__signals">{numberOfSignals} Signal{numberOfSignals !== 1 ? 's' : ''}</div>
+                {children}
+                <div className="sample_header__sample_type">Sample type {sampleType}</div>
+            </div>
+        </div>
     );
 }
 
@@ -42,12 +63,12 @@ const signalIconMap: { [key: string]: IconDefinition } = {
     "AV": faFan,
 };
 
-const SignalIcons = ({signals}: {signals: string[]}) => {
+const SignalIcons = ({signals}: { signals: string[] }) => {
     return (
         <>
             {signals.map((signal, index) => (
                 <div key={index} className="sample_header__signal_icon" title={signal}>
-                    {signalIconMap[signal] ? <FontAwesomeIcon icon={signalIconMap[signal]} /> : ''}
+                    {signalIconMap[signal] ? <FontAwesomeIcon icon={signalIconMap[signal]}/> : ''}
                 </div>
             ))}
         </>
