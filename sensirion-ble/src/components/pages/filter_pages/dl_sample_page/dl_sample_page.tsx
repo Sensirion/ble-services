@@ -6,9 +6,9 @@ function DlSamplePage() {
     return (
         <>
             <FilterListPage displayedFilters={["gadget", "signal", "sensor"]}>
-                <h1>Download Data</h1>
+                <h1>Data Download</h1>
                 <p>
-                    This section describes all available download data samples, their fields
+                    This section describes all available data download samples, their fields
                     and provides the byte layout for every sample.
                 </p>
                 <InfoAccordion/>
@@ -59,7 +59,7 @@ const InfoAccordion = () => {
                 </p>
                 <p>
                     The following image shows an example of a data download sequence for sample type 5:
-                    <img src="/BleDataDownload.png" alt="BLE Download Data" width="100%"/>
+                    <img src="/BleDataDownload.png" alt="BLE Data Download" width="100%"/>
                 </p>
             </div>
         </CollapsibleInfo>

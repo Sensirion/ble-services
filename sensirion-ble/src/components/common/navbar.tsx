@@ -29,8 +29,8 @@ const NavigationBar = () => {
                     </NavLink>
                 </NavigationMenu.Item>
                 <NavigationMenu.Item>
-                    <NavLink to="/download-data" className="navbar__menu_link" end>
-                        Download Data
+                    <NavLink to="/data-download" className="navbar__menu_link" end>
+                        Data Download
                     </NavLink>
                 </NavigationMenu.Item>
             </NavigationMenu.List>

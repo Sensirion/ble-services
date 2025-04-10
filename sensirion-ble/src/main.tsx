@@ -27,7 +27,7 @@ const contentRouter = createBrowserRouter([
         Component: AdSamplePage,
     },
     {
-        path: "/download-data",
+        path: "/data-download",
         Component: DlSamplePage,
     }
 ]);
