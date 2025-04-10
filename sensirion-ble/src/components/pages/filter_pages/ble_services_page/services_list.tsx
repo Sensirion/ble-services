@@ -1,20 +1,20 @@
 import {useContext, useState} from "react";
 import {Dialog} from "radix-ui";
-import "../dialog.css"
+import "../common/dialog.css"
 
 // @ts-expect-error: untyped object import
 import services from "../../../../resources/ble-services.yml";
 import type {BLEServiceSchemaDefinition} from "../../../../types/ble-service-schema";
 import ServiceInfoContent from "./service_info_content.tsx";
 import ServiceInfoHeader from "./service_info_header.tsx";
-import {FilterContext} from "../contexts.tsx";
+import {FilterContext} from "../common/contexts.tsx";
 import {SearchCriterias} from "../../../../types/search-criterias.d.tsx";
 
 const bleServices = services as BLEServiceSchemaDefinition;
 
 function ServicesList() {
     const fContext = useContext(FilterContext);
-    const [selected_service, set_selected_service] = useState(filterServicesList(fContext.filters)[0].service);
+    const [selected_service, set_selected_service] = useState(filterServicesList(fContext.filters)?.[0]?.service);
 
     // Filter on "Gadget" select according the implemented_by in characteristics list
     function filterServicesList(filters: SearchCriterias) {
@@ -28,8 +28,8 @@ function ServicesList() {
 
     return <Dialog.Root>
         <div className="dialog_trigger_list">
-            {filterServicesList(fContext.filters).map((s) => {
-                return <Dialog.Trigger asChild>
+            {filterServicesList(fContext.filters).map((s, index) => {
+                return <Dialog.Trigger key={index} asChild>
                     <ServiceInfoHeader
                         name={s.service.name}
                         isCustom={!s.service["ble-sig-reference"]}

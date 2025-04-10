@@ -1,4 +1,3 @@
-import "../accordion.css"
 import "./service_info_content.css"
 
 import type {BLEServiceSchemaDefinition} from "../../../../types/ble-service-schema";
