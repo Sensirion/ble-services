@@ -1,8 +1,8 @@
 import "./sample_content.css";
 import {ReactNode} from "react";
 import {MathJax} from "better-react-mathjax";
-import {AdSample, AdSampleFields} from "./ad_samples/ad_sample_list.tsx";
-import {DlSample, DlSampleFields} from "./dl_samples/dl_sample_list.tsx";
+import {AdSample, AdSampleFields} from "../../ad_sample_page/ad_sample_list.tsx";
+import {DlSample, DlSampleFields} from "../../dl_sample_page/dl_sample_list.tsx";
 
 interface SampleProps {
     content: AdSample | DlSample;

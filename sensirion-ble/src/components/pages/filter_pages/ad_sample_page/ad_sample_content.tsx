@@ -1,7 +1,7 @@
 import React from "react";
 import {AdSample, AdSampleFields, AdSampleId} from "./ad_sample_list.tsx";
-import SampleContent from "../sample_content.tsx";
-import {toHexDisplay} from "../../../../../utils.tsx";
+import SampleContent from "../common/samples/sample_content.tsx";
+import {toHexDisplay} from "../../../../utils.tsx";
 
 interface AdSampleProps {
     content: AdSample;

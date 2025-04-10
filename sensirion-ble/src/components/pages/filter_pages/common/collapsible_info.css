@@ -1,0 +1,72 @@
+.collapsible_info {
+    border-radius: 6px;
+    background-color: var(--color-light-yellow);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+}
+
+.collapsible_info__item:focus-within {
+    position: relative;
+    z-index: 1;
+}
+
+.collapsible_info__item__header {
+    display: flex;
+    align-items: center;
+}
+
+.collapsible_info__item__header__trigger {
+    font-family: inherit;
+    background-color: transparent;
+    padding: 0 20px;
+    height: 45px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 15px;
+    line-height: 1;
+}
+
+.collapsible_info__item__header__chevron {
+    fill: var(--color-sensi-green);
+    rotate: 180deg;
+    transition: transform 300ms cubic-bezier(0.87, 0, 0.13, 1);
+    height: 20px;
+}
+
+.collapsible_info__item__header__trigger[data-state="open"] > .collapsible_info__item__header__chevron {
+    transform: rotate(90deg);
+}
+
+.collapsible_info__item__content {
+    overflow: hidden;
+    color: var(--color-black);
+    margin: 0.2rem 1rem;
+}
+
+.collapsible_info__item__content[data-state="open"] {
+    animation: slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1);
+}
+
+.collapsible_info__item__content[data-state="closed"] {
+    animation: slideUp 300ms cubic-bezier(0.87, 0, 0.13, 1);
+}
+
+@keyframes slideDown {
+    from {
+        height: 0;
+    }
+    to {
+        height: var(--radix-accordion-content-height);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        height: var(--radix-accordion-content-height);
+    }
+    to {
+        height: 0;
+    }
+}

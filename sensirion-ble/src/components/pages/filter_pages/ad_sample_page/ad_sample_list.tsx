@@ -1,27 +1,28 @@
 // @ts-expect-error: untyped object import
-import samples from "../../../../../resources/ble-dl-sample-types.yml";
-import type {SampleTypes} from "../../../../../types/ble-sample-types-download-schema";
+import samples from "../../../../resources/ble-ad-sample-types.yml";
+import type {SampleTypes} from "../../../../types/ble-sample-types-adv-schema";
 import {Accordion} from "radix-ui";
-import {ChevronIcon} from "../../../../vectors/chevronIcon.tsx";
-import {SearchCriterias} from "../../../../../types/search-criterias.d.tsx";
+import {ChevronIcon} from "../../../vectors/chevronIcon.tsx";
+import "../common/accordion.css"
+import {SearchCriterias} from "../../../../types/search-criterias.d.tsx";
 import {useContext} from "react";
-import {FilterContext} from "../../contexts.tsx";
-import DlSampleContent from "./dl_sample_content.tsx";
-import SampleHeader from "../sample_header.tsx";
-import {getRelevantSignals} from "../../../../../utils.tsx";
+import {FilterContext} from "../common/contexts.tsx";
+import AdSampleContent from "./ad_sample_content.tsx";
+import SampleHeader from "../common/samples/sample_header.tsx";
+import {getRelevantSignals} from "../../../../utils.tsx";
 
-export type DlSample = SampleTypes["sample-types"][number]["sample-type"];
-export type DlSampleId = DlSample["id"];
-export type DlSampleFields = DlSample["fields"];
+export type AdSample = SampleTypes["sample-types"][number]["sample-type"];
+export type AdSampleId = AdSample["id"];
+export type AdSampleFields = AdSample["fields"];
 
-const dlSamples = samples as SampleTypes;
+const advSamples = samples as SampleTypes;
 
-function DownloadSampleList() {
+function AdvertisementSampleList() {
     const fContext = useContext(FilterContext);
 
-    function filterDownloadSampleList(filters: SearchCriterias) {
+    function filterAdvertisementSampleList(filters: SearchCriterias) {
+        let filteredSamples = [...advSamples["sample-types"]]
         // Filter on "Gadget" select according the suitable-for in sample
-        let filteredSamples = [...dlSamples["sample-types"]]
         if (filters.selectedGadget != undefined) {
             filteredSamples = filteredSamples.filter(s =>
                 s["sample-type"]["suitable-for"]?.includes(filters.selectedGadget!));
@@ -38,17 +39,18 @@ function DownloadSampleList() {
     }
 
     return <Accordion.Root type="single">
-        {filterDownloadSampleList(fContext.filters).map((s, i) => {
+        {filterAdvertisementSampleList(fContext.filters).map((s, i) => {
+            const relevantSignals = getRelevantSignals(s["sample-type"].fields)
             return (
-                <Accordion.Item value={"dl-sample-" + i} className="accordion" key={"dl-sample-" + i}>
+                <Accordion.Item value={"ad-sample-" + i} className="accordion" key={"ad-sample-" + i}>
                     <Accordion.Header className="accordion__header">
                         <Accordion.Trigger className="accordion__header__trigger">
                             <SampleHeader
                                 name={s["sample-type"].description}
-                                signals={getRelevantSignals(s["sample-type"].fields)}
-                                sampleType={s["sample-type"].id["sample-type"].at(0)!}
+                                signals={relevantSignals}
+                                sampleType={s["sample-type"].id["sample-type"]}
                                 gadgets={s["sample-type"]["suitable-for"]}
-                                numberOfSignals={getRelevantSignals(s["sample-type"].fields).length}
+                                numberOfSignals={relevantSignals.length}
                             />
                             <ChevronIcon
                                 className="accordion__header__chevron"
@@ -57,7 +59,7 @@ function DownloadSampleList() {
                         </Accordion.Trigger>
                     </Accordion.Header>
                     <Accordion.Content className="accordion__content">
-                        <DlSampleContent content={s["sample-type"]} />
+                        <AdSampleContent content={s["sample-type"]} />
                     </Accordion.Content>
                 </Accordion.Item>
             );
@@ -65,4 +67,4 @@ function DownloadSampleList() {
     </Accordion.Root>
 }
 
-export default DownloadSampleList
+export default AdvertisementSampleList

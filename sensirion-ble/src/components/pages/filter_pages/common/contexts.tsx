@@ -1,5 +1,5 @@
 import {Context, createContext} from "react";
-import {SearchCriterias} from "../../../types/search-criterias.d.tsx";
+import {SearchCriterias} from "../../../../types/search-criterias.d.tsx";
 
 export interface FilterContextType {
     filters: SearchCriterias;

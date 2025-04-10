@@ -80,13 +80,18 @@ function FilterSelectSensor() {
     );
 }
 
+export type FilterTypes =('gadget' | 'signal' | 'sensor')[];
 
-function FilterArea() {
-    return <div className="services__filter_area">
-        <FilterSelectGadget/>
-        <FilterSelectSignalType/>
-        <FilterSelectSensor/>
-    </div>
+interface FilterAreaProps {
+    filters: FilterTypes
+}
+
+function FilterArea({filters}: FilterAreaProps) {
+    return (<div className="services__filter_area">
+        {filters.includes('gadget') ? <FilterSelectGadget/> : null}
+        {filters.includes('signal') ? <FilterSelectSignalType/> : null}
+        {filters.includes('sensor') ? <FilterSelectSensor/> : null}
+    </div>);
 }
 
 export default FilterArea;

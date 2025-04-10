@@ -20,7 +20,17 @@ const NavigationBar = () => {
                 </NavigationMenu.Item>
                 <NavigationMenu.Item>
                     <NavLink to="/services" className="navbar__menu_link" end>
-                        Services & Samples
+                        Services
+                    </NavLink>
+                </NavigationMenu.Item>
+                <NavigationMenu.Item>
+                    <NavLink to="/live-data" className="navbar__menu_link" end>
+                        Live Data
+                    </NavLink>
+                </NavigationMenu.Item>
+                <NavigationMenu.Item>
+                    <NavLink to="/download-data" className="navbar__menu_link" end>
+                        Download Data
                     </NavLink>
                 </NavigationMenu.Item>
             </NavigationMenu.List>

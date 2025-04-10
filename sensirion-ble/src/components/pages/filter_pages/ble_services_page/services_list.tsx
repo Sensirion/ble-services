@@ -1,13 +1,13 @@
 import {useContext, useState} from "react";
 import {Dialog} from "radix-ui";
-import "../dialog.css"
+import "../common/dialog.css"
 
 // @ts-expect-error: untyped object import
 import services from "../../../../resources/ble-services.yml";
 import type {BLEServiceSchemaDefinition} from "../../../../types/ble-service-schema";
 import ServiceInfoContent from "./service_info_content.tsx";
 import ServiceInfoHeader from "./service_info_header.tsx";
-import {FilterContext} from "../contexts.tsx";
+import {FilterContext} from "../common/contexts.tsx";
 import {SearchCriterias} from "../../../../types/search-criterias.d.tsx";
 
 const bleServices = services as BLEServiceSchemaDefinition;
