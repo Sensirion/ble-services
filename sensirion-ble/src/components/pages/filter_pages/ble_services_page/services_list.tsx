@@ -28,8 +28,8 @@ function ServicesList() {
 
     return <Dialog.Root>
         <div className="dialog_trigger_list">
-            {filterServicesList(fContext.filters).map((s) => {
-                return <Dialog.Trigger asChild>
+            {filterServicesList(fContext.filters).map((s, index) => {
+                return <Dialog.Trigger key={index} asChild>
                     <ServiceInfoHeader
                         name={s.service.name}
                         isCustom={!s.service["ble-sig-reference"]}

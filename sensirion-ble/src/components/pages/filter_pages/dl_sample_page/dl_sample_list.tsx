@@ -39,9 +39,9 @@ function DownloadSampleList() {
 
     return <Dialog.Root>
         <div className="dialog_trigger_list">
-            {filterDownloadSampleList(fContext.filters).map((s) => {
+            {filterDownloadSampleList(fContext.filters).map((s, index) => {
                 const relevantSignals = getRelevantSignals(s["sample-type"].fields)
-                return <Dialog.Trigger asChild>
+                return <Dialog.Trigger key={index} asChild>
                     <SampleHeader
                         name={s["sample-type"].description}
                         signals={relevantSignals}
