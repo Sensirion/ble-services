@@ -1,7 +1,7 @@
 import {StrictMode} from 'react'
 import {createRoot} from 'react-dom/client'
 import {
-    createBrowserRouter,
+    createHashRouter,
     RouterProvider,
 } from "react-router";
 import './index.css'
@@ -13,7 +13,7 @@ import DlSamplePage from "./components/pages/filter_pages/dl_sample_page/dl_samp
 import {MathJaxContext} from "better-react-mathjax";
 
 
-const contentRouter = createBrowserRouter([
+const contentRouter = createHashRouter([
     {
         index: true,
         Component: OverviewPage,
@@ -43,4 +43,3 @@ createRoot(document.getElementById('root')!).render(
         </MathJaxContext>
     </StrictMode>
 )
-
