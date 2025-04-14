@@ -60,9 +60,19 @@ function FilterSelectSignalType() {
 function FilterSelectSensor() {
     const fContext = useContext(FilterContext);
     const sensorOptions: { value: string, label: string }[] = [
-        {value: 'SHT3x', label: 'SHT3x'},
-        {value: 'SHT4x', label: 'SHT4x'},
-        {value: 'SEN66', label: 'SEN66'},
+        {value: 'SHT3x sensors', label: 'SHT3x'},
+        {value: 'SHT4x sensors', label: 'SHT4x'},
+        {value: 'CO2 sensors', label: 'CO2'},
+        {value: 'Formaldehyde sensors', label: 'Formaldehyde'},
+        {value: 'SGP40 sensor', label: 'SGP40'},
+        {value: 'SGP41 sensor', label: 'SGP41'},
+        {value: 'SEN50 module', label: 'SEN50'},
+        {value: 'SEN54 module', label: 'SEN54'},
+        {value: 'SEN55 module', label: 'SEN55'},
+        {value: 'SEN60 module', label: 'SEN60'},
+        {value: 'SEN63C module', label: 'SEN63C'},
+        {value: 'SEN66 module', label: 'SEN66'},
+        {value: 'SEN65 module', label: 'SEN65'},
     ]
     return (
         <div className="services__filter_select">
@@ -73,7 +83,7 @@ function FilterSelectSensor() {
                 onChange={(newValue, _actionMeta) => {
                     fContext.setFilters({
                         ...fContext.filters,
-                        selectedSensor: newValue.map(selected => selected.value)
+                        selectedSensors: newValue.map(selected => selected.value)
                     })
                 }}/>
         </div>

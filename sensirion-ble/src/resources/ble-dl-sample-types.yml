@@ -8,7 +8,7 @@ sample-types:
       samples-per-packet: 4
       suitable-for:
         sensors:
-          - SHT3x sensor
+          - SHT3x sensors
       fields:
         - field:
             name: Temperature

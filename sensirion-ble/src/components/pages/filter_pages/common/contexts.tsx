@@ -10,7 +10,7 @@ const defaultFilterContextType: FilterContextType = {
     filters: {
         selectedGadget: undefined,
         selectedSignals: [],
-        selectedSensor: [],
+        selectedSensors: [],
     },
     setFilters: () => {
         return;

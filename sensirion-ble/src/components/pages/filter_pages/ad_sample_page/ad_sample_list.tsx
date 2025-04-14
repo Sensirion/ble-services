@@ -34,6 +34,14 @@ function AdvertisementSampleList() {
                 return selSign.isSubsetOf(sampleSignals);
             });
         }
+        // Filter on "Sensors" select according the suitable-for in sample
+        if (filters.selectedSensors.length > 0) {
+            const selSensor = new Set(filters.selectedSensors);
+            filteredSamples = filteredSamples.filter(s => {
+                const sampleSensors = new Set(s["sample-type"]["suitable-for"]?.sensors);
+                return selSensor.isSubsetOf(sampleSensors);
+            });
+        }
         return filteredSamples;
     }
 

@@ -8,7 +8,7 @@ import "./filter_list_page.css";
 
 const initialSearchCriterias: SearchCriterias = {
     selectedGadget: undefined,
-    selectedSensor: [],
+    selectedSensors: [],
     selectedSignals: []
 }
 
