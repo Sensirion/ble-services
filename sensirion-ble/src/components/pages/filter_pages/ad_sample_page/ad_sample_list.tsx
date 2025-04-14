@@ -7,7 +7,7 @@ import {useContext, useState} from "react";
 import {FilterContext} from "../common/contexts.tsx";
 import AdSampleContent from "./ad_sample_content.tsx";
 import SampleHeader from "../common/samples/sample_header.tsx";
-import {getRelevantSignals} from "../../../../utils.tsx";
+import {getRelevantSignals, toHexDisplay} from "../../../../utils.tsx";
 
 export type AdSample = SampleTypes["sample-types"][number]["sample-type"];
 export type AdSampleId = AdSample["id"];
@@ -37,6 +37,18 @@ function AdvertisementSampleList() {
         return filteredSamples;
     }
 
+    const hexId = (id: AdSampleId) => {
+        return "[" +
+            toHexDisplay(Number(id["ad-type"])) +
+            ", " +
+            toHexDisplay(Number(id["sample-type"])) +
+            "]";
+    }
+
+    const sampleByteSize = (noFields: number) => {
+        return noFields * 2 + 2;
+    }
+
     return <Dialog.Root>
         <div className="dialog_trigger_list">
             {filterAdvertisementSampleList(fContext.filters).map((s, index) => {
@@ -44,10 +56,11 @@ function AdvertisementSampleList() {
                 return <Dialog.Trigger key={index} asChild>
                     <SampleHeader
                         name={s["sample-type"].description}
+                        hexId={hexId(s["sample-type"].id)}
                         signals={relevantSignals}
                         sampleType={s["sample-type"].id["sample-type"]}
                         gadgets={s["sample-type"]["suitable-for"]}
-                        numberOfSignals={relevantSignals.length}
+                        sampleByteSize={sampleByteSize(s["sample-type"].fields?.length || 0)}
                         onClick={() => set_selected_sample(s["sample-type"])}
                         className="dialog_trigger_list__entry"
                     />

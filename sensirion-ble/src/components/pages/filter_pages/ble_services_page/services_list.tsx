@@ -11,6 +11,7 @@ import {FilterContext} from "../common/contexts.tsx";
 import {SearchCriterias} from "../../../../types/search-criterias.d.tsx";
 
 const bleServices = services as BLEServiceSchemaDefinition;
+type ServiceCharacteristics = BLEServiceSchemaDefinition["ble-services"][number]["service"]["supported-characteristics"];
 
 function ServicesList() {
     const fContext = useContext(FilterContext);
@@ -26,6 +27,17 @@ function ServicesList() {
         return bleServices["ble-services"];
     }
 
+    const getDistinctGadgets = (characteristics: ServiceCharacteristics): string[] => {
+        const gadgetsSet = new Set<string>();
+        characteristics.forEach((characteristic) => {
+            characteristic.characteristic["implemented-by"]?.forEach((gadget) => {
+                gadgetsSet.add(gadget);
+            });
+        });
+        return Array.from(gadgetsSet);
+    };
+
+
     return <Dialog.Root>
         <div className="dialog_trigger_list">
             {filterServicesList(fContext.filters).map((s, index) => {
@@ -33,7 +45,8 @@ function ServicesList() {
                     <ServiceInfoHeader
                         name={s.service.name}
                         isCustom={!s.service["ble-sig-reference"]}
-                        numberOfCharacteristics={s.service["supported-characteristics"].length}
+                        characteristics={s.service["supported-characteristics"].map(c => c.characteristic.name)}
+                        gadgets={getDistinctGadgets(s.service["supported-characteristics"])}
                         uuid={s.service.uuid}
                         onClick={() => set_selected_service(s.service)}
                         className="dialog_trigger_list__entry"

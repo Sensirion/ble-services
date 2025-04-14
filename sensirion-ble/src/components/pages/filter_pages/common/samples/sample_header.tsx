@@ -12,38 +12,57 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {IconDefinition} from "@fortawesome/fontawesome-svg-core";
+import {SimpleCard} from "../../../../common/card.tsx";
 
 interface SampleHeaderProps {
     name: string,
+    hexId: string,
     signals?: string[],
     sampleType: string,
-    numberOfSignals: number,
     gadgets?: string[],
+    sampleByteSize: number,
     children?: ReactNode,
     onClick: () => void,
     className: string,
 }
 
 const SampleHeader = ({
-                          name,
                           signals,
                           sampleType,
-                          numberOfSignals,
+                          hexId,
                           gadgets,
+                          sampleByteSize,
                           children,
                           onClick,
                           className
                       }: SampleHeaderProps) => {
     return (
         <div className={`sample_header ${className}`} onClick={onClick}>
-            <div>{name}</div>
-            <div className="sample_header__children">
-                {signals?.length ?
-                    <div className="sample_header__signal_icons"><SignalIcons signals={signals}/></div> : ''}
-                {gadgets ? <div className="sample_header__used_by">{gadgets.join(", ")}</div> : ""}
-                <div className="sample_header__signals">{numberOfSignals} Signal{numberOfSignals !== 1 ? 's' : ''}</div>
+            <div className="sample_header__left">
+                <div className="sample_header__left__title">{sampleType} {hexId}</div>
+            </div>
+            <div className="sample_header__right">
+                <div className="sample_header__card">
+                    <SimpleCard title="Sample Size">
+                        {sampleByteSize} byte{sampleByteSize !== 1 ? 's' : ''}
+                    </SimpleCard>
+                </div>
+                <div className="sample_header__card">
+                    <SimpleCard title={`${signals?.length} Signal${signals?.length !== 1 ? 's' : ''}`}>
+                        {signals?.length ?
+                            <div className="sample_header__signal_icons"><SignalIcons signals={signals}/></div> : ''}
+                    </SimpleCard>
+                </div>
+                <div className="sample_header__card">
+                    <SimpleCard title="Used by">
+                        {gadgets ? gadgets.map(gadget => (
+                            <div key={gadget}>
+                                {gadget}
+                            </div>
+                        )) : '?'}
+                    </SimpleCard>
+                </div>
                 {children}
-                <div className="sample_header__sample_type">Sample type {sampleType}</div>
             </div>
         </div>
     );
@@ -68,7 +87,12 @@ const SignalIcons = ({signals}: { signals: string[] }) => {
         <>
             {signals.map((signal, index) => (
                 <div key={index} className="sample_header__signal_icon" title={signal}>
-                    {signalIconMap[signal] ? <FontAwesomeIcon icon={signalIconMap[signal]}/> : ''}
+                    {signalIconMap[signal] ?
+                        <>
+                            <FontAwesomeIcon icon={signalIconMap[signal]} fixedWidth/>
+                            {signal}
+                        </>
+                        : ''}
                 </div>
             ))}
         </>
