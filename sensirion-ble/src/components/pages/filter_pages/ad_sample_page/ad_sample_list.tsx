@@ -24,7 +24,7 @@ function AdvertisementSampleList() {
         // Filter on "Gadget" select according the suitable-for in sample
         if (filters.selectedGadget != undefined) {
             filteredSamples = filteredSamples.filter(s =>
-                s["sample-type"]["suitable-for"]?.includes(filters.selectedGadget!));
+                s["sample-type"]["suitable-for"]?.gadgets?.includes(filters.selectedGadget!));
         }
         // Filter on "Signals" select according the fields in sample
         if (filters.selectedSignals.length > 0) {
@@ -49,6 +49,18 @@ function AdvertisementSampleList() {
         return noFields * 2 + 2;
     }
 
+    const mergedGadgetsAndSensors = (sample: AdSample) => {
+        const suitableFor = sample["suitable-for"];
+        const gadgetsAndSensor = [];
+        if (suitableFor?.gadgets) {
+            gadgetsAndSensor.push(...suitableFor.gadgets);
+        }
+        if (suitableFor?.sensors) {
+            gadgetsAndSensor.push(...suitableFor.sensors);
+        }
+        return gadgetsAndSensor;
+    }
+
     return <Dialog.Root>
         <div className="dialog_trigger_list">
             {filterAdvertisementSampleList(fContext.filters).map((s, index) => {
@@ -59,7 +71,7 @@ function AdvertisementSampleList() {
                         hexId={hexId(s["sample-type"].id)}
                         signals={relevantSignals}
                         sampleType={s["sample-type"].id["sample-type"]}
-                        gadgets={s["sample-type"]["suitable-for"]}
+                        gadgetsAndSensors={mergedGadgetsAndSensors(s["sample-type"])}
                         sampleByteSize={sampleByteSize(s["sample-type"].fields?.length || 0)}
                         onClick={() => set_selected_sample(s["sample-type"])}
                         className="dialog_trigger_list__entry"

@@ -46,7 +46,17 @@ export interface SampleTypes {
       /**
        * List of devices or sensors this sample type can be used for
        */
-      "suitable-for"?: string[];
+      "suitable-for"?: {
+        /**
+         * List of gadgets this sample type can be used for
+         */
+        gadgets?: string[];
+        /**
+         * List of sensors this sample type can be used for
+         */
+        sensors?: string[];
+        [k: string]: unknown;
+      };
       fields?: {
         /**
          * field definition

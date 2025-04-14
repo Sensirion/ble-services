@@ -7,7 +7,8 @@ sample-types:
         sample-type: [0x00, 0x00]
       samples-per-packet: 4
       suitable-for:
-        - SHT3x sensor
+        sensors:
+          - SHT3x sensor
       fields:
         - field:
             name: Temperature
@@ -34,8 +35,10 @@ sample-types:
         sample-type: [0x01, 0x00]
       samples-per-packet: 3
       suitable-for:
-        - AQ Minion
-        - SGP40 sensor
+        gadgets:
+          - AQ Minion
+        sensors:
+          - SGP40 sensor
       fields:
         - field:
             name: Temperature
@@ -69,7 +72,8 @@ sample-types:
       samples-per-packet: 2
       notes: Deprecated, use sample type 0x1 instead.
       suitable-for:
-        - AQ Minion
+        gadgets:
+          - AQ Minion
       fields:
         - field:
             name: Temperature
@@ -109,9 +113,11 @@ sample-types:
         sample-type: [0x05, 0x00]
       samples-per-packet: 4
       suitable-for:
-        - SHT40 Gadget
-        - SHT43 Demo Board
-        - SHT4x sensors
+        gadgets:
+          - SHT40 Gadget
+          - SHT43 Demo Board
+        sensors:
+          - SHT4x sensors
       fields:
         - field:
             name: Temperature
@@ -137,7 +143,8 @@ sample-types:
       samples-per-packet: 2
       notes: Deprecated, use sample type 0x9 instead.
       suitable-for:
-        - MyCo2 Gadget
+        gadgets:
+          - MyCo2 Gadget
       fields:
         - field:
             name: Temperature
@@ -175,8 +182,10 @@ sample-types:
         sample-type: [0x09, 0x00]
       samples-per-packet: 3
       suitable-for:
-        - MyCo2 Gadget
-        - CO2 sensors
+        gadgets:
+          - MyCo2 Gadget
+        sensors:
+          - CO2 sensors
       fields:
         - field:
             name: Temperature
@@ -243,7 +252,8 @@ sample-types:
         sample-type: [0x0D, 0x00]
       samples-per-packet: 3
       suitable-for:
-        - Formaldehyde sensors
+        sensors:
+          - Formaldehyde sensors
       fields:
         - field:
             name: Temperature
@@ -366,7 +376,8 @@ sample-types:
         sample-type: [0x15, 0x00]
       samples-per-packet: 2
       suitable-for:
-        - SGP41 sensor
+        sensors:
+          - SGP41 sensor
       fields:
         - field:
             name: Temperature
@@ -401,8 +412,9 @@ sample-types:
         sample-type: [0x17, 0x00]
       samples-per-packet: 1
       suitable-for:
-        - SEN55 module
-        - SEN65 module
+        sensors:
+          - SEN55 module
+          - SEN65 module
       fields:
         - field:
             name: Temperature
@@ -445,7 +457,8 @@ sample-types:
         sample-type: [0x19, 0x00]
       samples-per-packet: 1
       suitable-for:
-        - SEN66 module
+        sensors:
+          - SEN66 module
       fields:
         - field:
             name: Temperature
@@ -493,8 +506,9 @@ sample-types:
         sample-type: [0x1B, 0x00]
       samples-per-packet: 2
       suitable-for:
-        - SEN66 module
-        - SEN63C module
+        sensors:
+          - SEN66 module
+          - SEN63C module
       fields:
         - field:
             name: Temperature
@@ -532,8 +546,9 @@ sample-types:
         sample-type: [0x1D, 0x00]
       samples-per-packet: 2
       suitable-for:
-        - SEN54 module
-        - SEN65 module
+        sensors:
+          - SEN54 module
+          - SEN65 module
       fields:
         - field:
             name: Temperature
@@ -619,8 +634,9 @@ sample-types:
         sample-type: [0x21, 0x00]
       samples-per-packet: 1
       suitable-for:
-        - SEN50 module
-        - SEN60 module
+        sensors:
+          - SEN50 module
+          - SEN60 module
       fields:
         - field:
             name: PM1.0
@@ -661,7 +677,8 @@ sample-types:
         sample-type: [0x23, 0x00]
       samples-per-packet: 1
       suitable-for:
-        - CO2 sensors
+        sensors:
+          - CO2 sensors
       fields:
         - field:
             name: CO2

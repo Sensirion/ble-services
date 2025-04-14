@@ -19,7 +19,7 @@ interface SampleHeaderProps {
     hexId: string,
     signals?: string[],
     sampleType: string,
-    gadgets?: string[],
+    gadgetsAndSensors?: string[],
     sampleByteSize: number,
     children?: ReactNode,
     onClick: () => void,
@@ -30,7 +30,7 @@ const SampleHeader = ({
                           signals,
                           sampleType,
                           hexId,
-                          gadgets,
+                          gadgetsAndSensors,
                           sampleByteSize,
                           children,
                           onClick,
@@ -55,9 +55,9 @@ const SampleHeader = ({
                 </div>
                 <div className="sample_header__card">
                     <SimpleCard title="Used by">
-                        {gadgets ? gadgets.map(gadget => (
-                            <div key={gadget}>
-                                {gadget}
+                        {gadgetsAndSensors?.length ? gadgetsAndSensors.map(entry => (
+                            <div key={entry}>
+                                {entry}
                             </div>
                         )) : '?'}
                     </SimpleCard>
