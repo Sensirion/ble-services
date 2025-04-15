@@ -1,23 +1,22 @@
 import NavigationBar from "../../../common/navbar.tsx";
 import {FilterContext} from "./contexts.tsx";
 import {SearchCriterias} from "../../../../types/search-criterias.d.tsx";
-import {ReactNode, useState} from "react";
+import {PropsWithChildren, useState} from "react";
 import FooterBar from "../../../common/footer.tsx";
 import FilterArea, {FilterTypes} from "./filters.tsx";
 import "./filter_list_page.css";
 
 const initialSearchCriterias: SearchCriterias = {
     selectedGadget: undefined,
-    selectedSensor: [],
+    selectedSensors: [],
     selectedSignals: []
 }
 
 interface FilterListPageProps {
     displayedFilters: FilterTypes;
-    children: ReactNode;
 }
 
-function FilterListPage({displayedFilters, children}: FilterListPageProps) {
+function FilterListPage({displayedFilters, children}: PropsWithChildren<FilterListPageProps>) {
     const [filters, setFilters] = useState<SearchCriterias>(initialSearchCriterias);
     return (
         <>

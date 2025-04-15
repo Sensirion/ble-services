@@ -25,7 +25,7 @@ export interface BLEServiceSchemaDefinition {
       uuid: string;
       description: string;
       /**
-       * Additional information how to use this service
+       * Additional information how to use this service formatted in markdown.
        */
       "application-note"?: string;
       /**

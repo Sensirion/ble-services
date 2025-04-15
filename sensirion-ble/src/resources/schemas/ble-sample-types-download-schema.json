@@ -36,9 +36,20 @@
                 "samples-per-packet": {"type": "number", "description": "Number of samples per packet"},
                 "notes": {"type": "string", "description": "Additional notes about the sample type"},
                 "suitable-for": {
-                  "type":  "array",
+                  "type": "object",
                   "description": "List of devices or sensors this sample type can be used for",
-                  "items": {"type": "string"}
+                  "properties": {
+                    "gadgets": {
+                      "type": "array",
+                      "description": "List of gadgets this sample type can be used for",
+                      "items": {"type": "string"}
+                    },
+                    "sensors": {
+                      "type": "array",
+                      "description": "List of sensors this sample type can be used for",
+                      "items": {"type": "string"}
+                    }
+                  }
                 },
                 "fields":
                   { "type": "array",

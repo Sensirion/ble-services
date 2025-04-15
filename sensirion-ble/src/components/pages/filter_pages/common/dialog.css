@@ -1,89 +1,92 @@
 .dialog_trigger_list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
 }
 
 .dialog_trigger_list__entry {
-  display: flex;
-  align-items: center;
-  color: var(--color-dark-gray);
-  background-color: var(--color-off-white);
-  border-radius: 5px;
-  font-weight: bold;
-  padding: 0.5rem;
-  cursor: pointer;
+    display: flex;
+    color: var(--color-dark-gray);
+    background-color: var(--color-off-white);
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-weight: bold;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
 }
 
 .dialog_trigger_list__entry:hover {
-  background-color: var(--color-sensi-green);
-  color: var(--color-off-white);
+    border-left: 3px solid var(--color-sensi-green);
+    margin-left: -3px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .dialog_overlay {
-  background-color: var(--color-black);
-  opacity: 0.5;
-  z-index: 2;
-  position: fixed;
-  inset: 0;
-  animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+    background-color: var(--color-black);
+    opacity: 0.5;
+    z-index: 2;
+    position: fixed;
+    inset: 0;
+    animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .dialog_content {
-  background-color: var(--color-off-white);
-  border-radius: 6px;
-  box-shadow: var(--color-dark-gray);
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90vw;
-  max-width: 1500px;
-  max-height: 85vh;
-  padding: 25px;
-  animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 3;
-
-  border-top: #66cc33;
-  border-top-style: solid;
+    background-color: var(--color-off-white);
+    border-radius: 6px;
+    border-top: #66cc33;
+    border-top-style: solid;
+    box-shadow: var(--color-dark-gray);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    max-width: 1500px;
+    max-height: 85vh;
+    padding: 25px;
+    animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 3;
+    overflow-y: auto;
 }
 
 .dialog_title {
-  color: var(--color-dark-gray);
-  margin: unset;
+    color: var(--color-dark-gray);
+    margin: unset;
 }
 
 .dialog_close_button {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 1rem;
-  margin: 1rem;
-  border-radius: 5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 5px;
 }
 
 .dialog_close_button:hover {
-  background-color: var(--color-sensi-green);
-  color: var(--color-off-white);
-  cursor: pointer;
+    background-color: var(--color-sensi-green);
+    color: var(--color-off-white);
+    cursor: pointer;
 }
 
 @keyframes overlayShow {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 0.5;
-  }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 0.5;
+    }
 }
 
 @keyframes contentShow {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -48%) scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
+    from {
+        opacity: 0;
+        transform: translate(-50%, -48%) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
 }

@@ -40,21 +40,23 @@ const InfoAccordion = () => {
                     The data download is split into frames of 20 bytes each.
                     Each frame starts with a two-byte sequence number, followed by 18 bytes of data.<br/>
                     The first frame contains the header including all necessary information for the data download:
-                    <ul>
-                        <li>The Version and Protocol: Set both to 0x00</li>
-                        <li>
-                            The sample type ID: This defines what signals are sent.
-                            You can find a list of supported sample types below.
-                            E.g. for the SHT43 Demo Board, this is 0x05
-                        </li>
-                        <li>The sampling interval in milliseconds</li>
-                        <li>
-                            The age of the latest measurement in milliseconds.
-                            The age is defined as the difference between the time when the data download was started
-                            and the time when the last sample has been logged on the gadget.
-                        </li>
-                        <li>The number of samples available for download.</li>
-                    </ul>
+                </p>
+                <ul>
+                    <li>The Version and Protocol: Set both to 0x00</li>
+                    <li>
+                        The sample type ID: This defines what signals are sent.
+                        You can find a list of supported sample types below.
+                        E.g. for the SHT43 Demo Board, this is 0x05
+                    </li>
+                    <li>The sampling interval in milliseconds</li>
+                    <li>
+                        The age of the latest measurement in milliseconds.
+                        The age is defined as the difference between the time when the data download was started
+                        and the time when the last sample has been logged on the gadget.
+                    </li>
+                    <li>The number of samples available for download.</li>
+                </ul>
+                <p>
                     The next frames contain the measurement data for the selected sample type.
                 </p>
                 <p>

@@ -7,7 +7,12 @@ import {useContext, useState} from "react";
 import {FilterContext} from "../common/contexts.tsx";
 import AdSampleContent from "./ad_sample_content.tsx";
 import SampleHeader from "../common/samples/sample_header.tsx";
-import {getRelevantSignals} from "../../../../utils.tsx";
+import {
+    getByteSizeFromNumberOfFields,
+    getMergedGadgetsAndSensorsFromSample,
+    getRelevantSignals,
+    toHexDisplay
+} from "../../../../utils.tsx";
 
 export type AdSample = SampleTypes["sample-types"][number]["sample-type"];
 export type AdSampleId = AdSample["id"];
@@ -24,7 +29,7 @@ function AdvertisementSampleList() {
         // Filter on "Gadget" select according the suitable-for in sample
         if (filters.selectedGadget != undefined) {
             filteredSamples = filteredSamples.filter(s =>
-                s["sample-type"]["suitable-for"]?.includes(filters.selectedGadget!));
+                s["sample-type"]["suitable-for"]?.gadgets?.includes(filters.selectedGadget!));
         }
         // Filter on "Signals" select according the fields in sample
         if (filters.selectedSignals.length > 0) {
@@ -34,7 +39,23 @@ function AdvertisementSampleList() {
                 return selSign.isSubsetOf(sampleSignals);
             });
         }
+        // Filter on "Sensors" select according the suitable-for in sample
+        if (filters.selectedSensors.length > 0) {
+            const selSensor = new Set(filters.selectedSensors);
+            filteredSamples = filteredSamples.filter(s => {
+                const sampleSensors = new Set(s["sample-type"]["suitable-for"]?.sensors);
+                return selSensor.isSubsetOf(sampleSensors);
+            });
+        }
         return filteredSamples;
+    }
+
+    const hexId = (id: AdSampleId) => {
+        return "[" +
+            toHexDisplay(Number(id["ad-type"])) +
+            ", " +
+            toHexDisplay(Number(id["sample-type"])) +
+            "]";
     }
 
     return <Dialog.Root>
@@ -44,10 +65,11 @@ function AdvertisementSampleList() {
                 return <Dialog.Trigger key={index} asChild>
                     <SampleHeader
                         name={s["sample-type"].description}
+                        hexId={hexId(s["sample-type"].id)}
                         signals={relevantSignals}
                         sampleType={s["sample-type"].id["sample-type"]}
-                        gadgets={s["sample-type"]["suitable-for"]}
-                        numberOfSignals={relevantSignals.length}
+                        gadgetsAndSensors={getMergedGadgetsAndSensorsFromSample(s["sample-type"])}
+                        sampleByteSize={getByteSizeFromNumberOfFields(s["sample-type"].fields?.length || 0)}
                         onClick={() => set_selected_sample(s["sample-type"])}
                         className="dialog_trigger_list__entry"
                     />

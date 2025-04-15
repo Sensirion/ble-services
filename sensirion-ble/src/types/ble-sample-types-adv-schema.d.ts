@@ -43,7 +43,17 @@ export interface SampleTypes {
       /**
        * List of devices or sensors this sample type can be used for
        */
-      "suitable-for"?: string[];
+      "suitable-for"?: {
+        /**
+         * List of gadgets this sample type can be used for
+         */
+        gadgets?: string[];
+        /**
+         * List of sensors this sample type can be used for
+         */
+        sensors?: string[];
+        [k: string]: unknown;
+      };
       fields?: {
         /**
          * field definition
@@ -70,6 +80,9 @@ export interface SampleTypes {
            * Conversion function or parameters to convert value into physical unit
            */
           conversion?: {
+            /**
+             * The conversion as an asciimath expression.
+             */
             formula?: string;
             /**
              * The offset of the linear conversion; this is supposed to be a number or a valid python expression

@@ -7,7 +7,12 @@ import {useContext, useState} from "react";
 import {FilterContext} from "../common/contexts.tsx";
 import DlSampleContent from "./dl_sample_content.tsx";
 import SampleHeader from "../common/samples/sample_header.tsx";
-import {getRelevantSignals} from "../../../../utils.tsx";
+import {
+    getByteSizeFromNumberOfFields,
+    getMergedGadgetsAndSensorsFromSample,
+    getRelevantSignals,
+    toHexDisplay
+} from "../../../../utils.tsx";
 
 export type DlSample = SampleTypes["sample-types"][number]["sample-type"];
 export type DlSampleId = DlSample["id"];
@@ -24,7 +29,7 @@ function DownloadSampleList() {
         let filteredSamples = [...dlSamples["sample-types"]]
         if (filters.selectedGadget != undefined) {
             filteredSamples = filteredSamples.filter(s =>
-                s["sample-type"]["suitable-for"]?.includes(filters.selectedGadget!));
+                s["sample-type"]["suitable-for"]?.gadgets?.includes(filters.selectedGadget!));
         }
         // Filter on "Signals" select according the fields in sample
         if (filters.selectedSignals.length > 0) {
@@ -34,20 +39,38 @@ function DownloadSampleList() {
                 return selSign.isSubsetOf(sampleSignals);
             });
         }
+        // Filter on "Sensors" select according the suitable-for in sample
+        if (filters.selectedSensors.length > 0) {
+            const selSensor = new Set(filters.selectedSensors);
+            console.log(selSensor);
+            filteredSamples = filteredSamples.filter(s => {
+                const sampleSensors = new Set(s["sample-type"]["suitable-for"]?.sensors);
+                return selSensor.isSubsetOf(sampleSensors);
+            });
+        }
         return filteredSamples;
+    }
+
+    const hexId = (id: DlSampleId) => {
+        return "[" +
+            toHexDisplay(Number(id["sample-type"].at(0)!)) +
+            ", " +
+            toHexDisplay(Number(id["sample-type"].at(1)!)) +
+            "]";
     }
 
     return <Dialog.Root>
         <div className="dialog_trigger_list">
             {filterDownloadSampleList(fContext.filters).map((s, index) => {
-                const relevantSignals = getRelevantSignals(s["sample-type"].fields)
+                const relevantSignals = getRelevantSignals(s["sample-type"].fields);
                 return <Dialog.Trigger key={index} asChild>
                     <SampleHeader
                         name={s["sample-type"].description}
+                        hexId={hexId(s["sample-type"].id)}
                         signals={relevantSignals}
                         sampleType={s["sample-type"].id["sample-type"].at(0)!}
-                        gadgets={s["sample-type"]["suitable-for"]}
-                        numberOfSignals={relevantSignals.length}
+                        gadgetsAndSensors={getMergedGadgetsAndSensorsFromSample(s["sample-type"])}
+                        sampleByteSize={getByteSizeFromNumberOfFields(s["sample-type"].fields?.length || 0)}
                         onClick={() => set_selected_sample(s["sample-type"])}
                         className="dialog_trigger_list__entry"
                     />

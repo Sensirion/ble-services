@@ -7,7 +7,8 @@ sample-types:
         ad-type: 0x0
         sample-type: 0x3
       suitable-for:
-        - AQ Minion
+        gadgets:
+          - AQ Minion
       fields:
         - field:
             name: Device id
@@ -50,7 +51,8 @@ sample-types:
         ad-type: 0x0
         sample-type: 0x4
       suitable-for:
-        - SHT3x sensors
+        sensors:
+          - SHT3x
       fields:
         - field:
             name: Device id
@@ -82,8 +84,9 @@ sample-types:
         ad-type: 0x0
         sample-type: 0x6
       suitable-for:
-        - SHT40 Gadget
-        - SHT43 Demo Board
+        gadgets:
+          - SHT40 Gadget
+          - SHT43 Demo Board
       fields:
         - field:
             name: Device id
@@ -115,7 +118,8 @@ sample-types:
         ad-type: 0x0
         sample-type: 0x8
       suitable-for:
-        - MyCo2 Gadget
+        gadgets:
+          - MyCo2 Gadget
       notes: Deprecated, use sample type 10 instead.
       fields:
         - field:
@@ -157,8 +161,10 @@ sample-types:
         ad-type: 0x0
         sample-type: 0x0A
       suitable-for:
-        - MyCo2 Gadget
-        - CO2 sensors
+        gadgets:
+          - MyCo2 Gadget
+        sensors:
+          - CO2 sensors
       fields:
         - field:
             name: Device id
@@ -193,7 +199,8 @@ sample-types:
         ad-type: 0x0
         sample-type: 0x0C
       suitable-for:
-        - SEN63C module
+        sensors:
+          - SEN63C module
       fields:
         - field:
             name: Device id
@@ -237,7 +244,8 @@ sample-types:
         ad-type: 0x0
         sample-type: 0x0E
       suitable-for:
-        - Formaldehyde sensors
+        sensors:
+          - Formaldehyde sensors
       fields:
         - field:
             name: Device id
@@ -276,7 +284,8 @@ sample-types:
         ad-type: 0x0
         sample-type: 0x10
       suitable-for:
-        - SEN54 module
+        sensors:
+          - SEN54 module
       fields:
         - field:
             name: Device id
@@ -413,7 +422,8 @@ sample-types:
         ad-type: 0x0
         sample-type: 0x18
       suitable-for:
-        - SEN55 module
+        sensors:
+          - SEN55 module
       fields:
         - field:
             name: Device id
@@ -460,7 +470,8 @@ sample-types:
         ad-type: 0x0
         sample-type: 0x1A
       suitable-for:
-        - SEN66 module
+        sensors:
+          - SEN66 module
       fields:
         - field:
             name: Device id
@@ -512,7 +523,8 @@ sample-types:
         ad-type: 0x0
         sample-type: 0x1C
       suitable-for:
-        - SEN63C module
+        sensors:
+          - SEN63C module
       fields:
         - field:
             name: Device id
@@ -554,8 +566,9 @@ sample-types:
         ad-type: 0x0
         sample-type: 0x1E
       suitable-for:
-        - SEN55 module
-        - SEN65 module
+        sensors:
+          - SEN55 module
+          - SEN65 module
       fields:
         - field:
             name: Device id
@@ -650,8 +663,9 @@ sample-types:
         ad-type: 0x0
         sample-type: 0x22
       suitable-for:
-        - SEN50 module
-        - SEN60 module
+        sensors:
+          - SEN50 module
+          - SEN60 module
       fields:
         - field:
             name: Device id
@@ -697,7 +711,8 @@ sample-types:
         ad-type: 0x0
         sample-type: 0x24
       suitable-for:
-        - CO2 sensors
+        sensors:
+          - CO2 sensors
       fields:
         - field:
             name: Device id
@@ -745,4 +760,5 @@ sample-types:
         sample-type: 0x0
       notes: This sample type is used by the SHT43 demo board if advertisement samples are disabled.
       suitable-for:
-        - SHT43 Demo Board
+        gadgets:
+          - SHT43 Demo Board
