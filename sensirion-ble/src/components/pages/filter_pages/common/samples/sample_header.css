@@ -1,11 +1,26 @@
 .sample_header__left, .sample_header__right {
     display: flex;
-    gap: 1rem;
     flex: 1 1 0;
 }
 
+.sample_header__left {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0.3;
+    padding: 1rem;
+}
+
+.sample_header__right {
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
 .sample_header__card {
-    flex: 1 1 0;
+    &:has(.card__used_by),
+    &:has(.card__signals),
+    &:has(.card__gadgets) {
+        flex-basis: 18%;
+    }
 }
 
 .sample_header__left__title {
@@ -13,7 +28,12 @@
     font-weight: bold;
 }
 
-.sample_header__signal_icons {
+.sample_header__left__hex_id {
+    font-size: 0.75rem;
+    color: var(--color-light-gray);
+}
+
+.card__signals__icons {
     display: flex;
     flex-direction: column;
 }

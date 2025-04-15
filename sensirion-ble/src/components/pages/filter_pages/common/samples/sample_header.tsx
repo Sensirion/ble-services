@@ -40,24 +40,25 @@ const SampleHeader = ({
     return (
         <div className={`sample_header ${className}`} onClick={onClick}>
             <div className="sample_header__left">
-                <div className="sample_header__left__title">{sampleType} {hexId}</div>
+                <div className="sample_header__left__title">{sampleType}</div>
+                <div className="sample_header__left__hex_id">{hexId}</div>
             </div>
             <div className="sample_header__right">
                 <div className="sample_header__card">
-                    <SimpleCard title="Sample Size">
+                    <SimpleCard title="Sample Size" className="card__sample_size">
                         {sampleByteSize} byte{sampleByteSize !== 1 ? 's' : ''}
                     </SimpleCard>
                 </div>
                 <Separator orientation="vertical" />
                 <div className="sample_header__card">
-                    <SimpleCard title={`${signals?.length} Signal${signals?.length !== 1 ? 's' : ''}`}>
+                    <SimpleCard title={`${signals?.length} Signal${signals?.length !== 1 ? 's' : ''}`} className="card__signals">
                         {signals?.length ?
-                            <div className="sample_header__signal_icons"><SignalIcons signals={signals}/></div> : ''}
+                            <div className="card__signals__icons"><SignalIcons signals={signals}/></div> : ''}
                     </SimpleCard>
                 </div>
                 <Separator orientation="vertical" />
                 <div className="sample_header__card">
-                    <SimpleCard title="Used by">
+                    <SimpleCard title="Used by" className="card__gadgets">
                         {gadgetsAndSensors?.length ? gadgetsAndSensors.map(entry => (
                             <div key={entry}>
                                 {entry}
