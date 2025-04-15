@@ -1,13 +1,12 @@
-import {ReactNode} from "react";
+import {PropsWithChildren} from "react";
 import "./card.css";
 
 interface SimpleCardProps {
     title?: string,
     className?: string,
-    children: ReactNode
 }
 
-export const SimpleCard = ({title, className, children}: SimpleCardProps) => {
+export const SimpleCard = ({title, className, children}: PropsWithChildren<SimpleCardProps>) => {
     return (
         <div className={`card ${className}`}>
             <div className="card__content">
