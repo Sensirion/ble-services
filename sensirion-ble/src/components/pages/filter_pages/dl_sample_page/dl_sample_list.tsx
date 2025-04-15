@@ -7,7 +7,12 @@ import {useContext, useState} from "react";
 import {FilterContext} from "../common/contexts.tsx";
 import DlSampleContent from "./dl_sample_content.tsx";
 import SampleHeader from "../common/samples/sample_header.tsx";
-import {getRelevantSignals, toHexDisplay} from "../../../../utils.tsx";
+import {
+    getByteSizeFromNumberOfFields,
+    getMergedGadgetsAndSensorsFromSample,
+    getRelevantSignals,
+    toHexDisplay
+} from "../../../../utils.tsx";
 
 export type DlSample = SampleTypes["sample-types"][number]["sample-type"];
 export type DlSampleId = DlSample["id"];
@@ -54,22 +59,6 @@ function DownloadSampleList() {
             "]";
     }
 
-    const sampleByteSize = (noFields: number) => {
-        return noFields * 2 + 2;
-    }
-
-    const mergedGadgetsAndSensors = (sample: DlSample) => {
-        const suitableFor = sample["suitable-for"];
-        const gadgetsAndSensor = [];
-        if (suitableFor?.gadgets) {
-            gadgetsAndSensor.push(...suitableFor.gadgets);
-        }
-        if (suitableFor?.sensors) {
-            gadgetsAndSensor.push(...suitableFor.sensors);
-        }
-        return gadgetsAndSensor;
-    }
-
     return <Dialog.Root>
         <div className="dialog_trigger_list">
             {filterDownloadSampleList(fContext.filters).map((s, index) => {
@@ -80,8 +69,8 @@ function DownloadSampleList() {
                         hexId={hexId(s["sample-type"].id)}
                         signals={relevantSignals}
                         sampleType={s["sample-type"].id["sample-type"].at(0)!}
-                        gadgetsAndSensors={mergedGadgetsAndSensors(s["sample-type"])}
-                        sampleByteSize={sampleByteSize(s["sample-type"].fields?.length || 0)}
+                        gadgetsAndSensors={getMergedGadgetsAndSensorsFromSample(s["sample-type"])}
+                        sampleByteSize={getByteSizeFromNumberOfFields(s["sample-type"].fields?.length || 0)}
                         onClick={() => set_selected_sample(s["sample-type"])}
                         className="dialog_trigger_list__entry"
                     />
