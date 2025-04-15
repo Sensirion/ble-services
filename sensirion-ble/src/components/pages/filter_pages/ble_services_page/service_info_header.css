@@ -1,29 +1,27 @@
 .service_info_header__left, .service_info_header__right {
     display: flex;
-    gap: 1rem;
     flex: 1 1 0;
 }
 
 .service_info_header__left {
+    display: flex;
+    flex-direction: column;
     flex-grow: 0.3;
+    padding: 1rem;
 }
 
 .service_info_header__right {
     justify-content: flex-end;
+    gap: 0.5rem;
 }
 
 .service_info_header__card {
-
-    &:has(.card__uuid) {
-        flex-basis: 35%;
-    }
-
-    &:has(.card__characteristics), &:has(.card__used_by) {
+    &:has(.card__characteristics) {
         flex-basis: 25%;
     }
 
-    &:has(.card__type) {
-        flex-basis: 10%;
+    &:has(.card__used_by) {
+        flex-basis: 20%;
     }
 }
 
@@ -32,12 +30,7 @@
     font-weight: bold;
 }
 
-.service_info_header__card > .card__type {
-    & .custom {
-        color: var(--color-orange);
-    }
-
-    & .public {
-        color: var(--color-sensi-green);
-    }
+.service_info_header__left__uuid {
+    font-size: 0.75rem;
+    color: var(--color-light-gray);
 }

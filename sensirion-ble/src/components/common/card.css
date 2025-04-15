@@ -6,11 +6,11 @@
     font-size: 1.25rem;
     font-weight: bold;
     margin: 0 0 0.2rem 0;
-    color: var(--color-black);
+    color: var(--color-dark-gray);
 }
 
 .card__text {
     font-size: 1rem;
-    color: var(--color-dark-gray);
+    color: var(--color-light-gray);
     line-height: 1.5;
 }

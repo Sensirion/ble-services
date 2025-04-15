@@ -44,7 +44,6 @@ function ServicesList() {
                 return <Dialog.Trigger key={index} asChild>
                     <ServiceInfoHeader
                         name={s.service.name}
-                        isCustom={!s.service["ble-sig-reference"]}
                         characteristics={s.service["supported-characteristics"].map(c => c.characteristic.name)}
                         gadgets={getDistinctGadgets(s.service["supported-characteristics"])}
                         uuid={s.service.uuid}

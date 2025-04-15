@@ -6,7 +6,6 @@
 
 .dialog_trigger_list__entry {
     display: flex;
-    align-items: center;
     color: var(--color-dark-gray);
     background-color: var(--color-off-white);
     border-radius: 5px;
