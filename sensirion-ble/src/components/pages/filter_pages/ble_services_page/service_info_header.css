@@ -5,14 +5,25 @@
 }
 
 .service_info_header__left {
-    flex-grow: 0.5;
+    flex-grow: 0.3;
+}
+
+.service_info_header__right {
+    justify-content: flex-end;
 }
 
 .service_info_header__card {
-    flex: 1 1 0;
+
+    &:has(.card__uuid) {
+        flex-basis: 35%;
+    }
+
+    &:has(.card__characteristics), &:has(.card__used_by) {
+        flex-basis: 25%;
+    }
 
     &:has(.card__type) {
-        flex-grow: 0.25;
+        flex-basis: 10%;
     }
 }
 

@@ -13,6 +13,7 @@ import {
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {IconDefinition} from "@fortawesome/fontawesome-svg-core";
 import {SimpleCard} from "../../../../common/card.tsx";
+import {Separator} from "../../../../common/separator.tsx";
 
 interface SampleHeaderProps {
     name: string,
@@ -47,12 +48,14 @@ const SampleHeader = ({
                         {sampleByteSize} byte{sampleByteSize !== 1 ? 's' : ''}
                     </SimpleCard>
                 </div>
+                <Separator orientation="vertical" />
                 <div className="sample_header__card">
                     <SimpleCard title={`${signals?.length} Signal${signals?.length !== 1 ? 's' : ''}`}>
                         {signals?.length ?
                             <div className="sample_header__signal_icons"><SignalIcons signals={signals}/></div> : ''}
                     </SimpleCard>
                 </div>
+                <Separator orientation="vertical" />
                 <div className="sample_header__card">
                     <SimpleCard title="Used by">
                         {gadgetsAndSensors?.length ? gadgetsAndSensors.map(entry => (

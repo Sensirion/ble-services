@@ -10,14 +10,18 @@
     color: var(--color-dark-gray);
     background-color: var(--color-off-white);
     border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     font-weight: bold;
     padding: 0.5rem;
+    margin-bottom: 1rem;
     cursor: pointer;
 }
 
 .dialog_trigger_list__entry:hover {
-    background-color: var(--color-sensi-green);
-    color: var(--color-off-white);
+    border-left: 3px solid var(--color-sensi-green);
+    margin-left: -3px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .dialog_overlay {
