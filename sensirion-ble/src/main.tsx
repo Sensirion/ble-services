@@ -33,7 +33,10 @@ const contentRouter = createHashRouter([
 ]);
 
 const mathJaxConfig = {
-    loader: { load: ["input/asciimath"] }
+    loader: {load: ["input/asciimath"]},
+    options: {
+        enableMenu: false
+    }
 }
 
 createRoot(document.getElementById('root')!).render(
