@@ -8,4 +8,5 @@ export default defineConfig({
         react(),
         ViteYaml(),
     ],
+    base: "/ble-services/"
 })
