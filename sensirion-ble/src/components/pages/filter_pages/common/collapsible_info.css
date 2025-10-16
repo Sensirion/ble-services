@@ -13,6 +13,7 @@
 .collapsible_info__item__header {
     display: flex;
     align-items: center;
+    margin-bottom: 1rem;
 }
 
 .collapsible_info__item__header__trigger {
@@ -42,7 +43,11 @@
 .collapsible_info__item__content {
     overflow: hidden;
     color: var(--color-black);
-    margin: 0.2rem 1rem;
+    margin: 0.2rem 1rem 1rem;
+}
+
+.collapsible_info__item__content p:first-child {
+    margin-top: 0;
 }
 
 .collapsible_info__item__content[data-state="open"] {
