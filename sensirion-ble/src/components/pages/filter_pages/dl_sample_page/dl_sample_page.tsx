@@ -61,7 +61,7 @@ const InfoAccordion = () => {
                 </p>
                 <p>
                     The following image shows an example of a data download sequence for sample type 5:
-                    <img src="/BleDataDownload.png" alt="BLE Data Download" width="100%"/>
+                    <img src={`${import.meta.env.BASE_URL}BleDataDownload.png`} alt="BLE Data Download" width="100%"/>
                 </p>
             </div>
         </CollapsibleInfo>
