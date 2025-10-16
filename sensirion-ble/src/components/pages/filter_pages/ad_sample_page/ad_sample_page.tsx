@@ -39,7 +39,7 @@ const InfoAccordion = () => {
 
                 <p>
                     The following image shows an example of a live data sample as sent by the SHT43 Demo Board:
-                    <img src="/BleAdvertisingData.png" alt="BLE Live Data" width="100%"/>
+                    <img src={`${import.meta.env.BASE_URL}BleAdvertisingData.png`} alt="BLE Live Data" width="100%"/>
                 </p>
             </div>
         </CollapsibleInfo>
