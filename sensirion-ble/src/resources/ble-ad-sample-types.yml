@@ -754,6 +754,46 @@ sample-types:
               formula: T = - 45 + ((175.0 * "raw_value") / (2^16 - 1))
 
   - sample-type:
+      description: H2, Pressure, Temperature and Humidity
+      id:
+        ad-type: 0x0
+        sample-type: 0x28
+      fields:
+        - field:
+            name: Device id
+            description: Id of the device
+            byte-offset: 2
+            data-type: uint16
+        - field:
+            name: Temperature
+            byte-offset: 4
+            description: Measured temperature as a raw integer value
+            data-type: uint16
+            conversion:
+              formula: T = - 45 + ((175.0 * "raw_value") / (2^16 - 1))
+        - field:
+            name: Humidity
+            byte-offset: 6
+            description: Measured relative humidity as a raw integer value
+            data-type: uint16
+            conversion:
+              offset: -6
+              scale: 125.0 / (2**16 - 1)
+              formula: rh = - 6 + (125.0 * "raw_value") / (2^16 - 1)
+        - field:
+            name: H2 Concentration
+            description: Measured H2 concentration as a raw integer value
+            byte-offset: 8
+            data-type: uint16
+            conversion:
+              formula: H2 = (("raw_value" - 2^14) / 2^15) * 40
+        - field:
+            name: Pressure
+            description: Measured ambient pressure
+            byte-offset: 10
+            data-type: uint16
+
+  - sample-type:
       description: SHT43-DB no data advertisement sample
       id:
         ad-type: 0xff
