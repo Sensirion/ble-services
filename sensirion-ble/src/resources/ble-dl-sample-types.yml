@@ -708,3 +708,39 @@ sample-types:
             data-type: uint16
             conversion:
               formula: T = - 45 + ((175.0 * "raw_value") / (2^16 - 1))
+
+  - sample-type:
+      description: H2, pressure, temperature and humidity data logging sample
+      id:
+        sample-type: [0x27, 0x00]
+      samples-per-packet: 2
+      fields:
+        - field:
+            name: Temperature
+            byte-offset: 0
+            description: Measured temperature as a raw integer value
+            data-type: uint16
+            conversion:
+              formula: T = - 45 + ((175.0 * "raw_value") / (2^16 - 1))
+        - field:
+            name: Humidity
+            byte-offset: 2
+            description: Measured relative humidity as a raw integer value
+            data-type: uint16
+            conversion:
+              offset: -6
+              scale: 125.0 / (2**16 - 1)
+              formula: RH = - 6 + (125.0 * "raw_value") / (2^16 - 1)
+        - field:
+            name: H2 Concentration
+            description: Measured H2 concentration as a raw integer value
+            byte-offset: 4
+            data-type: uint16
+            conversion:
+              formula: H2 = (("raw_value" - 2^14) / 2^15) * 40
+        - field:
+            name: Pressure
+            description: Measured ambient pressure
+            byte-offset: 6
+            data-type: uint16
+        
