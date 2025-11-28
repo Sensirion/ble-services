@@ -1,19 +1,21 @@
-import "./sample_header.css";
-import {ReactNode} from "react";
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import {
-    faThermometerHalf,
-    faTint,
-    faSmog,
-    faCloud,
-    faWind,
-    faVial,
-    faExclamationTriangle,
-    faFan
+  faCloud,
+  faExclamationTriangle,
+  faFan,
+  faFireFlameCurved,
+  faGaugeMed,
+  faSmog,
+  faThermometerHalf,
+  faTint,
+  faVial,
+  faWind
 } from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {IconDefinition} from "@fortawesome/fontawesome-svg-core";
-import {SimpleCard} from "../../../../common/card.tsx";
-import {Separator} from "../../../../common/separator.tsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ReactNode } from "react";
+import { SimpleCard } from "../../../../common/card.tsx";
+import { Separator } from "../../../../common/separator.tsx";
+import "./sample_header.css";
 
 interface SampleHeaderProps {
     name: string,
@@ -84,6 +86,8 @@ const signalIconMap: { [key: string]: IconDefinition } = {
     "PM4.0": faWind,
     "PM10": faWind,
     "AV": faFan,
+    "H2 Concentration": faFireFlameCurved,
+    "Pressure": faGaugeMed,
 };
 
 const SignalIcons = ({signals}: { signals: string[] }) => {
