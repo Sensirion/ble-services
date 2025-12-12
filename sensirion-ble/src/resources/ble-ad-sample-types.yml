@@ -786,7 +786,7 @@ sample-types:
             byte-offset: 8
             data-type: uint16
             conversion:
-              formula: H2 = (("raw_value" - 2^14) / 2^15) * 40
+              formula: H2 = "raw_value" / 100
         - field:
             name: Pressure
             description: Measured ambient pressure
