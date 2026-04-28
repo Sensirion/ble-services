@@ -38,6 +38,7 @@ function FilterSelectSignalType() {
         {value: 'PM2.5', label: 'PM2.5'},
         {value: 'VOC', label: 'VOC'},
         {value: 'NOx', label: 'NOx'},
+        {value: 'HCHO', label: 'Formaldehyde'},
         {value: 'AV', label: 'AV'},
     ]
     return (
@@ -70,9 +71,11 @@ function FilterSelectSensor() {
         {value: 'SEN54 module', label: 'SEN54'},
         {value: 'SEN55 module', label: 'SEN55'},
         {value: 'SEN60 module', label: 'SEN60'},
+        {value: 'SEN62 module', label: 'SEN62'},
         {value: 'SEN63C module', label: 'SEN63C'},
         {value: 'SEN66 module', label: 'SEN66'},
         {value: 'SEN65 module', label: 'SEN65'},
+        {value: 'SEN69C module', label: 'SEN69C'},
     ]
     return (
         <div className="services__filter_select">
