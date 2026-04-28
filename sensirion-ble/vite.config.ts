@@ -1,12 +1,12 @@
 import {defineConfig} from 'vite'
 import react from '@vitejs/plugin-react'
-import ViteYaml from '@modyfi/vite-plugin-yaml';
+import yaml from '@rollup/plugin-yaml';
 
 // https://vite.dev/config/
 export default defineConfig({
     plugins: [
+        yaml(),
         react(),
-        ViteYaml(),
     ],
     base: "/ble-services/"
 })
