@@ -328,6 +328,9 @@ sample-types:
       id:
         ad-type: 0x0
         sample-type: 0x14
+      suitable-for:
+        sensors:
+          - SEN69C module
       fields:
         - field:
             name: Device id
@@ -792,6 +795,100 @@ sample-types:
             description: Measured ambient pressure
             byte-offset: 10
             data-type: uint16
+
+  - sample-type:
+      description: Temperature/Humidity/PM2.5 advertisement sample
+      id:
+        ad-type: 0x0
+        sample-type: 0x2a
+      suitable-for:
+        sensors:
+          - SEN62 module
+      fields:
+        - field:
+            name: Device id
+            description: Id of the device
+            byte-offset: 2
+            data-type: uint16
+        - field:
+            name: Temperature
+            byte-offset: 4
+            description: Measured temperature as a raw integer value
+            data-type: uint16
+            conversion:
+              formula: T = - 45 + ((175.0 * "raw_value") / (2^16 - 1))
+        - field:
+            name: Humidity
+            byte-offset: 6
+            description: Measured relative humidity as a raw integer value
+            data-type: uint16
+            conversion:
+              scale:  100.0/ (2**16 - 1)
+              formula: RH = (100.0 * "raw_value") / (2^16 - 1)
+        - field:
+            name: PM2.5
+            byte-offset: 8
+            description: Measured PM2.5 concentration as a raw integer value
+            data-type: uint16
+            conversion:
+              scale:  1 / 10
+              formula: PM25 = "raw_value" / 10
+
+  - sample-type:
+      description: Temperature/Humidity/Formaldehyde/VOC/NOx/PM2.5 advertisement sample
+      id:
+        ad-type: 0x0
+        sample-type: 0x2c
+      suitable-for:
+        sensors:
+          - SEN68 module
+      fields:
+        - field:
+            name: Device id
+            description: Id of the device
+            byte-offset: 2
+            data-type: uint16
+        - field:
+            name: Temperature
+            byte-offset: 4
+            description: Measured temperature as a raw integer value
+            data-type: uint16
+            conversion:
+              formula: T = - 45 + ((175.0 * "raw_value") / (2^16 - 1))
+        - field:
+            name: Humidity
+            byte-offset: 6
+            description: Measured relative humidity as a raw integer value
+            data-type: uint16
+            conversion:
+              scale:  100.0/ (2**16 - 1)
+              formula: RH = (100.0 * "raw_value") / (2^16 - 1)
+        - field:
+            name: HCHO
+            byte-offset: 8
+            description: Measured Formaldehyde concentration as a raw integer value
+            data-type: uint16
+            conversion:
+              scale:  1 / 5
+              formula: HCHO = "raw_value" / 5
+        - field:
+            name: VOC
+            byte-offset: 10
+            description: Measured VOC concentration as an integer value
+            data-type: uint16
+        - field:
+            name: NOx
+            byte-offset: 12
+            description: Measured NOx concentration as an integer value
+            data-type: uint16
+        - field:
+            name: PM2.5
+            byte-offset: 14
+            description: Measured PM2.5 concentration as a raw integer value
+            data-type: uint16
+            conversion:
+              scale:  1 / 10
+              formula: PM25 = "raw_value" / 10
 
   - sample-type:
       description: SHT43-DB no data advertisement sample
